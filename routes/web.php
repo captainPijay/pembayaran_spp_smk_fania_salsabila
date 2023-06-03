@@ -34,9 +34,27 @@ use App\Models\User;
 |
 */
 
+//tes untuk generate url
+// Route::get('tes', function () {
+//     echo $url = URL::temporarySignedRoute(
+//         'login.url',
+//         now()->addDays(10),
+//         [
+//             'pembayaran_id' => 1,
+//             'user_id' => 1,
+//             'url' => route('pembayaran.show', 1)
+//         ]
+//     );
+// });
+
+Route::get('login/login-url', [LoginController::class, 'loginUrl'])->name('login.url');
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function () {

@@ -28,16 +28,25 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Muhammad Zahran',
             'akses' => 'operator',
-            'nohp' => '082180864290',
+            'nohp' => '085956344454',
             'nohp_verified_at' => now(),
             'email' => 'muhammadzahran11@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('1')
         ]);
         User::create([
+            'name' => 'Operator 2',
+            'akses' => 'operator',
+            'nohp' => '081994743200',
+            'nohp_verified_at' => now(),
+            'email' => 'operator2@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('1')
+        ]);
+        User::create([
             'name' => 'Kevin',
             'akses' => 'wali',
-            'nohp' => '085956344454',
+            'nohp' => '082180864290',
             'nohp_verified_at' => now(),
             'email' => 'kevin@gmail.com',
             'email_verified_at' => now(),

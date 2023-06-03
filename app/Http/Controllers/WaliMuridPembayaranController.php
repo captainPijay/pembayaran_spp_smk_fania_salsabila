@@ -130,7 +130,7 @@ class WaliMuridPembayaranController extends Controller
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            flash('Gagal Menyimpan Pembayaran, ' + $th->getMessage())->error();
+            flash('Gagal Menyimpan Pembayaran, ' . $th->getMessage())->error();
             return back();
         }
         return back();
