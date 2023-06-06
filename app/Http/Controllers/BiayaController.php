@@ -7,6 +7,7 @@ use App\Models\Biaya;
 use App\Http\Requests\StoreBiayaRequest;
 use App\Http\Requests\UpdateBiayaRequest;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\AssignOp\Mod;
 use Storage;
 
 class BiayaController extends Controller
@@ -23,9 +24,9 @@ class BiayaController extends Controller
      */
     public function index(Request $request)
     {
-        $models = Biaya::with('user')->latest()->paginate(50);
+        $models = Biaya::with('user')->whereNull('parent_id')->latest()->paginate(50);
         if ($request->filled('search')) {
-            $models = Biaya::with('user')->search($request->search)->latest()->paginate(50);
+            $models = Biaya::with('user')->whereNull('parent_id')->search($request->search)->latest()->paginate(50);
         }
         return view('operator.' . $this->viewIndex,  [
             'models' => $models,
@@ -40,9 +41,14 @@ class BiayaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $biaya = new Biaya();
+        if ($request->filled('parent_id')) {
+            $biaya = Biaya::with('children')->findOrFail($request->parent_id);
+        }
         $data = [
+            'parentData' => $biaya,
             'model' => new Biaya(),
             'method' => 'POST',
             'route' => $this->routePrefix . '.store',
@@ -62,7 +68,7 @@ class BiayaController extends Controller
     {
         Biaya::create($request->validated());
         flash('Data Berhasil Di Simpan')->success();
-        return redirect()->route($this->routePrefix . '.index');
+        return back();
     }
 
     /**
@@ -119,6 +125,17 @@ class BiayaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        $model = Biaya::findOrFail($id);
+        if ($model->children->count() >= 1) {
+            flash("Data Tidak Bisa Di Hapus Karena Masih Memiliki Item Biaya. Hapus Item Biaya Terlebih Dahulu")->error();
+            return back();
+        }
+        $model->delete();
+        flash('Data Berhasil Di Hapus', 'danger');
+        return back();
+    }
+    public function deleteItem($id)
     {
         $model = Biaya::findOrFail($id);
         $model->delete();

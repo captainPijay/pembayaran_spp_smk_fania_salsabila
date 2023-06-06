@@ -34,7 +34,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->formatRupiah('jumlah') }}</td>
+                                        <td>{{ formatRupiah($item->total_tagihan) }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td>
                                         {!! Form::open([
@@ -43,7 +43,9 @@
                                                 'onsubmit'=>'return confirm("Yakin Ingin Hapus Data Ini?")',
                                                 ]) !!}
 
-                                            <a href="{{ route($routePrefix.'.show', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail</a>
+                                            <a href="{{ route($routePrefix.'.create', [
+                                                'parent_id'=>$item->id
+                                                ]) }}" class="btn btn-primary btn-sm mx-2"><i class="fa fa-eye"></i> Items</a>
                                             <a href="{{ route($routePrefix.'.edit', $item->id) }}" class="btn btn-warning btn-sm mx-2 my-2"><i class="fa fa-edit"></i> Edit</a>
                                             {{-- {!! Form::submit('Hapus', ['class'=>'btn btn-danger btn-sm']) !!} --}}
                                             <button type="submit" class="btn btn-danger btn-sm">

@@ -6,6 +6,7 @@ use App\Traits\HasFormatRupiah;
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Biaya extends Model
@@ -14,13 +15,28 @@ class Biaya extends Model
     use HasFormatRupiah;
     use SearchableTrait;
     protected $guarded = ['id'];
-    protected $append = ['nama_biaya_full']; //ini untuk membuat api
+    protected $append = ['nama_biaya_full', 'total_tagihan']; //ini untuk membuat api
     protected $searchable = [
         'columns' => [
             'nama' => 255,
             'jumlah' => 30,
         ],
     ];
+    protected function totalTagihan(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->children()->sum('jumlah') //digunakan di tagihan index dan tagihan controller di bagian create tetapi harus menggunakan method get dulu agar menjadi collection
+        );
+    }
+    /**
+     * Get all of the children for the Biaya
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children(): HasMany
+    {
+        return $this->hasMany(Biaya::class, 'parent_id');
+    }
     /**
      * Interact with the user's first name.
      */

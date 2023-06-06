@@ -58,11 +58,14 @@ namespace App\Models{
  * App\Models\Biaya
  *
  * @property int $id
+ * @property int|null $parent_id
  * @property string $nama
  * @property int $jumlah
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Biaya> $children
+ * @property-read int|null $children_count
  * @property-read \App\Models\User|null $user
  * @method static \Database\Factories\BiayaFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya newModelQuery()
@@ -74,6 +77,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereJumlah($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereNama($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereUserId($value)
  */
