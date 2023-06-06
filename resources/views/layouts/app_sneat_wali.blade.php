@@ -203,19 +203,19 @@
                 <div data-i18n="Basic">Data Siswa</div>
               </a>
             </li>
-            <li class="menu-item {{ Route::is('wali.tagihan.*')? 'active' : '' }}">
+            <li class="menu-item {{ Route::is('wali.tagihan.*') || Route::is('wali.pembayaran.*')? 'active' : '' }}">
               <a href="{{ route('wali.tagihan.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Data Tagihan</div>
               </a>
             </li>
             </li>
-            <li class="menu-item {{ Route::is('wali.pembayaran.*')? 'active' : '' }}">
+            {{-- <li class="menu-item {{ Route::is('wali.pembayaran.*')? 'active' : '' }}">
               <a href="{{ route('wali.pembayaran.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Data Pembayaran</div>
               </a>
-            </li>
+            </li> --}}
             <li class="menu-item">
               <a href="{{ route('logout') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>

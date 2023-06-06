@@ -28,7 +28,13 @@
                                         <td>{{ $item->siswa->jurusan }}</td>
                                         <td>{{ $item->siswa->kelas }}</td>
                                         <td>{{ $item->tanggal_tagihan->translatedFormat('F Y') }}</td>
-                                        <td>{{ $item->getStatusTagihanWali() }}</td>
+                                        <td>
+                                            @if ($item->pembayaran->count() >=1 )
+                                            <a href="{{ route('wali.pembayaran.show',$item->pembayaran->first()->id) }}" class="btn btn-success btn-sm">{{ $item->getStatusTagihanWali() }}</a>
+                                    @else
+                                    {{ $item->getStatusTagihanWali() }}
+                                    @endif
+                                </td>
                                         <td>
                                             @if ($item->status == 'baru' || $item->status == 'angsur')
                                             <a href="{{ route('wali.tagihan.show', $item->id) }}" class="btn btn-primary btn-sm">Lakukan Pembayaran</a>
