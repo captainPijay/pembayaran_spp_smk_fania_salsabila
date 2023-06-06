@@ -127,18 +127,20 @@
                                 </tr>
                             </thead>
                         </table>
-                        @if ($model->tanggal_konfirmasi == null)
-                        {!! Form::open(['route'=>$route,
-                        'method'=>'PUT',
-                        'onsubmit'=>'return confirm("Apakah Anda Yakin?")']) !!}
-                        {!! Form::hidden('pembayaran_id', $model->id, []) !!}
-                        {!! Form::submit('Konfirmasi Pembayaran', ['class'=>'btn btn-primary mt-3']) !!}
-                        {!! Form::close() !!}
-                        @else
+                        @if ($model->tanggal_konfirmasi != null)
                         <div class="alert alert-primary" role="alert">
                             <h3>TAGIHAN INI SUDAH LUNAS</h3>
                         </div>
-                        @endif
+                        @else
+                        {!! Form::open([
+                            'route'=> ['wali.pembayaran.destroy', $model->id],
+                            'method'=>'DELETE',
+                            'onsubmit'=>'return confirm("Yakin Ingin Membatalkan Data Ini?")',
+                            ]) !!}
+                        <button type="submit" class="btn btn-danger mt-3">Batalkan Konfirmasi Pembayaran Ini</button>
+                        </form>
+                    {!! Form::close() !!}
+                    @endif
                     </div>
                 </div>
             </div>

@@ -47,19 +47,7 @@
                                         <td>{{ $item->metode_pembayaran }}</td>
                                         <td>{{ $item->status_konfirmasi }}</td>
                                         <td>
-                                        {!! Form::open([
-                                                'route'=> ['wali.pembayaran.destroy', $item->id],
-                                                'method'=>'DELETE',
-                                                'onsubmit'=>'return confirm("Yakin Ingin Hapus Data Ini?")',
-                                                ]) !!}
-
                                             <a href="{{ route('wali.pembayaran.show',$item->id) }}" class="btn btn-primary btn-sm mx-3"><i class="fa fa-eye"></i> Detail</a>
-                                            <form action="{{ route('tagihan.destroy', $item->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                            </form>
-                                        {!! Form::close() !!}
                                         </td>
                                     </tr>
                                 @empty

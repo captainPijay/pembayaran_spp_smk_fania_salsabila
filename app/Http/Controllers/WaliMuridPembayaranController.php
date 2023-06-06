@@ -13,6 +13,7 @@ use App\Models\BankSekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Notifications\PembayaranNotification;
+use Storage;
 
 class WaliMuridPembayaranController extends Controller
 {
@@ -123,16 +124,28 @@ class WaliMuridPembayaranController extends Controller
         ];
         DB::beginTransaction();
         try {
-            $Pembayaran = Pembayaran::create($dataPembayaran);
+            $pembayaran = Pembayaran::create($dataPembayaran);
             $userOperator = User::where('akses', 'operator')->get();
-            Notification::send($userOperator, new PembayaranNotification($Pembayaran));
-            flash('Pembayaran Berhasil Di Simpan Dan Akan Segera Di Konfirmasi Oleh Operator')->success();
+            Notification::send($userOperator, new PembayaranNotification($pembayaran));
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
             flash('Gagal Menyimpan Pembayaran, ' . $th->getMessage())->error();
             return back();
         }
-        return back();
+        flash('Pembayaran Berhasil Di Simpan Dan Akan Segera Di Konfirmasi Oleh Operator')->success();
+        return redirect()->route('wali.pembayaran.show', $pembayaran->id);
+    }
+    public function destroy($id)
+    {
+        $pembayaran = Pembayaran::findOrFail($id);
+        if ($pembayaran->tanggal_konfirmasi != null) {
+            flash('Data Pembayaran Ini Sudah Di Konfirmasi, Tidak Bisa Di Hapus')->error();
+            return back();
+        }
+        Storage::delete($pembayaran->bukti_bayar);
+        $pembayaran->delete();
+        flash('Data Pembayaran Berhasil Di Hapus');
+        return redirect()->route('wali.pembayaran.index');
     }
 }
