@@ -7,7 +7,11 @@
                 <h5 class="card-header">{{ $title }}</h5>
 
                 <div class="card-body">
-                    <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
+                        </div>
+                    </div>
                     {!! Form::open(['route' => $routePrefix.'.index', 'method'=>'GET']) !!}
                     <div class="input-group mb-3">
                         <div class="col-md-5">
@@ -43,7 +47,7 @@
                                         <td>{{ $item->jurusan }}</td>
                                         <td>{{ $item->kelas }}</td>
                                         <td>{{ $item->angkatan }}</td>
-                                        <td>{{ formatRupiah($item->biaya?->first()->total_tagihan) }}</td>
+                                        <td>{{ formatRupiah($item->biaya?->children->sum('jumlah')) }}</td>
                                         <td>
                                         {!! Form::open([
                                                 'route'=> [$routePrefix.'.destroy', $item->id],

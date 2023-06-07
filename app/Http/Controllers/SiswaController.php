@@ -109,10 +109,11 @@ class SiswaController extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show(Siswa $siswa)
+    public function show($id)
     {
+        $siswa = Siswa::findOrFail($id);
         return view('operator.' . $this->viewShow, [
-            'model' => $siswa->with('children'),
+            'model' => $siswa,
             'title' => 'Detail Siswa'
         ]);
     }

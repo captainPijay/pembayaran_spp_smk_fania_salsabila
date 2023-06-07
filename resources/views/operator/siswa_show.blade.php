@@ -52,7 +52,7 @@
                             </tr>
                         </thead>
                     </table>
-                    {{-- <h6 class="mt-3">TAGIHAN SPP</h6>
+                    <h6 class="mt-3">TAGIHAN SPP</h6>
                     <div class="row">
                         <div class="col-md-5">
                             <table class="table table-bordered table-sm">
@@ -68,11 +68,15 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->nama }}</td>
-                                            <td>{{ formatRupiah($item->jumlah) }}</td>
+                                            <td class="text-end">{{ formatRupiah($item->jumlah) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table> --}}
+                                <tfoot>
+                                    <td colspan="2">TOTAL TAGIHAN</td>
+                                    <td class="text-end fw-bold">{{ formatRupiah($model->biaya->children->sum('jumlah')) }}</td>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
