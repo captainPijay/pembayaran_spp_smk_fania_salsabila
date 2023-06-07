@@ -9,6 +9,7 @@ use App\Models\Tagihan;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
+use App\Models\Biaya;
 
 class SiswaController extends Controller
 {
@@ -44,6 +45,7 @@ class SiswaController extends Controller
     public function create()
     {
         $data = [
+            'listBiaya' => Biaya::has('children')->whereNull('parent_id')->pluck('nama', 'id'),
             'model' => new Siswa(),
             'method' => 'POST',
             'route' => $this->routePrefix . '.store',
@@ -110,7 +112,7 @@ class SiswaController extends Controller
     public function show(Siswa $siswa)
     {
         return view('operator.' . $this->viewShow, [
-            'model' => $siswa,
+            'model' => $siswa->with('children'),
             'title' => 'Detail Siswa'
         ]);
     }
@@ -124,6 +126,7 @@ class SiswaController extends Controller
     public function edit(Siswa $siswa)
     {
         $data = [
+            'listBiaya' => Biaya::has('children')->whereNull('parent_id')->pluck('nama', 'id'),
             'model' => $siswa,
             'method' => 'PUT',
             'route' => [$this->routePrefix . '.update', $siswa],

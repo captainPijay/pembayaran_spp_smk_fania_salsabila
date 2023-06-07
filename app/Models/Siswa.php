@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Auth;
+use Request;
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Nicolaslopezj\Searchable\SearchableTrait;
-use Request;
 
 class Siswa extends Model
 {
@@ -47,5 +48,14 @@ class Siswa extends Model
     public function scopeSiswaPrevent($siswa)
     {
         return $siswa->where('wali_id', Auth::user()->id)->findOrFail(Request::segment(3));
+    }
+    /**
+     * Get all of the biaya for the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function biaya(): BelongsTo
+    {
+        return $this->belongsTo(Biaya::class);
     }
 }

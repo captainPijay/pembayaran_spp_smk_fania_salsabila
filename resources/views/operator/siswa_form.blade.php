@@ -33,6 +33,11 @@
                         {!! Form::text('nama', null, ['class'=>'form-control', 'autofocus']) !!}
                         <span class="text-danger">{{ $errors->first('nama') }}</span>
                     </div>
+                    <div class="form-group">
+                        <label for="biaya_id">Biaya SPP</label>
+                        {!! Form::select('biaya_id', $listBiaya, null, ['class'=>'form-control']) !!}
+                        <span class="text-danger">{{ $errors->first('biaya_id') }}</span>
+                    </div>
                     <div class="form-group mt-3">
                         <label for="nisn">NISN</label>
                         {!! Form::text('nisn', null, ['class'=>'form-control']) !!}

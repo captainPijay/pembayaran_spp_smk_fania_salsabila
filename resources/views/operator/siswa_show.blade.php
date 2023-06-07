@@ -52,6 +52,29 @@
                             </tr>
                         </thead>
                     </table>
+                    {{-- <h6 class="mt-3">TAGIHAN SPP</h6>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Item Tagihan</th>
+                                        <th>Jumlah Tagihan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($model->biaya->children as $item)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ formatRupiah($item->jumlah) }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table> --}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

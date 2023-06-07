@@ -135,6 +135,7 @@ namespace App\Models{
  * @property int|null $wali_id
  * @property string|null $wali_status
  * @property string $nama
+ * @property int $biaya_id
  * @property string $nisn
  * @property string|null $foto
  * @property string $jurusan
@@ -144,6 +145,7 @@ namespace App\Models{
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Biaya|null $biaya
  * @property-read \App\Models\User|null $user
  * @property-read \App\Models\User|null $wali
  * @method static \Database\Factories\SiswaFactory factory($count = null, $state = [])
@@ -154,6 +156,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa siswaPrevent()
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereAngkatan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereBiayaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereFoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereId($value)

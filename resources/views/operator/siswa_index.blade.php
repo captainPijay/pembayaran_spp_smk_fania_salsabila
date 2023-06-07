@@ -29,7 +29,7 @@
                                     <th class="text-warning">Jurusan</th>
                                     <th class="text-warning">Kelas</th>
                                     <th class="text-warning">Angkatan</th>
-                                    <th class="text-warning">Created By</th>
+                                    <th class="text-warning">Biaya SPP</th>
                                     <th class="text-warning">Aksi</th>
                                 </tr>
                             </thead>
@@ -43,7 +43,7 @@
                                         <td>{{ $item->jurusan }}</td>
                                         <td>{{ $item->kelas }}</td>
                                         <td>{{ $item->angkatan }}</td>
-                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ formatRupiah($item->biaya?->first()->total_tagihan) }}</td>
                                         <td>
                                         {!! Form::open([
                                                 'route'=> [$routePrefix.'.destroy', $item->id],
