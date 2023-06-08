@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Auth;
 use Request;
+use Spatie\ModelStatus\HasStatuses;
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,6 +15,7 @@ class Siswa extends Model
 {
     use HasFactory;
     use SearchableTrait;
+    use HasStatuses;
     protected $guarded = ['id'];
     protected $searchable = [
         'columns' => [

@@ -98,7 +98,8 @@ class SiswaController extends Controller
             $requestData['wali_status'] = null;
         }
         $requestData['user_id'] = auth()->user()->id;
-        Siswa::create($requestData);
+        $siswa = Siswa::create($requestData);
+        $siswa->setStatus('aktif');
         flash('Data Berhasil Di Simpan')->success();
         return redirect()->route($this->routePrefix . '.index');
     }

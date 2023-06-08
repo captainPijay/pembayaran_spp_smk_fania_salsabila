@@ -27,13 +27,13 @@
                             <thead>
                                 <tr>
                                     <th class="text-warning">No</th>
-                                    <th class="text-warning">Nama Wali Murid</th>
+                                    <th class="text-warning">Wali Murid</th>
                                     <th class="text-warning">Nama Murid</th>
                                     <th class="text-warning">NISN</th>
                                     <th class="text-warning">Jurusan</th>
-                                    <th class="text-warning">Kelas</th>
                                     <th class="text-warning">Angkatan</th>
                                     <th class="text-warning">Biaya SPP</th>
+                                    <th class="text-warning">Status</th>
                                     <th class="text-warning">Aksi</th>
                                 </tr>
                             </thead>
@@ -45,9 +45,9 @@
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->nisn }}</td>
                                         <td>{{ $item->jurusan }}</td>
-                                        <td>{{ $item->kelas }}</td>
                                         <td>{{ $item->angkatan }}</td>
                                         <td>{{ formatRupiah($item->biaya?->children->sum('jumlah')) }}</td>
+                                        <td>{{ $item->status }}</td>
                                         <td>
                                         {!! Form::open([
                                                 'route'=> [$routePrefix.'.destroy', $item->id],

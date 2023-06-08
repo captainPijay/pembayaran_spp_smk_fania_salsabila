@@ -19,6 +19,13 @@
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
+                                <td width='15%'>STATUS SISWA</td>
+                                <td>: <span class="badge {{ $model->status == 'aktif' ? 'bg-success' : 'bg-danger' }}">
+                                    {{ $model->status }}
+                                </span>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td width='15%'>NAMA</td>
                                 <td>: {{ $model->nama }}</td>
                             </tr>
@@ -77,6 +84,17 @@
                                     <td class="text-end fw-bold">{{ formatRupiah($model->biaya->children->sum('jumlah')) }}</td>
                                 </tfoot>
                             </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        <a href="{{ route('status.update',[
+                            'model'=>'siswa',
+                            'id'=>$model->id,
+                            'status'=> $model->status == 'aktif' ? 'non-aktif' : 'aktif'
+                        ]) }}" class="btn {{ $model->status == 'aktif' ? 'bg-danger' : 'bg-success' }} btn-sm mt-3 font-weight-bold text-white" onclick="return confirm('Anda Yakin ?')">
+                            {{ $model->status == 'aktif' ? 'Non-Aktifkan Siswa Ini' : 'Aktifkan Siswa Ini' }}
+                        </a>
                         </div>
                     </div>
                 </div>

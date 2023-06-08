@@ -14,6 +14,7 @@ use App\Http\Controllers\KartuSppController;
 use App\Http\Controllers\KwitansiPembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\WaliMuridPembayaranController;
 use App\Http\Controllers\WaliMuridSiswaController;
@@ -66,11 +67,12 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::resource('siswa', SiswaController::class);
     Route::resource('walisiswa', WaliSiswaController::class);
     Route::resource('biaya', BiayaController::class);
-    Route::get('delete-biaya-item/{id}', [BiayaController::class, 'deleteItem'])->name('delete-biaya.item');
     Route::resource('tagihan', TagihanController::class);
     Route::resource('pembayaran', PembayaranController::class);
+    Route::get('delete-biaya-item/{id}', [BiayaController::class, 'deleteItem'])->name('delete-biaya.item');
     Route::get('kwitansi-pembayaran/{id}', [KwitansiPembayaranController::class, 'show'])->name('kwitansipembayaran.show');
     Route::get('kartuspp', [KartuSppController::class, 'index'])->name('kartuspp.index');
+    Route::get('status/update', [StatusController::class, 'update'])->name('status.update');
 });
 
 Route::get('login-wali', [LoginController::class, 'showLoginFormWali'])->name('login.wali');

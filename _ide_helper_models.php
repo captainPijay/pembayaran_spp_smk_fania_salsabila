@@ -146,11 +146,15 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Biaya|null $biaya
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\ModelStatus\Status> $statuses
+ * @property-read int|null $statuses_count
  * @property-read \App\Models\User|null $user
  * @property-read \App\Models\User|null $wali
+ * @method static \Illuminate\Database\Eloquent\Builder|Siswa currentStatus(...$names)
  * @method static \Database\Factories\SiswaFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Siswa otherCurrentStatus(...$names)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa query()
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
