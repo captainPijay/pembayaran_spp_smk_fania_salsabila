@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Biaya;
 use App\Models\Siswa;
 use App\Models\Tagihan;
@@ -12,6 +13,8 @@ use App\Models\TagihanDetail;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreTagihanRequest;
 use App\Http\Requests\UpdateTagihanRequest;
+use App\Notifications\TagihanNotification;
+use Illuminate\Support\Facades\Notification;
 
 class TagihanController extends Controller
 {
@@ -96,6 +99,7 @@ class TagihanController extends Controller
             // ->first();
             // if ($cekTagihan == null) {
             $tagihan = Tagihan::create($requestData);
+            Notification::send($tagihan->siswa->wali, new TagihanNotification($tagihan));
             $biaya = $itemSiswa->biaya->children;
             foreach ($biaya as $itemBiaya) {
                 $detail = TagihanDetail::create([
@@ -106,7 +110,7 @@ class TagihanController extends Controller
                 // }
             }
         }
-        DB::commit();
+        DB::commit(); //Metode DB::commit() digunakan untuk mengakhiri transaksi yang sukses. Ini mengonfirmasi bahwa semua perintah dalam transaksi telah berhasil dieksekusi dan perubahan-perubahan tersebut harus diterapkan ke basis data secara permanen.
         flash("Data tagihan berhasil disimpan")->success();
         return back();
     }
