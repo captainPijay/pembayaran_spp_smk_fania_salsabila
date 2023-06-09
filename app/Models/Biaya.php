@@ -52,6 +52,15 @@ class Biaya extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
     /**
+     * Get all of the siswa for the Biaya
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function siswa(): HasMany
+    {
+        return $this->hasMany(Siswa::class);
+    }
+    /**
      * The "booted" method of the model.
      */
     protected static function booted(): void

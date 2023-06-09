@@ -66,6 +66,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Biaya> $children
  * @property-read int|null $children_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Siswa> $siswa
+ * @property-read int|null $siswa_count
  * @property-read \App\Models\User|null $user
  * @method static \Database\Factories\BiayaFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya newModelQuery()
@@ -148,6 +150,8 @@ namespace App\Models{
  * @property-read \App\Models\Biaya|null $biaya
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\ModelStatus\Status> $statuses
  * @property-read int|null $statuses_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tagihan> $tagihan
+ * @property-read int|null $tagihan_count
  * @property-read \App\Models\User|null $user
  * @property-read \App\Models\User|null $wali
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa currentStatus(...$names)

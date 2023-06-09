@@ -60,4 +60,13 @@ class Siswa extends Model
     {
         return $this->belongsTo(Biaya::class);
     }
+    /**
+     * Get all of the tagihan for the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tagihan(): HasMany
+    {
+        return $this->hasMany(Tagihan::class);
+    }
 }

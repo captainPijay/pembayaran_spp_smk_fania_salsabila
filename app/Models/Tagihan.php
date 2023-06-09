@@ -18,7 +18,7 @@ class Tagihan extends Model
 
     public function siswa()
     {
-        return $this->belongsTo(Siswa::class);
+        return $this->belongsTo(Siswa::class)->withDefault();
     }
     public function user()
     {

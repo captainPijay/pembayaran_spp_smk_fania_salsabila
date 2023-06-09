@@ -127,8 +127,14 @@ class BiayaController extends Controller
     public function destroy($id)
     {
         $model = Biaya::findOrFail($id);
+        //validasi relasi ke children
         if ($model->children->count() >= 1) {
             flash("Data Tidak Bisa Di Hapus Karena Masih Memiliki Item Biaya. Hapus Item Biaya Terlebih Dahulu")->error();
+            return back();
+        }
+        //validasi relasi ke tabel siswa
+        if ($model->siswa->count() >= 1) {
+            flash('Data Gagal Dihapus Karena Masih Memiliki Relasi Ke Data Siswa')->error();
             return back();
         }
         $model->delete();

@@ -176,20 +176,23 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $model = Siswa::findOrFail($id);
-        $tagihan = Tagihan::firstWhere('siswa_id', $id);
-        if ($tagihan != null) {
-            $tagihan = Tagihan::where('siswa_id', $id)->get();
-            $tagihan->delete();
+        $siswa = Siswa::findOrFail($id);
+        if ($siswa->tagihan->count() >= 1) {
+            flash('Data Tidak Bisa Dihapus Karena Masih Memiliki Relasi Data Tagihan Tagihan')->error();
+            return back();
         }
-        if ($model->foto != null) {
-            Storage::delete($model->foto);
-            $model->delete();
-        } else {
-            $model->delete();
-        }
-
-        flash('Data Berhasil Di Hapus', 'danger');
+        // if (Tagihan::where('siswa_id', $id) != null) {
+        //     $tagihan = Tagihan::where('siswa_id', $id);
+        //     $tagihan->delete();
+        // }
+        // if ($model->foto != null) {
+        //     Storage::delete($model->foto);
+        //     $model->delete();
+        // } else {
+        //     $model->delete();
+        // }
+        $siswa->delete();
+        flash('Data Berhasil Di Hapus')->success();
         return back();
     }
 }
