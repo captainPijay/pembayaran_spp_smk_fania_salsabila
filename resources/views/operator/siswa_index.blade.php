@@ -47,15 +47,17 @@
                                         <td>{{ $item->jurusan }}</td>
                                         <td>{{ $item->angkatan }}</td>
                                         <td>{{ formatRupiah($item->biaya?->children->sum('jumlah')) }}</td>
-                                        <td>{{ $item->status }}</td>
+                                        <div class="d-flex align-items-center">
+                                            <td  class="btn {{ $item->status == 'aktif' ? 'bg-success' : 'bg-danger' }} text-white font-weight-bold d-flex justify-content-center text-center mt-2 btn-sm">{{ $item->status }}</td>
                                         <td>
+                                        </div>
                                         {!! Form::open([
                                                 'route'=> [$routePrefix.'.destroy', $item->id],
                                                 'method'=>'DELETE',
                                                 'onsubmit'=>'return confirm("Yakin Ingin Hapus Data Ini?")',
                                                 ]) !!}
 
-                                            <a href="{{ route($routePrefix.'.show', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail</a>
+                                            <a href="{{ route($routePrefix.'.show', $item->id) }}" class="btn btn-primary btn-sm mx-1"><i class="fa fa-eye"></i> Detail</a>
                                             <a href="{{ route($routePrefix.'.edit', $item->id) }}" class="btn btn-warning btn-sm mx-2 my-2"><i class="fa fa-edit"></i> Edit</a>
                                             {{-- {!! Form::submit('Hapus', ['class'=>'btn btn-danger btn-sm']) !!} --}}
                                             <button type="submit" class="btn btn-danger btn-sm">

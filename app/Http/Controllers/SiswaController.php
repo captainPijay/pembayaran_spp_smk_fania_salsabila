@@ -177,7 +177,8 @@ class SiswaController extends Controller
     public function destroy($id)
     {
         $model = Siswa::findOrFail($id);
-        if (Tagihan::firstWhere('siswa_id', $id) != null) {
+        $tagihan = Tagihan::firstWhere('siswa_id', $id);
+        if ($tagihan != null) {
             $tagihan = Tagihan::where('siswa_id', $id)->get();
             $tagihan->delete();
         }

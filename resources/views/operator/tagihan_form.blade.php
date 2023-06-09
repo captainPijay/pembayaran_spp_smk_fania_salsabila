@@ -16,7 +16,7 @@
                          {!! Form::select('biaya_id', $biaya, null, ['class'=>'form-control','multiple'=>true]) !!}
                         <span class="text-danger">{{ $errors->first('biaya_id') }}</span>
                     </div> --}}
-                    <label for="">Tagihan Untuk Biaya</label>
+                    {{-- <label for="">Tagihan Untuk Biaya</label>
                     @foreach ($biaya as $item)
 
                     <div class="form-check mt-3 mb-3">
@@ -29,8 +29,8 @@
                           {{ $item->nama_biaya_full }}
                         </label>
                       </div>
-                    @endforeach
-                    <div class="form-group mb-3">
+                    @endforeach --}}
+                    {{-- <div class="form-group mb-3">
                         <label for="angkatan">Tagihan Untuk Angkatan Berapa</label>
                          {!! Form::select('angkatan', $angkatan, null, ['class'=>'form-control','placeholder'=>'Pilih Angkatan']) !!}
                         <span class="text-danger">{{ $errors->first('angkatan') }}</span>
@@ -39,7 +39,7 @@
                         <label for="kelas">Kelas</label>
                         {!! Form::select('kelas', $kelas, null, ['class'=>'form-control','placeholder'=>'Pilih Kelas']) !!}
                         <span class="text-danger">{{ $errors->first('kelas') }}</span>
-                    </div>
+                    </div> --}}
                     <div class="form-group mt-3">
                         <label for="tanggal_tagihan">Tanggal Tagihan</label>
                         {!! Form::date('tanggal_tagihan',$model->tanggal_tagihan ?? date('Y-m-d'), ['class'=>'form-control']) !!}

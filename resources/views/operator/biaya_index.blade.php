@@ -7,17 +7,21 @@
                 <h5 class="card-header">{{ $title }}</h5>
 
                 <div class="card-body">
-                    <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
-                    {!! Form::open(['route' => $routePrefix.'.index', 'method'=>'GET']) !!}
-                    <div class="input-group mb-3">
-                        <div class="col-md-5">
-                            <input name="search" type="text" class="form-control" placeholder="Cari Data" aria-label="Cari Nama" aria-describedby="basic-addon2" value="{{ request('search') }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
                         </div>
-                        <button class="btn btn-outline-primary" type="submit" id="button-addon2">
-                            <i class="bx bx-search"></i>
-                        </button>
-                      </div>
-                    {!! Form::close() !!}
+                        {!! Form::open(['route' => $routePrefix.'.index', 'method'=>'GET']) !!}
+                        <div class="input-group mb-3">
+                            <div class="col-md-5">
+                                <input name="search" type="text" class="form-control" placeholder="Cari Data" aria-label="Cari Nama" aria-describedby="basic-addon2" value="{{ request('search') }}">
+                            </div>
+                            <button class="btn btn-outline-primary" type="submit" id="button-addon2">
+                                <i class="bx bx-search"></i>
+                            </button>
+                          </div>
+                        {!! Form::close() !!}
+                    </div>
                        <div class="table-responsive">
                         <table class="table table-stripped bg-dark">
                             <thead>
