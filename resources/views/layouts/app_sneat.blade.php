@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>{{ config('app.name','Laravel') }}</title>
+    <title>{{ settings()->get('app_name', 'My APP') }}</title>
 
     <meta name="description" content="" />
 
@@ -164,7 +164,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+              <span class="app-brand-text menu-text fw-bolder">{{ settings()->get('app_name', 'My APP') }}</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -184,6 +184,12 @@
             </li>
 
             <!-- Cards -->
+            <li class="menu-item {{ Route::is('setting.*')? 'active' : '' }}">
+              <a href="{{ route('setting.create') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Pengaturan Aplikasi</div>
+              </a>
+            </li>
             <li class="menu-item {{ Route::is('user.*')? 'active' : '' }}">
               <a href="{{ route('user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>

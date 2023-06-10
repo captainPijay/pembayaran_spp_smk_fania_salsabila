@@ -25,9 +25,9 @@ class SiswaController extends Controller
      */
     public function index(Request $request)
     {
-        $models = Siswa::with('wali', 'user')->latest()->paginate(50);
+        $models = Siswa::with('wali', 'user')->latest()->paginate(settings()->get('app_pagination', '50'));
         if ($request->filled('search')) {
-            $models = Siswa::with('wali', 'user')->search($request->search)->latest()->paginate(50);
+            $models = Siswa::with('wali', 'user')->search($request->search)->latest()->paginate(settings()->get('app_pagination', '50'));
         }
         return view('operator.' . $this->viewIndex,  [
             'models' => $models,

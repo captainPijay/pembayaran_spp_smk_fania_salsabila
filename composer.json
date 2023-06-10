@@ -18,6 +18,7 @@
         "laravel/ui": "^4.2",
         "laravelcollective/html": "^6.3",
         "nicolaslopezj/searchable": "^1.13",
+        "qcod/laravel-settings": "^1.2",
         "spatie/laravel-model-status": "^1.13"
     },
     "require-dev": {

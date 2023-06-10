@@ -24,7 +24,7 @@ class BankSekolahController extends Controller
      */
     public function index(Request $request)
     {
-        $models = BankSekolah::latest()->paginate(50);
+        $models = BankSekolah::latest()->paginate(settings()->get('app_pagination', '50'));
         return view('operator.' . $this->viewIndex,  [
             'models' => $models,
             'routePrefix' => $this->routePrefix,

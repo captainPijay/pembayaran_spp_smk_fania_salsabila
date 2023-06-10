@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         // $models = Model::latest()->paginate(50);
         return view('operator.' . $this->viewIndex, [
-            'models' => Model::where('akses', '<>', 'wali')->latest()->paginate(50),
+            'models' => Model::where('akses', '<>', 'wali')->latest()->paginate(settings()->get('app_pagination', '1')),
             'title' => 'Data User',
             'routePrefix' => $this->routePrefix
         ]);

@@ -24,9 +24,9 @@ class BiayaController extends Controller
      */
     public function index(Request $request)
     {
-        $models = Biaya::with('user')->whereNull('parent_id')->latest()->paginate(50);
+        $models = Biaya::with('user')->whereNull('parent_id')->latest()->paginate(settings()->get('app_pagination', '50'));
         if ($request->filled('search')) {
-            $models = Biaya::with('user')->whereNull('parent_id')->search($request->search)->latest()->paginate(50);
+            $models = Biaya::with('user')->whereNull('parent_id')->search($request->search)->latest()->paginate(settings()->get('app_pagination', '50'));
         }
         return view('operator.' . $this->viewIndex,  [
             'models' => $models,

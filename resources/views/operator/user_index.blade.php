@@ -50,7 +50,9 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {!! $models->links() !!}
+                        <div class="mt-3">
+                            {!! $models->links() !!}
+                        </div>
                     </div>
                 </div>
             </div>

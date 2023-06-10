@@ -33,10 +33,10 @@ class TagihanController extends Controller
         if ($request->filled('bulan') && $request->filled('tahun')) {
             $models = Tagihan::latest()->whereMonth('tanggal_tagihan', $request->bulan)
                 ->whereYear('tanggal_tagihan', $request->tahun)
-                ->paginate(50);
+                ->paginate(settings()->get('app_pagination', '50'));
         } else {
 
-            $models = Tagihan::latest()->paginate(50);
+            $models = Tagihan::latest()->paginate(settings()->get('app_pagination', '50'));
         }
         return view('operator.' . $this->viewIndex,  [
             'models' => $models,
