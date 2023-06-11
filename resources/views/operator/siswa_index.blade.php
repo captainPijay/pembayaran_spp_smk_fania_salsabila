@@ -48,7 +48,7 @@
                                         <td>{{ $item->angkatan }}</td>
                                         <td>{{ formatRupiah($item->biaya?->children->sum('jumlah')) }}</td>
                                         <div class="d-flex align-items-center">
-                                            <td  class="btn {{ $item->status == 'aktif' ? 'bg-success' : 'bg-danger' }} text-white font-weight-bold d-flex justify-content-center text-center mt-2 btn-sm">{{ $item->status }}</td>
+                                            <td  class="btn {{ $item->status == 'aktif' ? 'bg-success' : 'bg-danger' }} text-white font-weight-bold d-flex justify-content-center text-center mt-2 btn-sm mx-1">{{ $item->status }}</td>
                                         <td>
                                         </div>
                                         {!! Form::open([
