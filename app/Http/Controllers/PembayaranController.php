@@ -20,6 +20,7 @@ class PembayaranController extends Controller
     {
         $models = Pembayaran::latest()->orderBy('tanggal_konfirmasi', 'desc')->paginate(50);
         $data['models'] = $models;
+        $data['title'] = 'Data Pembayaran';
         return view('operator.pembayaran_index', $data);
     }
 
@@ -69,7 +70,8 @@ class PembayaranController extends Controller
         auth()->user()->unreadNotifications->where('id', request('id'))->first()?->markAsRead();
         return view('operator.pembayaran_show', [
             'model' => $pembayaran,
-            'route' => ['pembayaran.update', $pembayaran->id]
+            'route' => ['pembayaran.update', $pembayaran->id],
+            'title' => 'Detail Pembayaran'
         ]);
     }
 
