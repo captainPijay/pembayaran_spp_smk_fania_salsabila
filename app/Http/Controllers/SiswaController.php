@@ -25,12 +25,12 @@ class SiswaController extends Controller
      */
     public function index(Request $request)
     {
-        $models = Siswa::with('wali', 'user')->latest()->paginate(settings()->get('app_pagination', '50'));
+        $models = Siswa::with('wali', 'user')->latest();
         if ($request->filled('search')) {
-            $models = Siswa::with('wali', 'user')->search($request->search)->latest()->paginate(settings()->get('app_pagination', '50'));
+            $models = $models->search($request->search); //nicolaslopezj/searchable
         }
         return view('operator.' . $this->viewIndex,  [
-            'models' => $models,
+            'models' => $models->paginate(settings()->get('app_pagination', '50')),
             'routePrefix' => $this->routePrefix,
             'title' => 'DATA SISWA'
 
@@ -97,9 +97,7 @@ class SiswaController extends Controller
         } else {
             $requestData['wali_status'] = null;
         }
-        $requestData['user_id'] = auth()->user()->id;
         $siswa = Siswa::create($requestData);
-        $siswa->setStatus('aktif');
         flash('Data Berhasil Di Simpan')->success();
         return redirect()->route($this->routePrefix . '.index');
     }
@@ -162,7 +160,7 @@ class SiswaController extends Controller
         } else {
             $requestData['wali_status'] = null;
         }
-        $requestData['user_id'] = auth()->user()->id;
+
         Siswa::where('id', $id)->update($requestData);
         flash('Data Berhasil Di Ubah')->warning();
         return redirect()->route($this->routePrefix . '.index');
