@@ -24,17 +24,17 @@
                         </div>
                         {!! Form::close() !!}
                     </div>
-                       <div class="table-responsive">
-                        <table class="table table-stripped bg-dark">
+                    <div class="table-responsive">
+                        <table class="{{ config('app.table_style') }}">
                             <thead>
                                 <tr>
-                                    <th class="text-warning">No</th>
-                                    <th class="text-warning">NISN</th>
-                                    <th class="text-warning">Nama</th>
-                                    <th class="text-warning">Nama Wali</th>
-                                    <th class="text-warning">Metode Pembayaran</th>
-                                    <th class="text-warning">Status Konfirmasi</th>
-                                    <th class="text-warning">Tanggal Konfirmasi</th>
+                                    <th class="{{ config('app.th_style') }}">No</th>
+                                    <th class="{{ config('app.th_style') }}">NISN</th>
+                                    <th class="{{ config('app.th_style') }}">Nama</th>
+                                    <th class="{{ config('app.th_style') }}">Nama Wali</th>
+                                    <th class="{{ config('app.th_style') }}">Metode Pembayaran</th>
+                                    <th class="{{ config('app.th_style') }}">Status Konfirmasi</th>
+                                    <th class="{{ config('app.th_style') }}">Tanggal Konfirmasi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-secondary text-white">

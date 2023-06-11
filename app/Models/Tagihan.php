@@ -18,7 +18,7 @@ class Tagihan extends Model
 
     public function siswa()
     {
-        return $this->belongsTo(Siswa::class)->withDefault();
+        return $this->belongsTo(Siswa::class)->withDefault("Data Kosong");
     }
     public function user()
     {

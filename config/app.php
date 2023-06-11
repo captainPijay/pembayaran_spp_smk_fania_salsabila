@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Facade;
 // Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class;
 
 return [
-
+    'table_style' => 'table table-stripped bg-dark table-bordered',
+    'th_style' => 'text-warning',
     /*
     |--------------------------------------------------------------------------
     | Application Name

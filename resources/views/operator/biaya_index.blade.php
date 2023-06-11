@@ -23,14 +23,14 @@
                         {!! Form::close() !!}
                     </div>
                        <div class="table-responsive">
-                        <table class="table table-stripped bg-dark">
+                        <table class="{{ config('app.table_style') }}">
                             <thead>
                                 <tr>
-                                    <th class="text-warning">No</th>
-                                    <th class="text-warning">Nama Biaya</th>
-                                    <th class="text-warning">Jumlah</th>
-                                    <th class="text-warning">Created By</th>
-                                    <th class="text-warning">Aksi</th>
+                                    <th class="{{ config('app.th_style') }}">No</th>
+                                    <th class="{{ config('app.th_style') }}">Nama Biaya</th>
+                                    <th class="{{ config('app.th_style') }}">Jumlah</th>
+                                    <th class="{{ config('app.th_style') }}">Created By</th>
+                                    <th class="{{ config('app.th_style') }}">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-secondary text-white">

@@ -28,16 +28,16 @@
                         {!! Form::close() !!}
                     </div>
                        <div class="table-responsive">
-                        <table class="table table-stripped bg-dark">
+                        <table class="{{ config('app.table_style') }}">
                             <thead>
                                 <tr>
-                                    <th class="text-warning">No</th>
-                                    <th class="text-warning">NISN</th>
-                                    <th class="text-warning">Nama Siswa</th>
-                                    <th class="text-warning">Tanggal Tagihan</th>
-                                    <th class="text-warning">Status</th>
-                                    <th class="text-warning">Total Tagihan</th>
-                                    <th class="text-warning">Aksi</th>
+                                    <th class="{{ config('app.th_style') }}">No</th>
+                                    <th class="{{ config('app.th_style') }}">NISN</th>
+                                    <th class="{{ config('app.th_style') }}">Nama Siswa</th>
+                                    <th class="{{ config('app.th_style') }}">Tanggal Tagihan</th>
+                                    <th class="{{ config('app.th_style') }}">Status</th>
+                                    <th class="{{ config('app.th_style') }}">Total Tagihan</th>
+                                    <th class="{{ config('app.th_style') }}">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-secondary text-white">

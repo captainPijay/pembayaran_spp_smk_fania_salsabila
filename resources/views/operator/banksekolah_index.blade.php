@@ -9,15 +9,15 @@
                 <div class="card-body">
                     <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
                        <div class="table-responsive">
-                        <table class="table table-stripped bg-dark">
+                        <table class="{{ config('app.table_style') }}">
                             <thead>
                                 <tr>
-                                    <th class="text-warning">No</th>
-                                    <th class="text-warning">Nama Bank</th>
-                                    <th class="text-warning">Kode Transfer</th>
-                                    <th class="text-warning">Pemilik Rekening</th>
-                                    <th class="text-warning">Nomor Rekening</th>
-                                    <th class="text-warning">Aksi</th>
+                                    <th class="{{ config('app.th_style') }}">No</th>
+                                    <th class="{{ config('app.th_style') }}">Nama Bank</th>
+                                    <th class="{{ config('app.th_style') }}">Kode Transfer</th>
+                                    <th class="{{ config('app.th_style') }}">Pemilik Rekening</th>
+                                    <th class="{{ config('app.th_style') }}">Nomor Rekening</th>
+                                    <th class="{{ config('app.th_style') }}">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-secondary text-white">
