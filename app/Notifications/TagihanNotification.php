@@ -82,7 +82,7 @@ class TagihanNotification extends Notification
         return (new WhacenterService())
             ->to($notifiable->nohp)
             ->line("Assalamualaikum Bapak Ibu")
-            ->line("Berikut Kami Kirim Informasi Tagihan SPP Untuk Bulan " . $bulanTagihan . 'Atas Nama ' . $this->tagihan->siswa->nama)
+            ->line("Berikut Kami Kirim Informasi Tagihan SPP Untuk Bulan " . $bulanTagihan . ' Atas Nama ' . $this->tagihan->siswa->nama)
             ->line('Jika Sudah Melakukan Pembayaran Silahkan Klik Link Berikut ' . $url)
             ->line('Link Ini Berlaku Selama 10 Hari.')
             ->line("JANGAN BERIKAN LINK INI KEPADA SIAPAPUN.");

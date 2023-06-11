@@ -42,12 +42,12 @@
                     </div> --}}
                     <div class="form-group mt-3">
                         <label for="tanggal_tagihan">Tanggal Tagihan</label>
-                        {!! Form::date('tanggal_tagihan',$model->tanggal_tagihan ?? date('Y-m-d'), ['class'=>'form-control']) !!}
+                        {!! Form::date('tanggal_tagihan',$model->tanggal_tagihan ?? date('Y-m-').'01', ['class'=>'form-control']) !!}
                         <span class="text-danger">{{ $errors->first('tanggal_tagihan') }}</span>
                     </div>
                     <div class="form-group mt-3">
                         <label for="tanggal_jatuh_tempo">Tanggal Jatuh Tempo</label>
-                        {!! Form::date('tanggal_jatuh_tempo',$model->tanggal_jatuh_tempo ?? date('Y-m-d'), ['class'=>'form-control']) !!}
+                        {!! Form::date('tanggal_jatuh_tempo',$model->tanggal_jatuh_tempo ?? date('Y-m-').'10', ['class'=>'form-control']) !!}
                         <span class="text-danger">{{ $errors->first('tanggal_jatuh_tempo') }}</span>
                     </div>
                     <div class="form-group mt-3">

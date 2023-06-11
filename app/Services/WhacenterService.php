@@ -45,11 +45,11 @@ class WhacenterService
 
     public function send(): mixed
     {
-        if ($this->to == '' || count($this->lines) <= 0) {
-            throw new \Exception('Message not correct.');
+        if ($this->to != '') {
+            $params = 'device_id=' . $this->deviceId . '&number=' . $this->to . '&message=' . urlencode(implode("\n", $this->lines));
+            $response = Http::get($this->baseUrl . '/send?' . $params);
+            return $response->body();
         }
-        $params = 'device_id=' . $this->deviceId . '&number=' . $this->to . '&message=' . urlencode(implode("\n", $this->lines));
-        $response = Http::get($this->baseUrl . '/send?' . $params);
-        return $response->body();
+        return 'No Number To Send';
     }
 }
