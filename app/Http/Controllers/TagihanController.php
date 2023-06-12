@@ -111,8 +111,12 @@ class TagihanController extends Controller
             }
         }
         DB::commit(); //Metode DB::commit() digunakan untuk mengakhiri transaksi yang sukses. Ini mengonfirmasi bahwa semua perintah dalam transaksi telah berhasil dieksekusi dan perubahan-perubahan tersebut harus diterapkan ke basis data secara permanen.
-        flash("Data tagihan berhasil disimpan")->success();
-        return back();
+
+        return response()->json([
+            'message' => 'Data Berhasil Di Simpan',
+        ], 200);
+        // flash("Data tagihan berhasil disimpan")->success();
+        // return back();
     }
 
     /**

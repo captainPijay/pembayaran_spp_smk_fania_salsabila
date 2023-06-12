@@ -63,7 +63,7 @@
                     {!! Form::submit('SIMPAN', ['class'=>'btn btn-primary my-3']) !!}
                     {!! Form::close() !!}
                     <h4 class="mt-3 mb-3">DATA ANAK</h4>
-                    <table class="table">
+                    <table class="table table-bordered">
                         <thead class="bg-dark">
                             <tr>
                                 <th class="text-warning">No</th>

@@ -19,11 +19,15 @@ class WaliController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $models = Model::latest()->paginate(50);
+        $model = User::wali();
+        if ($request->filled('search')) {
+            $model = User::search($request->search);
+        }
         return view('operator.' . $this->viewIndex, [
-            'models' => Model::wali()->latest()->paginate(settings()->get('app_pagination', '50')),
+            'models' => $model->latest()->paginate(settings()->get('app_pagination', '50')),
             'title' => 'Data Wali Murid',
             'routePrefix' => $this->routePrefix
         ]);

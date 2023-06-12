@@ -69,6 +69,11 @@ class PembayaranController extends Controller
     public function show(Pembayaran $pembayaran)
     {
         auth()->user()->unreadNotifications->where('id', request('id'))->first()?->markAsRead();
+        // auth()->user() merujuk pada pengguna yang sedang terotentikasi dalam sistem.
+        // unreadNotifications mengambil semua notifikasi yang belum terbaca oleh pengguna tersebut.
+        // where('id', request('id')) digunakan untuk mencari notifikasi dengan ID yang dikirim melalui permintaan (request) HTTP.
+        // first()? digunakan untuk mengambil notifikasi pertama yang sesuai dengan ID tersebut. Jika tidak ada notifikasi yang sesuai, maka akan dikembalikan nilai null.
+        // Jika notifikasi ditemukan, markAsRead() akan menandai notifikasi tersebut sebagai sudah terbaca oleh pengguna.
         return view('operator.pembayaran_show', [
             'model' => $pembayaran,
             'route' => ['pembayaran.update', $pembayaran->id],

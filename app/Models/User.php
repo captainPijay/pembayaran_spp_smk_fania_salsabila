@@ -8,10 +8,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SearchableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -47,6 +48,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $searchable = [
+        'columns' => [
+            'name' => 255,
+            'nohp' => 20
+        ],
+    ];
     public function scopeWali($a)
     {
         return $a->where('akses', 'wali');

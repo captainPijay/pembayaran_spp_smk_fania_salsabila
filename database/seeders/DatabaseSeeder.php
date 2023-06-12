@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $siswa = \App\Models\Siswa::factory(200)->create();
+        \App\Models\Siswa::factory(200)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

@@ -1,5 +1,23 @@
 @extends('layouts.app_sneat')
-
+@section('js')
+    <script>
+        $(document).ready(function () {
+            $("#form-ajax").submit(function (e) {
+               $.ajax({
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function (response) {
+                    alert('Data Berhasil Di Simpan')
+                }
+               });
+               e.preventDefault();
+               return;
+            });
+        });
+    </script>
+@endsection
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -10,6 +28,7 @@
                     {!! Form::model($model, [
                         'route'=>$route,
                         'method'=>$method,
+                        'id'=>'form-ajax'
                     ]) !!}
                     {{-- <div class="form-group mb-3">
                         <label for="biaya_id">Biaya Yang DiTagihkan</label>
