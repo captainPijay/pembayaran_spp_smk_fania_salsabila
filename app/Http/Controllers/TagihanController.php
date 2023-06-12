@@ -99,7 +99,9 @@ class TagihanController extends Controller
             // ->first();
             // if ($cekTagihan == null) {
             $tagihan = Tagihan::create($requestData);
-            Notification::send($tagihan->siswa->wali, new TagihanNotification($tagihan));
+            if ($itemSiswa->wali_id != null) {
+                Notification::send($tagihan->siswa->wali, new TagihanNotification($tagihan));
+            }
             $biaya = $itemSiswa->biaya->children;
             foreach ($biaya as $itemBiaya) {
                 $detail = TagihanDetail::create([

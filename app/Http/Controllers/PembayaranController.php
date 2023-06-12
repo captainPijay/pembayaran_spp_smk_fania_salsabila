@@ -56,8 +56,10 @@ class PembayaranController extends Controller
         }
         $tagihan->save();
         $pembayaran = Pembayaran::create($requestData);
-        $wali = $pembayaran->wali;
-        Notification::send($wali, new PembayaranKonfirmasiNotification($pembayaran));
+        if ($requestData['wali_id'] != null) {
+            $wali = $pembayaran->wali;
+            Notification::send($wali, new PembayaranKonfirmasiNotification($pembayaran));
+        }
         flash('Pembayaran Berhasil Di Simpan');
         return back();
     }
