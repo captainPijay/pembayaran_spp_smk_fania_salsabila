@@ -2,13 +2,18 @@
 @section('js')
     <script>
         $(document).ready(function () {
+            $("#loading-spinner").hide();
             $("#form-ajax").submit(function (e) {
                $.ajax({
                 type: $(this).attr('method'),
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 dataType: "json",
+                beforeSend: function(){
+                    $("#loading-spinner").show();
+                },
                 success: function (response) {
+                    $("#loading-spinner").hide();
                     alert('Data Berhasil Di Simpan')
                 }
                });
@@ -74,8 +79,11 @@
                         {!! Form::textarea('keterangan', null, ['class'=>'form-control','rows'=>3]) !!}
                         <span class="text-danger">{{ $errors->first('keterangan') }}</span>
                     </div>
-                    {!! Form::submit($button, ['class'=>'btn btn-primary mt-3']) !!}
-
+                    {{-- {!! Form::submit($button, ['class'=>'btn btn-primary mt-3']) !!} --}}
+                    <button class="btn btn-primary mt-3" type="submit">
+                        <span id="loading-spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        {{ $button }}
+                      </button>
                     {!! Form::close() !!}
                 </div>
             </div>
