@@ -80,7 +80,7 @@ class PembayaranKonfirmasiNotification extends Notification
             ->to($notifiable->nohp)
             ->line('Assalamualaikum Bapak/Ibu,')
             ->line('Pembayaran Tagihan SPP Atas Nama ' . $this->pembayaran->tagihan->siswa->nama)
-            ->line(' Telah Di Konfirmasi')
-            ->line(' Terimakasih');
+            ->line('Telah Di Konfirmasi')
+            ->line('Terimakasih');
     }
 }

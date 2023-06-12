@@ -55,7 +55,9 @@ class PembayaranController extends Controller
             $tagihan->status = 'angsur';
         }
         $tagihan->save();
-        Pembayaran::create($requestData);
+        $pembayaran = Pembayaran::create($requestData);
+        $wali = $pembayaran->wali;
+        Notification::send($wali, new PembayaranKonfirmasiNotification($pembayaran));
         flash('Pembayaran Berhasil Di Simpan');
         return back();
     }
@@ -103,7 +105,7 @@ class PembayaranController extends Controller
     {
         // $pembayaran->status_konfirmasi = 'sudah';
         $wali = $pembayaran->wali;
-        $wali->notify(new PembayaranKonfirmasiNotification(($pembayaran)));
+        // $wali->notify(new PembayaranKonfirmasiNotification(($pembayaran))); ini kalo mau ngirim notif aja tidak ke wa gateway
         $pembayaran->tanggal_konfirmasi = now();
         $pembayaran->user_id = auth()->user()->id;
         $pembayaran->save();

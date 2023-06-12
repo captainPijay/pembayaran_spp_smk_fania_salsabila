@@ -25,7 +25,7 @@ class SiswaController extends Controller
      */
     public function index(Request $request)
     {
-        $models = Siswa::with('wali', 'user')->latest();
+        $models = Siswa::with('wali', 'user', 'biaya', 'statuses')->latest();
         if ($request->filled('search')) {
             $models = $models->search($request->search); //nicolaslopezj/searchable
         }
