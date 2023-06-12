@@ -2,10 +2,13 @@
 
 namespace App\Notifications;
 
+use App\Channels\WhacenterChannel;
 use Illuminate\Bus\Queueable;
+use App\Services\WhacenterService;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class PembayaranKonfirmasiNotification extends Notification
 {
@@ -30,7 +33,7 @@ class PembayaranKonfirmasiNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', WhacenterChannel::class];
     }
 
     /**
@@ -58,8 +61,26 @@ class PembayaranKonfirmasiNotification extends Notification
         return [
             'pembayaran_id' => $this->pembayaran->id,
             'title' => 'Konfirmasi Pembayaran',
-            'messages' => 'Pembayaran Tagihan SPP atas nama' . $this->pembayaran->tagihan->siswa->nama . 'Telah Di Konfirmasi',
+            'messages' => 'Pembayaran Tagihan SPP atas nama ' . $this->pembayaran->tagihan->siswa->nama . 'Telah Di Konfirmasi',
             'url' => route('wali.pembayaran.show', $this->pembayaran->id)
         ];
+    }
+    public function toWhacenter($notifiable)
+    {
+        $url = URL::temporarySignedRoute(
+            'login.url',
+            now()->addDays(10),
+            [
+                'pembayaran_id' => $this->pembayaran->id,
+                'user_id' => $notifiable->id,
+                'url' => route('wali.tagihan.show', $this->pembayaran->id)
+            ]
+        );
+        return (new WhacenterService())
+            ->to($notifiable->nohp)
+            ->line('Assalamualaikum Bapak/Ibu,')
+            ->line('Pembayaran Tagihan SPP Atas Nama ' . $this->pembayaran->tagihan->siswa->nama)
+            ->line(' Telah Di Konfirmasi')
+            ->line(' Terimakasih');
     }
 }

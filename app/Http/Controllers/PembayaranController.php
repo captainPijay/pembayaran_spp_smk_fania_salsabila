@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tagihan;
 use App\Models\Pembayaran;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\StorePembayaranRequest;
 use App\Http\Requests\UpdatePembayaranRequest;
-use App\Models\Tagihan;
 use App\Notifications\PembayaranKonfirmasiNotification;
-use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
 {
@@ -103,6 +104,7 @@ class PembayaranController extends Controller
         $pembayaran->save();
         $pembayaran->tagihan->status = 'lunas';
         $pembayaran->tagihan->save();
+        Notification::send($wali, new PembayaranKonfirmasiNotification($pembayaran));
         flash("Data Pembayaran Berhasil Di Konfirmasi");
         return back();
     }

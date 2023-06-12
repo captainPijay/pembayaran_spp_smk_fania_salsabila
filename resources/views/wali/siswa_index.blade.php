@@ -7,7 +7,6 @@
                 <h5 class="card-header">DATA SISWA</h5>
 
                 <div class="card-body">
-                    <a href="" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
                        <div class="table-responsive">
                         <table class="table table-stripped bg-dark">
                             <thead>

@@ -16,7 +16,7 @@ class WaliMuridSiswaController extends Controller
     public function show(Siswa $siswa)
     {
         return view('wali.siswa_show_wali', [
-            'model' => $siswa->SiswaPrevent(),
+            'model' => $siswa->siswaPrevent(),
             'title' => 'Detail Siswa'
         ]);
     }
