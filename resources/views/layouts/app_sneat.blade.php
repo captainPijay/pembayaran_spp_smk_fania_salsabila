@@ -75,6 +75,18 @@
         .layout-navbar .navbar-dropdown .dropdown-menu{
             min-width: 22rem;
         }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    }
     </style>
     <script>
     const popupCenter = ({url, title, w, h}) => {
@@ -104,6 +116,11 @@
   </head>
 
   <body>
+    <div class="overlay d-none" id="loading-overlay">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">

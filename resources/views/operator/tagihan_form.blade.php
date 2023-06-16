@@ -11,10 +11,12 @@
                 dataType: "json",
                 beforeSend: function(){
                     $("#loading-spinner").show();
+                    $("#loading-overlay").removeClass("d-none");
                 },
                 success: function (response) {
+                    $("#loading-overlay").addClass("d-none");
                     $("#loading-spinner").hide();
-                    alert('Data Berhasil Di Simpan')
+                    alert("Data Berhasil Di Simpan");
                 }
                });
                e.preventDefault();

@@ -112,6 +112,7 @@
                                         Lihat Bukti Bayar
                                         </a>
                                     </td>
+                                    {{-- atribut title dan url emang bawaan dari popupcenter nya --}}
                                 </tr>
                                 <tr>
                                     <td>Status Konfirmasi</td>

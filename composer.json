@@ -19,7 +19,8 @@
         "laravelcollective/html": "^6.3",
         "nicolaslopezj/searchable": "^1.13",
         "qcod/laravel-settings": "^1.2",
-        "spatie/laravel-model-status": "^1.13"
+        "spatie/laravel-model-status": "^1.13",
+        "yoeunes/toastr": "^2.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",
