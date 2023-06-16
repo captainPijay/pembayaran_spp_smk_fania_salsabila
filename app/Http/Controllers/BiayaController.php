@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateBiayaRequest;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\AssignOp\Mod;
 use Storage;
+use toastr;
 
 class BiayaController extends Controller
 {
@@ -68,6 +69,7 @@ class BiayaController extends Controller
     {
         Biaya::create($request->validated());
         flash('Data Berhasil Di Simpan')->success();
+        // toastr()->success('Data Berhasil Di Simpan');
         return back();
     }
 

@@ -14,9 +14,18 @@
                     $("#loading-overlay").removeClass("d-none");
                 },
                 success: function (response) {
+                    $("#alert-message").removeClass("d-none");
+                    $("#alert-message").html(response.message);
                     $("#loading-overlay").addClass("d-none");
                     $("#loading-spinner").hide();
-                    alert("Data Berhasil Di Simpan");
+                },
+                error: function(xhr, status, error){
+                    $("#alert-message").removeClass("d-none");
+                    $("#alert-message").removeClass("alert-success");
+                    $("#alert-message").addClass("alert-danger");
+                    $("#alert-message").html(xhr.responseJSON.message);
+                    $("#loading-overlay").addClass("d-none");
+                    $("#loading-spinner").hide();
                 }
                });
                e.preventDefault();

@@ -418,6 +418,8 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
+                <div class="alert alert-success d-none" role="alert" id="alert-message">
+                </div>
                 @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                         {!! implode('', $errors->all('<div>:message</div>')) !!}
