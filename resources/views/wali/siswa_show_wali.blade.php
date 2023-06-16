@@ -19,6 +19,13 @@
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
+                                <td width='15%'>STATUS SISWA</td>
+                                <td>: <span class="badge {{ $model->status == 'aktif' ? 'bg-success' : 'bg-danger' }}">
+                                    {{ $model->status }}
+                                </span>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td width='15%'>NAMA</td>
                                 <td>: {{ $model->nama }}</td>
                             </tr>
@@ -52,6 +59,28 @@
                             </tr>
                         </thead>
                     </table>
+                    <div class="col-md-5 mt-3">
+                        <table class="table table-responsive table-bordered">
+                            <thead>
+                                <th>No</th>
+                                <th>Nama Biaya</th>
+                                <th>Jumlah Biaya</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($model->biaya->children as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama }}</td>
+                                        <td class="text-end">{{ formatRupiah($item->jumlah) }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <td colspan="2">TOTAL TAGIHAN</td>
+                                <td class="text-end fw-bold">{{ formatRupiah($model->biaya->children->sum('jumlah')) }}</td>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

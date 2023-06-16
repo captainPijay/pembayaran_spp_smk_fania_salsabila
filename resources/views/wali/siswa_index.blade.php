@@ -8,32 +8,32 @@
 
                 <div class="card-body">
                        <div class="table-responsive">
-                        <table class="table table-stripped bg-dark">
+                        <table class="table table-stripped bg-dark table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-warning">No</th>
-                                    <th class="text-warning">Nama Wali Murid</th>
-                                    <th class="text-warning">Nama Murid</th>
+                                    <th class="text-warning" width="1%">No</th>
+                                    <th class="text-warning">Nama Siswa</th>
                                     <th class="text-warning">NISN</th>
                                     <th class="text-warning">Jurusan</th>
                                     <th class="text-warning">Kelas</th>
                                     <th class="text-warning">Angkatan</th>
-                                    <th class="text-warning">Created By</th>
-                                    <th class="text-warning">Aksi</th>
+                                    <th class="text-warning">Biaya Sekolah</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-secondary text-white">
                                 @forelse ($models as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->wali->name }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->nisn }}</td>
                                         <td>{{ $item->jurusan }}</td>
                                         <td>{{ $item->kelas }}</td>
                                         <td>{{ $item->angkatan }}</td>
-                                        <td>{{ $item->user->name }}</td>
-                                        <td><a href="{{ route('wali.siswa.show',$item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail Siswa</a>
+                                        <td class="text-end">
+                                            <a href="{{ route('wali.siswa.show',$item->id) }}">
+                                                {{ formatRupiah($item->biaya->children->sum('jumlah')) }}
+                                                <i class="fa fa-arrow-right"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty

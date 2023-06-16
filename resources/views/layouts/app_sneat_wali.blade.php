@@ -58,7 +58,14 @@
 
 
     <!-- Page CSS -->
-
+    <style>
+        a{
+            color: white;
+        }
+        a:hover{
+            color: blue;
+        }
+    </style>
     <!-- Helpers -->
     <script src="{{ asset('sneat') }}/assets/vendor/js/helpers.js"></script>
 
