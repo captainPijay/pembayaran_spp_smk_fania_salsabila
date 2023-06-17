@@ -30,7 +30,12 @@
                                         <td>{{ $item->tanggal_tagihan->translatedFormat('F Y') }}</td>
                                         <td>
                                             @if ($item->pembayaran->count() >=1 )
-                                            <a href="{{ route('wali.pembayaran.show',$item->pembayaran->first()->id) }}" class="btn btn-success btn-sm">{{ $item->getStatusTagihanWali() }}</a>
+                                            <a href="{{ route('wali.pembayaran.show',$item->pembayaran->first()->id) }}" class="btn btn-success btn-sm">
+                                                @if ($item->pembayaran != null && $item->status == 'baru')
+                                                Belum Di Konfirmasi
+                                                @else
+                                                {{ $item->getStatusTagihanWali() }}
+                                            @endif</a>
                                     @else
                                     {{ $item->getStatusTagihanWali() }}
                                     @endif
