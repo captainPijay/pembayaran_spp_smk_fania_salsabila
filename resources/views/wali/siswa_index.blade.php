@@ -31,7 +31,7 @@
                                         <td>{{ $item->angkatan }}</td>
                                         <td class="text-end">
                                             <a href="{{ route('wali.siswa.show',$item->id) }}">
-                                                {{ formatRupiah($item->biaya->children->sum('jumlah')) }}
+                                                {{ formatRupiah($item->biaya->total_tagihan) }}
                                                 <i class="fa fa-arrow-right"></i>
                                             </a>
                                         </td>
