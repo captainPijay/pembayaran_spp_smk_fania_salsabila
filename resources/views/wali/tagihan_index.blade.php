@@ -31,8 +31,11 @@
                                         <td>
                                             @if ($item->pembayaran->count() >=1 )
                                             <a href="{{ route('wali.pembayaran.show',$item->pembayaran->first()->id) }}" class="btn {{ ($item->pembayaran != null && $item->status == 'baru') ? "btn-warning" : "btn-success" }} btn-sm">
+                                                @if ($item->pembayaran != null && $item->status == 'baru')
+                                                Belum DiKonfirmasi
+                                                @else
                                                 {{ $item->getStatusTagihanWali() }}
-                                            </a>
+                                            @endif</a>
                                     @else
                                     {{ $item->getStatusTagihanWali() }}
                                     @endif
