@@ -52,6 +52,9 @@ class Tagihan extends Model
     }
     public function getStatusTagihanWali()
     {
+        if ($this->status == 'baru' && $this->pembayaran != null) {
+            return 'Belum Dikonfirmasi';
+        }
         if ($this->status == 'baru') {
             return 'Belum Dibayar';
         }
