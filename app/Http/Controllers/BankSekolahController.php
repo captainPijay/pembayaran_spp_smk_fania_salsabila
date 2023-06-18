@@ -65,7 +65,7 @@ class BankSekolahController extends Controller
         $requestData['kode'] = $bank->sandi_bank;
         $requestData['nama_bank'] = $bank->nama_bank;
         BankSekolah::create($requestData);
-        flash('Data Berhasil Di Simpan')->success();
+        flash('Data Berhasil Di Simpan');
         return redirect()->route($this->routePrefix . '.index');
     }
 
@@ -118,7 +118,7 @@ class BankSekolahController extends Controller
         $requestData['nama_bank'] = $bank->nama_bank;
         $model = BankSekolah::findOrFail($id);
         $model->update($request->validated());
-        flash('Data Berhasil Di Ubah')->warning();
+        flash()->addWarning('Data Berhasil Di Ubah', 'Berhasil');
         return redirect()->route($this->routePrefix . '.index');
     }
 
@@ -132,7 +132,7 @@ class BankSekolahController extends Controller
     {
         $model = BankSekolah::findOrFail($id);
         $model->delete();
-        flash('Data Berhasil Di Hapus', 'danger');
+        flash()->addError('Data Berhasil Di Hapus', 'Berhasil');
         return back();
     }
 }

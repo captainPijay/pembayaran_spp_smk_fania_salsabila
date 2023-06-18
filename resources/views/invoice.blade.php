@@ -114,37 +114,47 @@
             .d-flex h4 {
                 margin-bottom: 0px;
             }
+            .button {
+                display: inline-block;
+                font-family: 'Times New Roman', Times, serif;
+                padding: 5px 10px;
+                background-color: #21779c;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
 		</style>
 	</head>
 
 	<body>
 		<div class="invoice-box">
-            <div class="d-flex">
+            {{-- <div class="d-flex"> --}}
                 {{-- <img src="{{ asset('storage/images/fania.png') }}" width="120px"> --}}
-                <h4>SMK FANIA SALSABILA</h4>
+                {{-- <h4>SMK FANIA SALSABILA</h4>
                 <h5>Kota Jambi</h5>
-            </div>
+            </div> --}}
 			<table cellpadding="0" cellspacing="0">
-				{{-- <tr class="top">
-					<td colspan="2">
-						<table>
-							<tr>
-								<td class="title">
-									<h5>{{ settings('app_name','My App') }}</h5>
-								</td>
-
-								<td>
-									Invoice #: {{ $tagihan->id }}<br />
-									Tanggal Tagihan : {{ $tagihan->tanggal_tagihan->translatedFormat('d F Y') }}<br />
-									Tanggal Jatuh Tempo : {{ $tagihan->tanggal_jatuh_tempo->translatedFormat('d F Y') }}
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr> --}}
-
+                <tr>
+                    <td width="80">
+                        @if (request('output') == 'pdf')
+                            <img src="{{ public_path() . '/storage/images/fania.png' }}" alt="" width="110">
+                        @else
+                        <img src="{{ asset('storage/images/fania.png') }}" alt="" width="110">
+                        @endif
+                    </td>
+                    <td style="text-align:left; vertical-align: middle">
+                        <div style="font-size: 20px; font-weight:bold">{{ settings()->get('app_name','My App') }}</div>
+                        <div>{{ settings()->get('app_address') }}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <hr>
+                    </td>
+                </tr>
 				<tr class="information">
-					<td colspan="2">
+					<td colspan="3">
 						<table>
 							<tr>
 								<td>
@@ -177,9 +187,29 @@
                     <td>Total</td>
                     <td>{{ formatRupiah($tagihan->total_tagihan) }}</td>
                 </tr>
+                <tr>
+                    <td colspan="3">
+                        <div style="font-style: italic">
+                            Terbilang : {{ ucwords(terbilang($tagihan->total_tagihan)) }}
+                        </div>
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        jambi, {{ now()->translatedFormat('d, F Y') }} <br>
+                        Mengetahui,<br>
+                        <br>
+                        <br>
+                        Bendahara
+                    </td>
+                </tr>
 			</table>
-            <a href="{{ url()->current() . '?output=pdf' }}">Download PDF</a>
-            <a href="#" onclick="window.print()">Cetak</a>
+            <div style="display: flex; justify-content:end;">
+                <br>
+            <a href="{{ url()->current() . '?output=pdf' }}" class="button" style="margin-right: 15px;">Download PDF</a>
+            <a href="#" onclick="window.print()" class="button">Cetak</a>
+            </div>
 		</div>
 	</body>
 </html>

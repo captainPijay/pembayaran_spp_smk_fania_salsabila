@@ -43,7 +43,7 @@ class WaliMuridProfilController extends Controller
         }
         $model->fill($requestData);
         $model->save();
-        flash('Data Berhasil Diubah')->warning();
+        flash('Data Berhasil Diubah');
         return back();
     }
 

@@ -55,14 +55,14 @@ class WaliMuridPembayaranController extends Controller
     public function store(Request $request)
     {
         if ($request->wali_bank_id == null && $request->nomor_rekening == null) {
-            flash('Silahkan Pilih Bank Pengirim')->error();
+            flash()->addError('Silahkan Pilih Bank Pengirim');
             return back();
         }
         if ($request->nama_rekening != null && $request->nomor_rekening != null) {
             #wali membuat rekening baru
             $bankId = $request->bank_id;
-            $namaRekeningPengirim = $request->nama_rekening_pengirim;
-            $nomorRekeningPengirim = $request->nomor_rekening_pengirim;
+            // $namaRekeningPengirim = $request->nama_rekening_pengirim;
+            // $nomorRekeningPengirim = $request->nomor_rekening_pengirim;
             $bank = Bank::findOrFail($bankId);
             if ($request->filled('simpan_data_rekening')) {
                 //simpan data rekening pengirim
@@ -101,7 +101,7 @@ class WaliMuridPembayaranController extends Controller
             ->where('tagihan_id', $request->tagihan_id)
             ->first();
         if ($validasiPembayaran != null) {
-            flash('Data Pembayaran Ini Sudah Ada Dan Akan Segera Di Konfirmasi Oleh Operator');
+            flash()->addWarning('Data Pembayaran Ini Sudah Ada Dan Akan Segera Di Konfirmasi Oleh Operator', 'Sudah Dibayar');
             return back();
         }
         $request->validate([
@@ -130,22 +130,22 @@ class WaliMuridPembayaranController extends Controller
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            flash('Gagal Menyimpan Pembayaran, ' . $th->getMessage())->error();
+            flash()->addError('Gagal Menyimpan Pembayaran, ' . $th->getMessage());
             return back();
         }
-        flash('Pembayaran Berhasil Di Simpan Dan Akan Segera Di Konfirmasi Oleh Operator')->success();
+        flash('Pembayaran Berhasil Di Simpan Dan Akan Segera Di Konfirmasi Oleh Operator');
         return redirect()->route('wali.pembayaran.show', $pembayaran->id);
     }
     public function destroy($id)
     {
         $pembayaran = Pembayaran::findOrFail($id);
         if ($pembayaran->tanggal_konfirmasi != null) {
-            flash('Data Pembayaran Ini Sudah Di Konfirmasi, Tidak Bisa Di Hapus')->error();
+            flash()->addError('Data Pembayaran Ini Sudah Di Konfirmasi, Tidak Bisa Di Hapus', 'Gagal');
             return back();
         }
         Storage::delete($pembayaran->bukti_bayar);
         $pembayaran->delete();
-        flash('Data Pembayaran Berhasil Di Hapus');
+        flash()->addError('Data Pembayaran Berhasil Di Hapus', 'Berhasil');
         return redirect()->route('wali.pembayaran.index');
     }
 }
