@@ -55,6 +55,25 @@
                                     <td>Nama Wali</td>
                                     <td>: {{ $model->wali->name }}</td>
                                 </tr>
+                                <tr>
+                                    <td colspan="2" class="bg-secondary text-white fw-bold">INFORMASI TAGIHAN</td>
+                                </tr>
+                                <tr>
+                                    <td>Nomor Tagihan</td>
+                                    <td>: {{ $model->tagihan->id }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Invoice Tagihan</td>
+                                    <td colspan="2">
+                                        <a href="{{ route('invoice.show',$model->tagihan->id) }}" target="blank">:
+                                        <i class="fa fa-file-pdf"></i> Cetak
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>Total Tagihan</td>
+                                    <td>: {{ formatRupiah($model->tagihan->total_tagihan) }}</td>
+                                </tr>
                                 @if ($model->metode_pembayaran != 'manual')
                                 <tr>
                                     <td colspan="2" class="bg-secondary text-white fw-bold">INFORMASI BANK PENGIRIM</td>

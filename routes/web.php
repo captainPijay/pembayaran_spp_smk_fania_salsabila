@@ -10,6 +10,7 @@ use App\Http\Controllers\BerandaWaliController;
 use App\Http\Controllers\WaliController;
 use App\Http\Controllers\BerandaOperatorController;
 use App\Http\Controllers\BiayaController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\KartuSppController;
 use App\Http\Controllers\KwitansiPembayaranController;
 use App\Http\Controllers\PanduanPembayaranController;
@@ -90,9 +91,8 @@ Route::prefix('walimurid')->middleware(['auth', 'auth.wali'])->name('wali.')->gr
     Route::resource('tagihan', WaliMuridTagihanController::class);
     Route::resource('pembayaran', WaliMuridPembayaranController::class);
     Route::resource('profil', WaliMuridProfilController::class);
-    Route::resource('invoice', WaliMuridInvoiceController::class);
 });
-
+Route::resource('invoice', InvoiceController::class)->middleware('auth');
 Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     //ini route khusus untuk admin
 });

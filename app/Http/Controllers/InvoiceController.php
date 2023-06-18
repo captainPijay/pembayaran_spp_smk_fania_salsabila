@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tagihan;
+use Auth;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class WaliMuridInvoiceController extends Controller
+class InvoiceController extends Controller
 {
     public function show($id)
     {
-        $tagihan = Tagihan::waliSiswa()->findOrFail($id);
+        if (Auth::user()->akses == 'wali') {
+            $tagihan = Tagihan::waliSiswa()->findOrFail($id);
+        } else {
+            $tagihan = Tagihan::findOrFail($id);
+        }
         $title = "Cetak Invoice Tagihan Bulan " . $tagihan->tanggal_tagihan->translatedFormat('F Y');
         if (request('output') == 'pdf') {
             $pdf = Pdf::loadView('invoice', compact('tagihan', 'title'));
