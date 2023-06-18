@@ -68,7 +68,7 @@ class BiayaController extends Controller
     public function store(StoreBiayaRequest $request)
     {
         Biaya::create($request->validated());
-        flash('Data Berhasil Di Simpan')->success();
+        flash('Data Berhasil Di Simpan');
         // toastr()->success('Data Berhasil Di Simpan');
         return back();
     }
@@ -116,7 +116,7 @@ class BiayaController extends Controller
     {
         $model = Biaya::findOrFail($id);
         $model->update($request->validated());
-        flash('Data Berhasil Di Ubah')->warning();
+        flash()->addWarning('Data Berhasil Di Update', 'Berhasil');
         return redirect()->route($this->routePrefix . '.index');
     }
 
@@ -131,23 +131,23 @@ class BiayaController extends Controller
         $model = Biaya::findOrFail($id);
         //validasi relasi ke children
         if ($model->children->count() >= 1) {
-            flash("Data Tidak Bisa Di Hapus Karena Masih Memiliki Item Biaya. Hapus Item Biaya Terlebih Dahulu")->error();
+            flash()->addError("Data Tidak Bisa Di Hapus Karena Masih Memiliki Item Biaya. Hapus Item Biaya Terlebih Dahulu");
             return back();
         }
         //validasi relasi ke tabel siswa
         if ($model->siswa->count() >= 1) {
-            flash('Data Gagal Dihapus Karena Masih Memiliki Relasi Ke Data Siswa')->error();
+            flash()->addError('Data Gagal Dihapus Karena Masih Memiliki Relasi Ke Data Siswa');
             return back();
         }
         $model->delete();
-        flash('Data Berhasil Di Hapus', 'danger');
+        flash()->addError('Data Berhasil Di Hapus', 'Berhasil');
         return back();
     }
     public function deleteItem($id)
     {
         $model = Biaya::findOrFail($id);
         $model->delete();
-        flash('Data Berhasil Di Hapus', 'danger');
+        flash()->addError('Data Berhasil Di Hapus', 'Berhasil');
         return back();
     }
 }

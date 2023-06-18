@@ -133,11 +133,11 @@ class UserController extends Controller
         $model = Model::findOrFail($id);
 
         if ($model->id == 1) {
-            flash('Data Tidak Bisa Di Hapus')->error();
+            flash()->addError('Data Tidak Bisa Di Hapus');
             return back();
         }
         $model->delete();
-        flash('Data Berhasil Di Hapus', 'danger');
+        flash()->addError('Data Berhasil Di Hapus', 'Berhasil');
         return back();
     }
 }

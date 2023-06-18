@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\StorePembayaranRequest;
 use App\Http\Requests\UpdatePembayaranRequest;
+use App\Models\TagihanDetail;
 use App\Notifications\PembayaranKonfirmasiNotification;
+use Storage;
 
 class PembayaranController extends Controller
 {
@@ -126,6 +128,14 @@ class PembayaranController extends Controller
      */
     public function destroy(Pembayaran $pembayaran)
     {
-        //
+        if ($pembayaran->bukti_bayar) {
+            Storage::delete($pembayaran->bukti_bayar);
+        }
+        $tagihan = $pembayaran->tagihan;
+        TagihanDetail::where('tagihan_id', $tagihan->id)->delete();
+        $tagihan->delete();
+        $pembayaran->delete();
+        flash()->addError('Data Pembayaran Berhasil Di Hapus', 'Berhasil');
+        return back();
     }
 }

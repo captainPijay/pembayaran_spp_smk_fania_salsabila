@@ -98,7 +98,7 @@ class SiswaController extends Controller
             $requestData['wali_status'] = null;
         }
         $siswa = Siswa::create($requestData);
-        flash('Data Berhasil Di Simpan')->success();
+        flash('Data Berhasil Di Simpan');
         return redirect()->route($this->routePrefix . '.index');
     }
 
@@ -162,7 +162,7 @@ class SiswaController extends Controller
         }
 
         Siswa::where('id', $id)->update($requestData);
-        flash('Data Berhasil Di Ubah')->warning();
+        flash()->addWarning('Data Berhasil Di Ubah', 'Berhasil');
         return redirect()->route($this->routePrefix . '.index');
     }
 
@@ -175,10 +175,14 @@ class SiswaController extends Controller
     public function destroy($id)
     {
         $siswa = Siswa::findOrFail($id);
+        if ($siswa->foto) {
+            Storage::delete($siswa->foto);
+        }
         if ($siswa->tagihan->count() >= 1) {
-            flash('Data Tidak Bisa Dihapus Karena Masih Memiliki Relasi Data Tagihan Tagihan')->error();
+            flash()->addError('Data Tidak Bisa Dihapus Karena Masih Memiliki Relasi Data Tagihan Tagihan');
             return back();
         }
+
         // if (Tagihan::where('siswa_id', $id) != null) {
         //     $tagihan = Tagihan::where('siswa_id', $id);
         //     $tagihan->delete();
@@ -190,7 +194,7 @@ class SiswaController extends Controller
         //     $model->delete();
         // }
         $siswa->delete();
-        flash('Data Berhasil Di Hapus')->success();
+        flash()->addError('Data Berhasil Di Hapus', 'Berhasil');
         return back();
     }
 }

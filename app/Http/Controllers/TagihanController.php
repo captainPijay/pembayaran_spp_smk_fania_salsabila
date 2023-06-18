@@ -149,7 +149,7 @@ class TagihanController extends Controller
         $payment->delete();
         $detailTagihan = TagihanDetail::where('tagihan_id', $id);
         $detailTagihan->delete();
-        flash('Data Telah Berhasil Di Hapus', 'danger');
+        flash()->addError('Data Telah Berhasil Di Hapus', 'Berhasil');
         return back();
     }
 }

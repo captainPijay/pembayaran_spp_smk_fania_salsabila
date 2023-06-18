@@ -41,40 +41,42 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-secondary text-white">
-                                @forelse ($models as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->siswa->nisn }}</td>
-                                        <td>{{ $item->siswa->nama }}</td>
-                                        <td>{{ $item->tanggal_tagihan->translatedFormat('d-F-Y') }}</td>
-                                        <td>{{ $item->status }}</td>
-                                        <td>{{ formatRupiah($item->tagihanDetails->sum('jumlah_biaya'))}}</td>
-                                        <td>
-                                        {!! Form::open([
-                                                'route'=> [$routePrefix.'.destroy', $item->id],
-                                                'method'=>'DELETE',
-                                                'onsubmit'=>'return confirm("Yakin Ingin Hapus Data Ini?")',
-                                                ]) !!}
+                                @if ($models->count() >=1)
+                                @foreach ($models as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->siswa->nisn }}</td>
+                                    <td>{{ $item->siswa->nama }}</td>
+                                    <td>{{ $item->tanggal_tagihan->translatedFormat('d-F-Y') }}</td>
+                                    <td>{{ $item->status }}</td>
+                                    <td>{{ formatRupiah($item->tagihanDetails->sum('jumlah_biaya'))}}</td>
+                                    <td>
+                                    {!! Form::open([
+                                            'route'=> [$routePrefix.'.destroy', $item->id],
+                                            'method'=>'DELETE',
+                                            'onsubmit'=>'return confirm("Yakin Ingin Hapus Data Ini?")',
+                                            ]) !!}
 
-                                            <a href="{{ route($routePrefix.'.show',[
-                                                $item->id,
-                                                'siswa_id'=>$item->siswa_id,
-                                                'bulan'=>$item->tanggal_tagihan->format('m'),
-                                                'tahun'=>$item->tanggal_tagihan->format('Y')
-                                            ]) }}" class="btn btn-primary btn-sm mx-3"><i class="fa fa-eye"></i> Detail</a>
-                                            <form action="{{ route('tagihan.destroy', $item->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                            </form>
-                                        {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4">Data Tidak Ada</td>
-                                    </tr>
-                                @endforelse
+                                        <a href="{{ route($routePrefix.'.show',[
+                                            $item->id,
+                                            'siswa_id'=>$item->siswa_id,
+                                            'bulan'=>$item->tanggal_tagihan->format('m'),
+                                            'tahun'=>$item->tanggal_tagihan->format('Y')
+                                        ]) }}" class="btn btn-primary btn-sm mx-3"><i class="fa fa-eye"></i> Detail</a>
+                                        <form action="{{ route('tagihan.destroy', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                        </form>
+                                    {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td colspan="4">Data Tidak Ada</td>
+                                </tr>
+                                @endif
                             </tbody>
                         </table>
                         {!! $models->links() !!}
