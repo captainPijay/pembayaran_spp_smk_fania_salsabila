@@ -62,10 +62,10 @@
 
     <!-- Page CSS -->
     <style>
-        a{
+        .a-hover a{
             color: white;
         }
-        a:hover{
+        .a-hover a:hover{
             color: blue;
         }
     </style>

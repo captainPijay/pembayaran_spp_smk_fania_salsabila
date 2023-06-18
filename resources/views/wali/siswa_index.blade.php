@@ -29,7 +29,7 @@
                                         <td>{{ $item->jurusan }}</td>
                                         <td>{{ $item->kelas }}</td>
                                         <td>{{ $item->angkatan }}</td>
-                                        <td class="text-end">
+                                        <td class="text-end a-hover">
                                             <a href="{{ route('wali.siswa.show',$item->id) }}">
                                                 {{ formatRupiah($item->biaya->total_tagihan) }}
                                                 <i class="fa fa-arrow-right"></i>

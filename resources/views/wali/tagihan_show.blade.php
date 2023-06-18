@@ -104,13 +104,13 @@
                         Pembayaran Bisa DI lakukan Dengan Cara Langsung Ke Operator Sekolah Atau Di transfer Melalui Rekening Milik Sekolah Dibawah Ini. <br>
                         <u><i>Jangan Melakukan Transfer Ke Rekening Selain Dari Rekening Dibawah Ini.</i></u>
                         <br>
-                        Silahkan Lihat Tata Cara Melakukan Pembayaran Melalui <a href="">ATM</a> Atau <a href="">Internet Banking</a>.
+                        Silahkan Lihat Tata Cara Melakukan Pembayaran Melalui <a href="{{ route('panduan.pembayaran','atm') }}" target="blank">ATM</a> Atau <a href="{{ route('panduan.pembayaran','internet-banking') }}" target="blank">Internet Banking</a>.
                         <br>
                         Setelah Melakukan Pembayaran, Silahkan Upload Bukti Pembayaran Melalui Tombol Konfirmasi Yang Ada Di Bawah Ini
                     </div>
                    <ul>
-                    <li> <a href="http://">Lihat Cara Melakukan Pembayaran Dengan Transfer Melalui ATM</a></li>
-                    <li> <a href="http://">Lihat Cara Melakukan Pembayaran Dengan Transfer Melalui Internet Banking</a></li>
+                    <li> <a href="{{ route('panduan.pembayaran','atm') }}" target="blank">Lihat Cara Melakukan Pembayaran Dengan Transfer Melalui ATM</a></li>
+                    <li> <a href="{{ route('panduan.pembayaran','internet-banking') }}" target="blank">Lihat Cara Melakukan Pembayaran Dengan Transfer Melalui Internet Banking</a></li>
                    </ul>
                 <div class="row">
                     @foreach ($bankSekolah as $itemBank)

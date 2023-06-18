@@ -12,6 +12,7 @@ use App\Http\Controllers\BerandaOperatorController;
 use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\KartuSppController;
 use App\Http\Controllers\KwitansiPembayaranController;
+use App\Http\Controllers\PanduanPembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiswaController;
@@ -59,6 +60,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('panduan-pembayaran/{id}', [PanduanPembayaranController::class, 'index'])->name('panduan.pembayaran');
 Auth::routes();
 Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function () {
     //ini route khusus untuk operator
