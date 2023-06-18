@@ -37,7 +37,7 @@
                         'bulan'=>request('bulan'),
                         'tahun'=>request('tahun'),
                         'detailTagihan'=>$tagihan->id
-                    ]) }}" class="btn btn-primary btn-sm" target="blank"><i class="fa fa-file"></i> Kartu Tagihan {{ request('tahun') }}</a>
+                    ]) }}" class="btn btn-primary btn-sm mt-3" target="blank"><i class="fa fa-file"></i> Kartu Tagihan {{ request('tahun') }}</a>
                 </div>
             </div>
         </div>

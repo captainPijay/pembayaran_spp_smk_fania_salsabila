@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Traits\HasFormatRupiah;
 use Auth;
+use App\Traits\HasFormatRupiah;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -15,7 +16,14 @@ class Tagihan extends Model
     protected $guarded = ['id'];
     protected $dates = ['tanggal_tagihan', 'tanggal_jatuh_tempo'];
     protected $with = ['user', 'siswa', 'tagihanDetails'];
+    protected $append = ['total_tagihan'];
 
+    protected function totalTagihan(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->tagihanDetails()->sum('jumlah_biaya') //digunakan di tagihan index dan tagihan controller di bagian create tetapi harus menggunakan method get dulu agar menjadi collection
+        );
+    }
     public function siswa()
     {
         return $this->belongsTo(Siswa::class)->withDefault("Data Kosong");

@@ -68,7 +68,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <a href="" target="blank">
+                                        <a href="{{ route('wali.invoice.show',$tagihan->id) }}" target="blank">
                                         <i class="fa fa-file-pdf"></i> Cetak Invoice Tagihan
                                     </a>
                                 </td>
