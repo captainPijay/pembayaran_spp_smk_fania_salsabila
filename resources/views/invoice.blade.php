@@ -1,243 +1,185 @@
-@extends('layouts..app_sneat_blank')
-@section('content')
-<style>
-    body{margin-top:20px;
-    color: #2e323c;
-    background: #f5f6fa;
-    position: relative;
-    height: 100%;
-}
-.invoice-container {
-    padding: 1rem;
-}
-.invoice-container .invoice-header .invoice-logo {
-    margin: 0.8rem 0 0 0;
-    display: inline-block;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #2e323c;
-}
-.invoice-container .invoice-header .invoice-logo img {
-    max-width: 130px;
-}
-.invoice-container .invoice-header address {
-    font-size: 0.9rem;
-    color: black;
-    margin: 0;
-}
-.invoice-container .invoice-details {
-    margin: 1rem 0 0 0;
-    padding: 1rem;
-    line-height: 180%;
-    background: #f5f6fa;
-}
-.invoice-container .invoice-details .invoice-num {
-    text-align: right;
-    font-size: 0.9rem;
-}
-.invoice-container .invoice-body {
-    padding: 1rem 0 0 0;
-}
-.invoice-container .invoice-footer {
-    text-align: center;
-    font-size: 0.7rem;
-    margin: 5px 0 0 0;
-}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>
+            {{ @$title != '' ? "$title |": '' }}
+            {{ settings()->get('app_name', 'My APP') }}
+        </title>
 
-.invoice-status {
-    text-align: center;
-    padding: 1rem;
-    background: #ffffff;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-}
-.invoice-status h2.status {
-    margin: 0 0 0.8rem 0;
-}
-.invoice-status h5.status-title {
-    margin: 0 0 0.8rem 0;
-    color: #9fa8b9;
-}
-.invoice-status p.status-type {
-    margin: 0.5rem 0 0 0;
-    padding: 0;
-    line-height: 150%;
-}
-.invoice-status i {
-    font-size: 1.5rem;
-    margin: 0 0 1rem 0;
-    display: inline-block;
-    padding: 1rem;
-    background: #f5f6fa;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    border-radius: 50px;
-}
-.invoice-status .badge {
-    text-transform: uppercase;
-}
+		<style>
+			.invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+			}
 
-@media (max-width: 767px) {
-    .invoice-container {
-        padding: 1rem;
-    }
-}
+			.invoice-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+			}
 
+			.invoice-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
 
-.custom-table {
-    border: 1px solid #e0e3ec;
-}
-.custom-table thead {
-    background: #007ae1;
-    color: white;
-}
-.custom-table thead th {
-    border: 0;
-    color: white !important;
-}
-.custom-table > tbody tr:hover {
-    background: #fafafa;
-}
-.custom-table > tbody tr:nth-of-type(even) {
-    background-color: #ffffff;
-}
-.custom-table > tbody td {
-    border: 1px solid #e6e9f0;
-}
+			.invoice-box table tr td:nth-child(2) {
+				text-align: right;
+			}
 
+			.invoice-box table tr.top table td {
+				padding-bottom: 20px;
+			}
 
-.card {
-    background: #ffffff;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    border: 0;
-    margin-bottom: 1rem;
-}
+			.invoice-box table tr.top table td.title {
+				font-size: 45px;
+				line-height: 45px;
+				color: #333;
+			}
 
-.text-success {
-    color: #00bb42 !important;
-}
+			.invoice-box table tr.information table td {
+				padding-bottom: 40px;
+			}
 
-.text-muted {
-    color: #9fa8b9 !important;
-}
+			.invoice-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
 
-.custom-actions-btns {
-    margin: auto;
-    display: flex;
-    justify-content: flex-end;
-}
+			.invoice-box table tr.details td {
+				padding-bottom: 20px;
+			}
 
-.custom-actions-btns .btn {
-    margin: .3rem 0 .3rem .3rem;
-}
-</style>
-<div class="container">
-    <div class="row gutters">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="card">
-                    <div class="card-body p-0">
-                        <div class="invoice-container">
-                            <div class="invoice-header">
-                                <!-- Row start -->
-                                <div class="row gutters">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                        <div class="custom-actions-btns mb-5">
-                                            <a href="#" class="btn btn-primary">
-                                                <i class="icon-download"></i> Download
-                                            </a>
-                                            <a href="#" class="btn btn-secondary">
-                                                <i class="icon-printer"></i> Print
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Row end -->
-                                <!-- Row start -->
-                                <div class="row gutters">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                        <a href="index.html" class="invoice-logo">
-                                            {{ settings()->get('app_name','My App') }}
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <address class="text-right">
-                                            {{ settings()->get('app_address','My App') }}
-                                        </address>
-                                    </div>
-                                </div>
-                                <!-- Row end -->
-                                <!-- Row start -->
-                                <div class="row gutters">
-                                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                                        <div class="invoice-details">
-                                            <address>
-                                                Tagihan Atas Nama : {{ $tagihan->siswa->nama }} ({{ $tagihan->siswa->nisn }})<br>
-                                                Kelas : {{ $tagihan->siswa->kelas }}<br>
-                                                Jurusan : {{ $tagihan->siswa->jurusan }}<br>
-                                            </address>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                                        <div class="invoice-details">
-                                            <div class="invoice-num">
-                                                <div>Nomor Tagihan - #{{ $tagihan->id }}</div>
-                                                <div>Tanggal Tagihan - {{ $tagihan->tanggal_tagihan->translatedFormat('d F Y') }}</div>
-                                                <div>Tanggal Jatuh Tempo - {{ $tagihan->tanggal_jatuh_tempo->translatedFormat('d F Y') }}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Row end -->
-                            </div>
-                            <div class="invoice-body">
-                                <!-- Row start -->
-                                <div class="row gutters">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="table-responsive">
-                                            <table class="table custom-table m-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th width="60%">Items</th>
-                                                        <th>Sub Total</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($tagihan->tagihanDetails as $item)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $item->nama_biaya }}</td>
-                                                        <td class="text-end">{{ formatRupiah($item->jumlah_biaya) }}</td>
-                                                    </tr>
-                                                    @endforeach
-                                                    <tr>
-                                                        <td>&nbsp;</td>
-                                                        <td colspan="1">
-                                                            <h5 class="text-success"><strong>Total Tagihan</strong></h5>
-                                                        </td>
-                                                        <td>
-                                                            <h5 class="text-success"><strong>{{ formatRupiah($tagihan->total_tagihan) }}</strong></h5>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Row end -->
-                            </div>
-                            <div class="invoice-footer">
-                                Terima Kasih
-                            </div>
-                        </div>
-                    </div>
-                </div>
+			.invoice-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
+
+			.invoice-box table tr.item.last td {
+				border-bottom: none;
+			}
+
+			.invoice-box table tr.total td:nth-child(2) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
+
+			@media only screen and (max-width: 600px) {
+				.invoice-box table tr.top table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+
+				.invoice-box table tr.information table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+			}
+
+			/** RTL **/
+			.invoice-box.rtl {
+				direction: rtl;
+				font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+			}
+
+			.invoice-box.rtl table {
+				text-align: right;
+			}
+
+			.invoice-box.rtl table tr td:nth-child(2) {
+				text-align: left;
+			}
+            .d-flex {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* .d-flex img {
+                margin-right: 10px;
+            } */
+            .d-flex h5 {
+                margin-top: 0px;
+            }
+            .d-flex h4 {
+                margin-bottom: 0px;
+            }
+		</style>
+	</head>
+
+	<body>
+		<div class="invoice-box">
+            <div class="d-flex">
+                {{-- <img src="{{ asset('storage/images/fania.png') }}" width="120px"> --}}
+                <h4>SMK FANIA SALSABILA</h4>
+                <h5>Kota Jambi</h5>
             </div>
-        </div>
-    </div>
+			<table cellpadding="0" cellspacing="0">
+				{{-- <tr class="top">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td class="title">
+									<h5>{{ settings('app_name','My App') }}</h5>
+								</td>
 
-@endsection
+								<td>
+									Invoice #: {{ $tagihan->id }}<br />
+									Tanggal Tagihan : {{ $tagihan->tanggal_tagihan->translatedFormat('d F Y') }}<br />
+									Tanggal Jatuh Tempo : {{ $tagihan->tanggal_jatuh_tempo->translatedFormat('d F Y') }}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr> --}}
+
+				<tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									Tagihan Untuk : {{ $tagihan->siswa->nama }} ({{ $tagihan->siswa->nisn }})<br />
+									Kelas : {{ $tagihan->siswa->kelas }}<br />
+									Jurusan : {{ $tagihan->siswa->jurusan }}
+								</td>
+
+								<td>
+									Invoice #: {{ $tagihan->id }}<br />
+									Tanggal Tagihan : {{ $tagihan->tanggal_tagihan->translatedFormat('d F Y') }}<br />
+									Tanggal Jatuh Tempo : {{ $tagihan->tanggal_jatuh_tempo->translatedFormat('d F Y') }}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="heading">
+					<td>Item Tagihan</td>
+
+					<td>Sub Total</td>
+				</tr>
+                @foreach ($tagihan->tagihanDetails as $item)
+				<tr class="item">
+					<td>{{ $item->nama_biaya }}</td>
+					<td>{{ formatRupiah($item->jumlah_biaya) }}</td>
+				</tr>
+                @endforeach
+                <tr class="total">
+                    <td>Total</td>
+                    <td>{{ formatRupiah($tagihan->total_tagihan) }}</td>
+                </tr>
+			</table>
+            <a href="{{ url()->current() . '?output=pdf' }}">Download PDF</a>
+            <a href="#" onclick="window.print()">Cetak</a>
+		</div>
+	</body>
+</html>
