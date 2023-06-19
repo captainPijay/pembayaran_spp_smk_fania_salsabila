@@ -71,6 +71,9 @@
                             </tr>
                         </tfoot>
                     </table>
+                    <a href="{{ route('invoice.show', $tagihan->id) }}" target="_blank">
+                        <i class="fa fa-file-pdf"></i> Download Invoice
+                    </a>
                 </div>
             </div>
             <div class="card">
@@ -98,7 +101,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <h5>Status Pembayaran : {{ strtoupper($tagihan->status)}}</h5>
+                    <h5 class="mt-2">Status Pembayaran : {{ strtoupper($tagihan->status)}}</h5>
                 </div>
                 <h5 class="card-header">FORM PEMBAYRAN</h5>
                 <div class="card-body">

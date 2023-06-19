@@ -20,7 +20,7 @@ class InvoiceController extends Controller
         if (request('output') == 'pdf') {
             $pdf = Pdf::loadView('invoice', compact('tagihan', 'title'));
             $namaFile = "Invoice Tagihan " . $tagihan->siswa->nama . ' bulan' . $tagihan->tanggal_tagihan->translatedFormat('F Y') . '.pdf';
-            return $pdf->download($namaFile);
+            return $pdf->download($namaFile); //bisa juga pakai stream
         }
         return view('invoice', compact('tagihan', 'title'));
     }

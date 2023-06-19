@@ -35,7 +35,7 @@
                                             @foreach ($item->tagihanDetails as $itemDetails)
                                                 <li>
                                                     {{ $itemDetails->nama_biaya }}
-                                                    ({{ $itemDetails->jumlah_biaya }})
+                                                    ({{ formatRupiah($itemDetails->jumlah_biaya) }})
                                                 </li>
                                             @endforeach
                                         </ul>

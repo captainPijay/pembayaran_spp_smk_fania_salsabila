@@ -77,7 +77,6 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::resource('pembayaran', PembayaranController::class);
     Route::resource('setting', SettingController::class);
     Route::get('delete-biaya-item/{id}', [BiayaController::class, 'deleteItem'])->name('delete-biaya.item');
-    Route::get('kwitansi-pembayaran/{id}', [KwitansiPembayaranController::class, 'show'])->name('kwitansipembayaran.show');
     Route::get('kartuspp', [KartuSppController::class, 'index'])->name('kartuspp.index');
     Route::get('status/update', [StatusController::class, 'update'])->name('status.update');
 });
@@ -92,6 +91,7 @@ Route::prefix('walimurid')->middleware(['auth', 'auth.wali'])->name('wali.')->gr
     Route::resource('pembayaran', WaliMuridPembayaranController::class);
     Route::resource('profil', WaliMuridProfilController::class);
 });
+Route::get('kwitansi-pembayaran/{id}', [KwitansiPembayaranController::class, 'show'])->name('kwitansipembayaran.show')->middleware('auth');
 Route::resource('invoice', InvoiceController::class)->middleware('auth');
 Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     //ini route khusus untuk admin

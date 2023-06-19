@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KwitansiPembayaranController extends Controller
 {
@@ -11,6 +12,12 @@ class KwitansiPembayaranController extends Controller
     {
         $pembayaran = Pembayaran::findOrFail($id);
         $data['pembayaran'] = $pembayaran;
-        return view('operator.kwitansi_pembayaran', $data);
+        $data['title'] = 'Kwitansi Pembayaran No #' . $pembayaran->id;
+        if (request('output') == 'pdf') {
+            $pdf = Pdf::loadView('kwitansi_pembayaran', $data);
+            $namaFile = "Kwitansi Pembayaran SPP" . $pembayaran->tagihan->siswa->nama . ' bulan' . $pembayaran->tagihan->tanggal_tagihan->translatedFormat('F Y') . '.pdf';
+            return $pdf->download($namaFile); //bisa juga pakai stream
+        }
+        return view('kwitansi_pembayaran', $data);
     }
 }
