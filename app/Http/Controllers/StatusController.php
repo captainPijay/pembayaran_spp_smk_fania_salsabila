@@ -14,9 +14,9 @@ class StatusController extends Controller
             $model->setStatus($request->status);
             $model->save();
             if ($model->status == 'aktif') {
-                flash("Berhasil Melakukan Aktivasi Siswa")->success();
+                flash("Berhasil Melakukan Aktivasi Siswa");
             } else {
-                flash("Berhasil Menonaktifkan Siswa", 'danger');
+                flash()->addError("Berhasil Menonaktifkan Siswa", 'Berhasil');
             }
             return back();
         }

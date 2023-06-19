@@ -80,6 +80,10 @@
                                 <td class="text-end fw-bold">{{ formatRupiah($model->biaya->children->sum('jumlah')) }}</td>
                             </tfoot>
                         </table>
+                        <a href="{{ route('kartuspp.index',[
+                            'siswa_id'=>$model->id,
+                            'tahun'=>date('Y'),
+                        ]) }}" target="blank"><i class="fa fa-file-pdf mt-2"></i>Download Kartu SPP</a>
                     </div>
                 </div>
             </div>
