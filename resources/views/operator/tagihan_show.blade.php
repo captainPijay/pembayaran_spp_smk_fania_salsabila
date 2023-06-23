@@ -32,12 +32,6 @@
                             <td>: {{ $siswa->nama }}</td>
                         </tr>
                     </table>
-                    <a href="{{ route('kartuspp.index', [
-                        'siswa_id'=>$siswa->id,
-                        'bulan'=>request('bulan'),
-                        'tahun'=>request('tahun'),
-                        'detailTagihan'=>$tagihan->id
-                    ]) }}" class="btn btn-primary btn-sm mt-3" target="blank"><i class="fa fa-file"></i> Kartu Tagihan {{ request('tahun') }}</a>
                 </div>
             </div>
         </div>
@@ -48,11 +42,11 @@
                 <h5 class="card-header pb-0">DATA TAGIHAN {{ strtoupper($periode) }}</h5>
                 <div class="card-body">
                     <table class="table table-sm table-bordered">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
-                                <th>No</th>
-                                <th>Nama Tagihan</th>
-                                <th>Jumlah Tagihan</th>
+                                <th class="text-white">No</th>
+                                <th class="text-white">Nama Tagihan</th>
+                                <th class="text-white">Jumlah Tagihan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,12 +74,12 @@
                 <h5 class="card-header pb-0">DATA PEMBAYARAN</h5>
                 <div class="card-body">
                     <table class="table table-stripped table-bordered">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
-                                <th width="1%">#</th>
-                                <th>TANGGAL</th>
-                                <th>JUMLAH</th>
-                                <th>METODE</th>
+                                <th width="1%" class="text-white">#</th>
+                                <th class="text-white">TANGGAL</th>
+                                <th class="text-white">JUMLAH</th>
+                                <th class="text-white">METODE</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,6 +117,43 @@
             </div>
         </div>
         <div class="col-md-7">
+            <div class="card">
+                <div class="d-flex">
+                    <h5 class="card-header" style="text-align: start;">KARTU SPP</h5>
+                <a style="text-align: center; font-size:12px;" href="{{ route('kartuspp.index', [
+                        'siswa_id'=>$siswa->id,
+                        'bulan'=>request('bulan'),
+                        'tahun'=>request('tahun'),
+                        'detailTagihan'=>$tagihan->id
+                    ]) }}" class="btn btn-primary btn-sm mt-3 py-3" target="blank"><i class="fa fa-print"></i> Cetak Kartu SPP {{ request('tahun') }}</a>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="table-dark">
+                          <tr>
+                            <th style="text-align: center;" class="text-white" width="1%">No</th>
+                            <th style="text-align: start;" class="text-white">Bulan & Tahun</th>
+                            <th style="text-align: end;" class="text-white">Total Tagihan</th>
+                            <th style="text-align: end;" class="text-white">Tanggal Bayar</th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($kartuSpp as $item)
+                            <tr class="item">
+                              <td style="text-align: center;">{{ $loop->iteration }}</td>
+                              <td style="text-align: start;">{{ $item['bulan']. ' '.$item['tahun'] }}</td>
+                              <td style="text-align: end;">{{ formatRupiah($item['total_tagihan'])}}</td>
+                              <td style="text-align: end;">{{ $item['tanggal_bayar'] }}</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
