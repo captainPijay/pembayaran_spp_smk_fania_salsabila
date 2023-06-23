@@ -195,7 +195,10 @@
             <li class="menu-item {{ Route::is('pembayaran.*')? 'active' : '' }}">
               <a href="{{ route('pembayaran.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Data Pembayaran</div>
+                <div data-i18n="Basic">
+                    Data Pembayaran
+                    <span class="badge badge-center rounded-pill bg-danger">{{ auth()->user()->unreadNotifications->count()}}</span>
+                </div>
               </a>
             </li>
             <li class="menu-item">
