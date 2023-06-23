@@ -19,10 +19,27 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $models = Pembayaran::latest()->orderBy('tanggal_konfirmasi', 'desc')->paginate(50);
-        $data['models'] = $models;
+        $models = Pembayaran::latest()->orderBy('tanggal_konfirmasi', 'desc');
+        if ($request->filled('bulan')) {
+            $models = $models->whereMonth('tanggal_bayar', $request->bulan)->paginate;
+        }
+        if ($request->filled('tahun')) {
+            $models = $models->whereYear('tanggal_bayar', $request->tahun);
+        }
+        if ($request->filled('status')) {
+            if ($request->status == 'sudah-konfirmasi') {
+                $models = $models->whereNotNull('tanggal_konfirmasi');
+            }
+            if ($request->status == 'belum-konfirmasi') {
+                $models = $models->whereNull('tanggal_konfirmasi');
+            }
+        }
+        if ($request->filled('q')) {
+            $models = $models->search($request->q, null, true);
+        }
+        $data['models'] = $models->paginate(settings()->get('app_pagination', '50'));
         $data['title'] = 'Data Pembayaran';
         return view('operator.pembayaran_index', $data);
     }

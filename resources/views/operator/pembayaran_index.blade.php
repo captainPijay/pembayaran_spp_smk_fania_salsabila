@@ -7,17 +7,26 @@
                 <h5 class="card-header">DATA PEMBAYARAN</h5>
 
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-md-10">
                             {!! Form::open(['route' => 'pembayaran.index', 'method'=>'GET']) !!}
-                            <div class="row">
-                                <div class="col-md-4 col-sm-12 my-3">
-                                  {!! Form::selectMonth('bulan', request('bulan'), ['class'=>'form-control']) !!}
+                            <div class="row justify-content-end gx-3">
+                                <div class="col-md-3 col-sm-12 my-3">
+                                  {!! Form::text('q', request('q'), ['class'=>'form-control','placeholder'=>'Pencarian Data Siswa']) !!}
                                 </div>
-                                <div class="col-md-4 col-sm-12 my-3">
-                                  {!! Form::selectRange('tahun', 2022, date('Y'), request('tahun'), ['class'=>'form-control']) !!}
+                                <div class="col-md-2 col-sm-12 my-3">
+                                  {!! Form::select('status', [
+                                    'sudah-konfirmasi'=>'Sudah Di Konfirmasi',
+                                    'belum-konfirmasi'=>'Belum Di Konfirmasi'
+                                  ], request('status'), ['class'=>'form-control','placeholder'=>'Pilih Status']) !!}
                                 </div>
-                                <div class="col my-3">
+                                <div class="col-md-2 col-sm-12 my-3">
+                                  {!! Form::selectMonth('bulan', request('bulan'), ['class'=>'form-control','placeholder'=>'Pilih Bulan']) !!}
+                                </div>
+                                <div class="col-md-2 col-sm-12 my-3">
+                                  {!! Form::selectRange('tahun', 2022, date('Y')+1, request('tahun'), ['class'=>'form-control','placeholder'=>'Pilih Tahun']) !!}
+                                </div>
+                                <div class="col-md-2 col-sm-12 my-3">
                                   <button class="btn btn-primary" type="submit">Tampil</button>
                                 </div>
                               </div>
@@ -69,7 +78,9 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {!! $models->links() !!}
+                        <div class="mt-3">
+                            {!! $models->links() !!}
+                        </div>
                     </div>
                 </div>
             </div>
