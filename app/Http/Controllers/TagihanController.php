@@ -31,18 +31,31 @@ class TagihanController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->filled('bulan') && $request->filled('tahun')) {
-            $models = Tagihan::latest()->whereMonth('tanggal_tagihan', $request->bulan)
-                ->whereYear('tanggal_tagihan', $request->tahun)
-                ->paginate(settings()->get('app_pagination', '50'));
+        $models = Tagihan::latest();
+        if ($request->filled('bulan')) {
+            $models = $models->whereMonth('tanggal_tagihan', $request->bulan);
+        }
+        if ($request->filled('tahun')) {
+            $models = $models->whereYear('tanggal_tagihan', $request->tahun);
+        }
+        if ($request->filled('status')) {
+            $models = $models->where('status', $request->status);
         }
         if ($request->filled('q')) {
-            $models = Tagihan::search($request->q)->paginate(settings()->get('app_pagination', '50'));
-        } else {
-            $models = Tagihan::latest()->paginate(settings()->get('app_pagination', '50'));
+            $models = $models->search($request->q, null, true);
         }
+        // if ($request->filled('bulan') && $request->filled('tahun')) {
+        //     $models = Tagihan::latest()->whereMonth('tanggal_tagihan', $request->bulan)
+        //         ->whereYear('tanggal_tagihan', $request->tahun)
+        //         ->paginate(settings()->get('app_pagination', '50'));
+        // }
+        // if ($request->filled('q')) {
+        //     $models = Tagihan::search($request->q)->paginate(settings()->get('app_pagination', '50'));
+        // } else {
+        //     $models = Tagihan::latest()->paginate(settings()->get('app_pagination', '50'));
+        // }
         return view('operator.' . $this->viewIndex,  [
-            'models' => $models,
+            'models' => $models->paginate(settings()->get('app_pagination', '50')),
             'routePrefix' => $this->routePrefix,
             'title' => 'DATA TAGIHAN'
 

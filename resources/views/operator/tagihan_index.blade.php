@@ -15,13 +15,20 @@
                             {!! Form::open(['route' => $routePrefix.'.index', 'method'=>'GET']) !!}
                             <div class="row justify-content-end gx-3">
                                 <div class="col-md-3 col-sm-12 my-3">
-                                  {!! Form::text('q', request('siswa'), ['class'=>'form-control','placeholder'=>'Pencarian Data Siswa']) !!}
+                                  {!! Form::text('q', request('q'), ['class'=>'form-control','placeholder'=>'Pencarian Data Siswa']) !!}
                                 </div>
-                                <div class="col-md-3 col-sm-12 my-3">
+                                <div class="col-md-2 col-sm-12 my-3">
+                                  {!! Form::select('status', [
+                                    'lunas'=>'Lunas',
+                                    'baru'=>'Baru',
+                                    'angsur'=>'Angsur',
+                                  ], request('status'), ['class'=>'form-control','placeholder'=>'Pilih Status']) !!}
+                                </div>
+                                <div class="col-md-2 col-sm-12 my-3">
                                   {!! Form::selectMonth('bulan', request('bulan'), ['class'=>'form-control','placeholder'=>'Pilih Bulan']) !!}
                                 </div>
                                 <div class="col-md-2 col-sm-12 my-3">
-                                  {!! Form::selectRange('tahun', 2022, date('Y'), request('tahun'), ['class'=>'form-control']) !!}
+                                  {!! Form::selectRange('tahun', 2022, date('Y')+1, request('tahun'), ['class'=>'form-control','placeholder'=>'Pilih Tahun']) !!}
                                 </div>
                                 <div class="col-md-2 col-sm-12 my-3">
                                   <button class="btn btn-primary" type="submit">Tampil</button>
@@ -77,12 +84,14 @@
                                 @endforeach
                                 @else
                                 <tr>
-                                    <td colspan="4">Data Tidak Ada</td>
+                                    <td colspan="7">Data Tidak Ada</td>
                                 </tr>
                                 @endif
                             </tbody>
                         </table>
-                        {!! $models->links() !!}
+                        <div class="mt-3">
+                            {!! $models->links() !!}
+                        </div>
                     </div>
                 </div>
             </div>
