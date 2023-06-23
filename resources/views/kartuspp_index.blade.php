@@ -158,8 +158,8 @@
                         @endif
                     </td>
                     <td style="text-align:left; vertical-align: middle">
-                        <div style="font-size: 20px; font-weight:bold">{{ settings()->get('app_name','My App') }}</div>
-                        <div>{{ settings()->get('app_address') }}</div>
+                        <div style="font-size: 20px; font-weight:bold; margin-left:10px;">{{ settings()->get('app_name','My App') }}</div>
+                        <div style="margin-left:10px;">{{ settings()->get('app_address') }}</div>
                     </td>
                 </tr>
                 <tr>
@@ -192,7 +192,7 @@
                                 <th>Paraf</th>
                                 <th>Keterangan</th>
                             </tr>
-                            @foreach ($tagihan as $item)
+                            @foreach ($kartuSpp as $item)
                                 <tr class="item">
                                     <td style="text-align:center">{{ $loop->iteration }}</td>
                                     <td style="text-align:start">{{ $item['bulan']. ' '.$item['tahun'] }}</td>

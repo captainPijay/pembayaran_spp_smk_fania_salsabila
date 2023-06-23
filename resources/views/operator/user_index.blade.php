@@ -8,6 +8,16 @@
 
                 <div class="card-body">
                     <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
+                    <form action="{{ route('user.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group col-md-6">
+                          <div class="input-group mb-3">
+                            <input type="file" name="file" class="form-control">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </div>
+                        </div>
+                      </form>
+
                        <div class="table-responsive">
                         <table class="{{ config('app.table_style') }}">
                             <thead>

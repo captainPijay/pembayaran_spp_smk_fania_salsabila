@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Imports\UserImport;
 use App\Models\User as Model;
 use App\Models\User;
+use Excel;
 
 class UserController extends Controller
 {
@@ -26,6 +28,16 @@ class UserController extends Controller
             'title' => 'Data User',
             'routePrefix' => $this->routePrefix
         ]);
+    }
+    public function userImportExcel(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DataUser', $namaFile);
+
+        Excel::import(new UserImport, public_path('/DataUser/' . $namaFile));
+        flash('Berhasil Import Data');
+        return back();
     }
 
     /**

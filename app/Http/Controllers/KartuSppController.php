@@ -43,7 +43,7 @@ class KartuSppController extends Controller
         }
         if (request('output') == 'pdf') {
             $pdf = Pdf::loadView('kartuspp_index', [
-                'tagihan' => collect($arrayData),
+                'kartuSpp' => collect($arrayData),
                 'siswa' => $siswa
             ]);
             $namaFile = "Kartu Spp" . $siswa->nama . ' Tahun' . $request->tahun . '.pdf';
@@ -51,7 +51,7 @@ class KartuSppController extends Controller
         }
         //Siswa::firstWhere('id', $request->siswa_id);
         return view('kartuspp_index', [
-            'tagihan' => collect($arrayData),
+            'kartuSpp' => collect($arrayData),
             'siswa' => $siswa
         ]);
     }

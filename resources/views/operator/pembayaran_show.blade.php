@@ -78,6 +78,7 @@
                                 <tr>
                                     <td colspan="2" class="bg-secondary text-white fw-bold">INFORMASI BANK PENGIRIM</td>
                                 </tr>
+                                @if ($model->wali_bank_id != null)
                                 <tr>
                                     <td>Nama Bank Pengirim</td>
                                     <td>: {{ $model->waliBank->nama_bank }}</td>
@@ -89,6 +90,11 @@
                                     <td>Pemilik Rekening</td>
                                     <td>: {{ $model->waliBank->nama_rekening }}</td>
                                 </tr>
+                                @else
+                                <tr class="col-md-20">
+                                    <td colspan="2"><h5>Wali Murid Tidak Menyimpan Data Rekeningnya, Dimohon Agar Operator Dapat Dengan Teliti Melakukan Pengecekan Bukti Bayar</h5></td>
+                                </tr>
+                                @endif
                                 <tr>
                                     <td colspan="2" class="bg-secondary text-white fw-bold">INFORMASI BANK TUJUAN TRANSFER</td>
                                 </tr>

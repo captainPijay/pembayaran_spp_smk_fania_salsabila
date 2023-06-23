@@ -78,6 +78,7 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::resource('setting', SettingController::class);
     Route::get('delete-biaya-item/{id}', [BiayaController::class, 'deleteItem'])->name('delete-biaya.item');
     Route::get('status/update', [StatusController::class, 'update'])->name('status.update');
+    Route::post('/importuser', [UserController::class, 'userImportExcel'])->name('user.import');
 });
 
 Route::get('login-wali', [LoginController::class, 'showLoginFormWali'])->name('login.wali');

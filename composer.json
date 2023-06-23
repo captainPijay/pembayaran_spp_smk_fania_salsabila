@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
         "laravelcollective/html": "^6.3",
+        "maatwebsite/excel": "^3.1",
         "nicolaslopezj/searchable": "^1.13",
         "php-flasher/flasher-laravel": "^1.15",
         "qcod/laravel-settings": "^1.2",

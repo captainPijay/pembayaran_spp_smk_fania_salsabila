@@ -277,35 +277,26 @@
                 <i class="bx bx-menu bx-sm"></i>
               </a>
             </div>
-
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-              <!-- Search -->
-              <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
-                  <i class="bx bx-search fs-4 lh-0"></i>
+                <!-- Search -->
+                    <div class="d-flex justify-content-start">{{ settings()->get('app_name','My App') }}</div>
+                  {{-- {!! Form::open(['route' => 'tagihan.index', 'method'=>'GET']) !!} --}}
+                {{-- <div class="nav-item d-flex align-items-center">
+                  <button type="submit" class="btn btn-link"><i class="bx bx-search fs-4 lh-0"></i></button>
                   <input
                     type="text"
                     class="form-control border-0 shadow-none"
-                    placeholder="Search..."
+                    placeholder="Pencarian Data Tagihan"
                     aria-label="Search..."
+                    name="q"
+                    value="{{ request("q") }}"
                   />
-                </div>
-              </div>
+                </div> --}}
+                {{-- {!! Form::close() !!} --}}
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-3">
-                  <a
-                    class="github-button"
-                    href="https://github.com/themeselection/sneat-html-admin-template-free"
-                    data-icon="octicon-star"
-                    data-size="large"
-                    data-show-count="true"
-                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                    >Star</a
-                  >
-                </li>
                 <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                       <i class="bx bx-bell bx-sm"></i>
@@ -430,36 +421,6 @@
             <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                  ©
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
-                  , made with ❤️ by
-                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-                </div>
-                <div>
-                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                  <a
-                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Documentation</a
-                  >
-
-                  <a
-                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Support</a
-                  >
-                </div>
-              </div>
-            </footer>
             <!-- / Footer -->
 
             <div class="content-backdrop fade"></div>
@@ -474,14 +435,6 @@
     </div>
     <!-- / Layout wrapper -->
 
-    <div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
