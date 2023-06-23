@@ -15,6 +15,7 @@ use App\Http\Requests\StoreTagihanRequest;
 use App\Http\Requests\UpdateTagihanRequest;
 use App\Notifications\TagihanNotification;
 use Illuminate\Support\Facades\Notification;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class TagihanController extends Controller
 {
@@ -34,8 +35,10 @@ class TagihanController extends Controller
             $models = Tagihan::latest()->whereMonth('tanggal_tagihan', $request->bulan)
                 ->whereYear('tanggal_tagihan', $request->tahun)
                 ->paginate(settings()->get('app_pagination', '50'));
+        }
+        if ($request->filled('q')) {
+            $models = Tagihan::search($request->q)->paginate(settings()->get('app_pagination', '50'));
         } else {
-
             $models = Tagihan::latest()->paginate(settings()->get('app_pagination', '50'));
         }
         return view('operator.' . $this->viewIndex,  [

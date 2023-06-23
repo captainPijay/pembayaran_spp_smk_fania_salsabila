@@ -207,6 +207,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tagihan search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tagihan searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan waliSiswa()
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereAngkatan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereCreatedAt($value)

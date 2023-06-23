@@ -118,7 +118,7 @@ class UserController extends Controller
             $requestData['password'] = bcrypt($requestData['password']);
         }
         User::where('id', $id)->update($requestData);
-        flash('Data Berhasil Di Update')->warning();
+        flash()->addWarning('Data Berhasil Di Update', 'Berhasil');
         return redirect()->route($this->routePrefix . '.index');
     }
 

@@ -8,19 +8,22 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             {!! Form::open(['route' => $routePrefix.'.index', 'method'=>'GET']) !!}
-                            <div class="row">
-                                <div class="col-md-4 col-sm-12 my-3">
-                                  {!! Form::selectMonth('bulan', request('bulan'), ['class'=>'form-control']) !!}
+                            <div class="row justify-content-end gx-3">
+                                <div class="col-md-3 col-sm-12 my-3">
+                                  {!! Form::text('q', request('siswa'), ['class'=>'form-control','placeholder'=>'Pencarian Data Siswa']) !!}
                                 </div>
-                                <div class="col-md-4 col-sm-12 my-3">
+                                <div class="col-md-3 col-sm-12 my-3">
+                                  {!! Form::selectMonth('bulan', request('bulan'), ['class'=>'form-control','placeholder'=>'Pilih Bulan']) !!}
+                                </div>
+                                <div class="col-md-2 col-sm-12 my-3">
                                   {!! Form::selectRange('tahun', 2022, date('Y'), request('tahun'), ['class'=>'form-control']) !!}
                                 </div>
-                                <div class="col my-3">
+                                <div class="col-md-2 col-sm-12 my-3">
                                   <button class="btn btn-primary" type="submit">Tampil</button>
                                 </div>
                               </div>

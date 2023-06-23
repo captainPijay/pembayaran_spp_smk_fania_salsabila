@@ -8,12 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Tagihan extends Model
 {
     use HasFactory;
     use HasFormatRupiah;
-    protected $guarded = ['id'];
+    use SearchableTrait;
+    protected $searchable = [
+        /**
+         * Columns and their priority in search results.
+         * Columns with higher values are more important.
+         * Columns with equal values have equal importance.
+         *
+         * @var array
+         */
+        'columns' => [
+            'siswas.nama' => 10,
+            'siswas.nisn' => 10,
+        ],
+        'joins' => [
+            'siswas' => ['siswas.id', 'tagihans.siswa_id'],
+        ],
+    ];
+    protected $guarded = [];
     protected $dates = ['tanggal_tagihan', 'tanggal_jatuh_tempo'];
     protected $with = ['user', 'siswa', 'tagihanDetails'];
     protected $append = ['total_tagihan'];
