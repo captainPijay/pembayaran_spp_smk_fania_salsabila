@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Models\User as Model;
+use App\Models\Pembayaran;
 
 class WaliController extends Controller
 {
@@ -141,6 +142,19 @@ class WaliController extends Controller
     public function destroy($id)
     {
         $model = Model::where('akses', 'wali')->firstWhere('id', $id);
+        if (Pembayaran::where('wali_id', $id)->exists()) {
+            $paymentsToDelete = Pembayaran::where('wali_id', $id)->get();
+
+            foreach ($paymentsToDelete as $payment) {
+                $tagihan = $payment->tagihan;
+
+                if ($tagihan) {
+                    $tagihan->delete();
+                }
+
+                $payment->delete();
+            }
+        }
         $model->delete();
         flash()->addError('Data Berhasil Di Hapus', 'Berhasil');
         return back();

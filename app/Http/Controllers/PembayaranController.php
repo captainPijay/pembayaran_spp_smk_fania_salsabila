@@ -148,8 +148,15 @@ class PembayaranController extends Controller
         if ($pembayaran->bukti_bayar) {
             Storage::delete($pembayaran->bukti_bayar);
         }
-        $tagihan = $pembayaran->tagihan;
-        TagihanDetail::where('tagihan_id', $tagihan->id)->delete();
+        $detail = $pembayaran->tagihan;
+        // foreach ($pay as $item) {
+        //     $item->delete();
+        // }
+        TagihanDetail::where('tagihan_id', $detail->id)->delete();
+        if ($pembayaran->count() > 1) {
+            $pembayaran->where('tagihan_id', $detail->id)->delete();
+        }
+        $tagihan = $detail->firstWhere('id', $pembayaran->tagihan_id);
         $tagihan->delete();
         $pembayaran->delete();
         flash()->addError('Data Pembayaran Berhasil Di Hapus', 'Berhasil');
