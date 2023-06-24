@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
 use App\Models\Biaya;
+use App\Models\Pembayaran;
 
 class SiswaController extends Controller
 {
@@ -179,9 +180,15 @@ class SiswaController extends Controller
             Storage::delete($siswa->foto);
         }
         if ($siswa->tagihan->count() >= 1) {
-            flash()->addError('Data Tidak Bisa Dihapus Karena Masih Memiliki Relasi Data Tagihan Tagihan');
+            flash()->addError('Data Tidak Bisa Dihapus Karena Masih Memiliki Relasi Data Tagihan');
             return back();
         }
+        // if ($siswa->wali->pembayaran) {
+        //     $pembayaran = Pembayaran::where('wali_id', $siswa->wali->id);
+        //     foreach ($pembayaran as $item) {
+        //         $item->delete();
+        //     }
+        // }
 
         // if (Tagihan::where('siswa_id', $id) != null) {
         //     $tagihan = Tagihan::where('siswa_id', $id);

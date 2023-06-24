@@ -185,6 +185,12 @@ class TagihanController extends Controller
     public function destroy($id)
     {
         $payment = Tagihan::findOrFail($id);
+        if ($payment->pembayaran) {
+            $paymentsToDelete = $payment->pembayaran->where('tagihan_id', $payment->id);
+            foreach ($paymentsToDelete as $item) {
+                $item->delete();
+            }
+        }
         $payment->delete();
         $detailTagihan = TagihanDetail::where('tagihan_id', $id);
         $detailTagihan->delete();

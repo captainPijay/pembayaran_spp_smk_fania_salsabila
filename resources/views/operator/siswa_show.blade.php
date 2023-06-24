@@ -34,7 +34,7 @@
                                 <td>: {{ $model->nisn }}</td>
                             </tr>
                             <tr>
-                                <td>Jenis_kelamin</td>
+                                <td>JENIS KELAMIN</td>
                                 <td>: {{ $model->jenis_kelamin }}</td>
                             </tr>
                             <tr>

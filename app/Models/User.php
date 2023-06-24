@@ -71,4 +71,8 @@ class User extends Authenticatable
     {
         return $this->siswa->pluck('id')->toArray();
     }
+    public function pembayaran(): HasMany
+    {
+        return $this->hasMany(Pembayaran::class);
+    }
 }
