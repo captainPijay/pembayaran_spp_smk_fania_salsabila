@@ -22,11 +22,17 @@
                         </button>
                       </div>
                     {!! Form::close() !!}
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-md-6 d-flex justify-content-end">
+                            <a href="{{ route('status'.'.aktif') }}" class="btn btn-success btn-sm mb-3 mx-3">Aktifkan Semua Siswa</a>
+                            <a href="{{ route('status'.'.non-aktif') }}" class="btn btn-danger btn-sm mb-3">Non-Aktifkan Semua Siswa</a>
+                        </div>
+                    </div>
                        <div class="table-responsive">
                         <table class="{{ config('app.table_style') }}">
                             <thead>
                                 <tr>
-                                    <th class="{{ config('app.th_style') }}">No</th>
+                                    <th class="{{ config('app.th_style') }}" width="1%">No</th>
                                     <th class="{{ config('app.th_style') }}">Wali Murid</th>
                                     <th class="{{ config('app.th_style') }}">Nama Murid</th>
                                     <th class="{{ config('app.th_style') }}">NISN</th>
@@ -39,7 +45,7 @@
                             </thead>
                             <tbody class="bg-secondary text-white">
                                 @forelse ($models as $item)
-                                    <tr>
+                                    <tr class="mt-2">
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->wali->name }}</td>
                                         <td>{{ $item->nama }}</td>
@@ -49,16 +55,16 @@
                                         <td>{{ formatRupiah($item->biaya?->children->sum('jumlah')) }}</td>
                                         <div class="d-flex align-items-center">
                                             <td  class="btn {{ $item->status == 'aktif' ? 'bg-success' : 'bg-danger' }} text-white font-weight-bold d-flex justify-content-center text-center mt-2 btn-sm mx-1">{{ $item->status }}</td>
-                                        <td>
                                         </div>
+                                        <td>
                                         {!! Form::open([
                                                 'route'=> [$routePrefix.'.destroy', $item->id],
                                                 'method'=>'DELETE',
                                                 'onsubmit'=>'return confirm("Yakin Ingin Hapus Data Ini?")',
                                                 ]) !!}
 
-                                            <a href="{{ route($routePrefix.'.show', $item->id) }}" class="btn btn-primary btn-sm mx-1"><i class="fa fa-eye"></i> Detail</a>
-                                            <a href="{{ route($routePrefix.'.edit', $item->id) }}" class="btn btn-warning btn-sm mx-2 my-2"><i class="fa fa-edit"></i> Edit</a>
+                                            <a href="{{ route($routePrefix.'.show', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail</a>
+                                            <a href="{{ route($routePrefix.'.edit', $item->id) }}" class="btn btn-warning btn-sm my-2 mx-2"><i class="fa fa-edit"></i> Edit</a>
                                             {{-- {!! Form::submit('Hapus', ['class'=>'btn btn-danger btn-sm']) !!} --}}
                                             <button type="submit" class="btn btn-danger btn-sm">
                                                 <i class="fa fa-trash"></i> Hapus

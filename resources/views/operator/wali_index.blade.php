@@ -42,7 +42,7 @@
                                         {!! Form::open([
                                                 'route'=> [$routePrefix.'.destroy', $item->id],
                                                 'method'=>'DELETE',
-                                                'onsubmit'=>'return confirm("Yakin Ingin Hapus Data Ini?")',
+                                                'onsubmit'=>'Yakin Ingin Hapus Data Ini? Jika Menghapus Data User Di Sini Maka Data Untuk Tagihan Dan Pembayarannya Pun Akan Ikut Terhapus, Sebaiknya Hapus Data Saat Tahun Ajaran Baru.',
                                                 ]) !!}
 
                                             <a href="{{ route($routePrefix.'.show', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail</a>

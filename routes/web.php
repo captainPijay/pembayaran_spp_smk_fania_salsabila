@@ -13,6 +13,7 @@ use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\KartuSppController;
 use App\Http\Controllers\KwitansiPembayaranController;
+use App\Http\Controllers\LaporanFormController;
 use App\Http\Controllers\PanduanPembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SettingController;
@@ -78,7 +79,10 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::resource('setting', SettingController::class);
     Route::get('delete-biaya-item/{id}', [BiayaController::class, 'deleteItem'])->name('delete-biaya.item');
     Route::get('status/update', [StatusController::class, 'update'])->name('status.update');
+    Route::get('status/aktif', [StatusController::class, 'aktif'])->name('status.aktif');
+    Route::get('status/non-aktif', [StatusController::class, 'nonaktif'])->name('status.non-aktif');
     Route::post('/importuser', [UserController::class, 'userImportExcel'])->name('user.import');
+    Route::get('laporanform/create', [LaporanFormController::class, 'create'])->name('laporanform.create');
 });
 
 Route::get('login-wali', [LoginController::class, 'showLoginFormWali'])->name('login.wali');

@@ -59,7 +59,7 @@
                                         {!! Form::open([
                                                 'route'=> ['pembayaran.destroy', $item->id],
                                                 'method'=>'DELETE',
-                                                'onsubmit'=>'return confirm("Yakin Ingin Hapus Data Ini?")',
+                                                'onsubmit'=>'return confirm("Yakin Ingin Hapus Data Ini? Jika Menghapus Data Pembayaran Di Sini Maka Data Untuk Tagihan Nya Pun Akan Ikut Terhapus Sebaiknya Hapus Data Saat Tahun Ajaran Baru.")',
                                                 ]) !!}
 
                                             <a href="{{ route('pembayaran.show',$item->id) }}" class="btn btn-primary btn-sm mx-3"><i class="fa fa-eye"></i> Detail</a>

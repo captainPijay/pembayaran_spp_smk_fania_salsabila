@@ -45,10 +45,10 @@
                                                 'onsubmit'=>'return confirm("Yakin Ingin Hapus Data Ini?")',
                                                 ]) !!}
 
-                                            <a href="{{ route($routePrefix.'.edit', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                            <a href="{{ route($routePrefix.'.edit', $item->id) }}" class="btn btn-warning btn-sm mx-3"><i class="fa fa-edit"></i> Edit</a>
                                             {{-- {!! Form::submit('Hapus', ['class'=>'btn btn-danger btn-sm']) !!} --}}
                                             <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash"></i>Hapus
+                                                <i class="fa fa-trash"></i> Hapus
                                             </button>
                                         {!! Form::close() !!}
                                         </td>
