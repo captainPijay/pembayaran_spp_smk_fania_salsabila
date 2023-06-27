@@ -35,20 +35,20 @@ class StatusController extends Controller
             }
             $item->setStatus('aktif');
         }
-        flash('Berhasil Aktifkan Siswa');
+        flash('Berhasil Aktifkan Semua Siswa');
         return back();
     }
     public function nonaktif()
     {
         $siswa = Siswa::all();
         foreach ($siswa as $item) {
-            if ($item->status()) {
+            if ($item->status()) { //ini ada di spatie nya method status() gunanya mengambil status sebelum nya
                 $a = $item->status();
                 $a->delete();
             }
             $item->setStatus('non-aktif');
         }
-        flash('Berhasil Aktifkan Siswa');
+        flash()->addError('Berhasil Non-Aktifkan Semua Siswa', 'Berhasil');
         return back();
     }
 }

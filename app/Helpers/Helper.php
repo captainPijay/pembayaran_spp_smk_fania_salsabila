@@ -1,4 +1,20 @@
 <?php
+function getNamaJurusan()
+{
+    return [
+        'Asisten Keperawatan' => 'Asisten Keperawatan',
+        'Farmasi Klinis Dan Komunitas' => 'Farmasi Klinis Dan Komunitas',
+        'Teknologi Laboratorium Medik' => 'Teknologi Laboratorium Medik'
+    ];
+}
+function getNamaKelas()
+{
+    return [
+        10 => 10,
+        11 => 11,
+        12 => 12
+    ];
+}
 function bulanSpp()
 {
     return [

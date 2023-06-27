@@ -59,6 +59,9 @@
         body{
             background: #eee
         }
+        .table-dark{
+            color: white !important;
+        }
     </style>
   </head>
 

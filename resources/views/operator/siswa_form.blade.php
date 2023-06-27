@@ -45,13 +45,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="jurusan">Jurusan</label>
-                        {!! Form::select('jurusan',
-                        [
-                            'Asisten Keperawatan'=> 'Asisten Keperawatan',
-                            'Farmasi Klinis Dan Komunitas'=>'Farmasi Klinis Dan Komunitas',
-                            'Teknologi Laboratorium Medik'=>'Teknologi Laboratorium Medik'
-
-                        ], null, ['class'=>'form-control']) !!}
+                        {!! Form::select('jurusan',getNamaJurusan(), null, ['class'=>'form-control']) !!}
                         <span class="text-danger">{{ $errors->first('jurusan') }}</span>
                     </div>
                     <div class="form-group mt-3">
@@ -66,12 +60,13 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="kelas">Kelas</label>
-                        {!! Form::selectRange('kelas', 10, 12, null, ['class'=>'form-control']) !!}
+                        {{-- {!! Form::selectRange('kelas', 10, 12, null, ['class'=>'form-control']) !!} --}}
+                        {!! Form::select('kelas', getNamaKelas(), null, ['class'=>'form-control']) !!}
                         <span class="text-danger">{{ $errors->first('kelas') }}</span>
                     </div>
                     <div class="form-group mt-3">
                         <label for="angkatan">Angkatan</label>
-                        {!! Form::selectRange('angkatan', 2022, date('Y') + 1, null, ['class'=>'form-control']) !!}
+                        {!! Form::selectRange('angkatan', 2020, date('Y'), null, ['class'=>'form-control']) !!}
                         <span class="text-danger">{{ $errors->first('angkatan') }}</span>
                     </div>
                     <div class="form-group mt-3">

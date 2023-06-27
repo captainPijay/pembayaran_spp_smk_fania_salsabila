@@ -99,6 +99,7 @@ class SiswaController extends Controller
             $requestData['wali_status'] = null;
         }
         $siswa = Siswa::create($requestData);
+        $siswa->setStatus('aktif');
         flash('Data Berhasil Di Simpan');
         return redirect()->route($this->routePrefix . '.index');
     }
@@ -178,6 +179,10 @@ class SiswaController extends Controller
         $siswa = Siswa::findOrFail($id);
         if ($siswa->foto) {
             Storage::delete($siswa->foto);
+        }
+        if ($siswa->status()) {
+            $a = $siswa->status();
+            $a->delete();
         }
         if ($siswa->tagihan->count() >= 1) {
             flash()->addError('Data Tidak Bisa Dihapus Karena Masih Memiliki Relasi Data Tagihan');

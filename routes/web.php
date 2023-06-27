@@ -14,6 +14,8 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\KartuSppController;
 use App\Http\Controllers\KwitansiPembayaranController;
 use App\Http\Controllers\LaporanFormController;
+use App\Http\Controllers\LaporanPembayaranController;
+use App\Http\Controllers\LaporanTagihanController;
 use App\Http\Controllers\PanduanPembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SettingController;
@@ -83,6 +85,8 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::get('status/non-aktif', [StatusController::class, 'nonaktif'])->name('status.non-aktif');
     Route::post('/importuser', [UserController::class, 'userImportExcel'])->name('user.import');
     Route::get('laporanform/create', [LaporanFormController::class, 'create'])->name('laporanform.create');
+    Route::get('laporantagihan', [LaporanTagihanController::class, 'index'])->name('laporantagihan.index');
+    Route::get('laporanpembayaran', [LaporanPembayaranController::class, 'index'])->name('laporanpembayaran.index');
 });
 
 Route::get('login-wali', [LoginController::class, 'showLoginFormWali'])->name('login.wali');

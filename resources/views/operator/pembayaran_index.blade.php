@@ -44,6 +44,7 @@
                                     <th class="{{ config('app.th_style') }}">Metode Pembayaran</th>
                                     <th class="{{ config('app.th_style') }}">Status Konfirmasi</th>
                                     <th class="{{ config('app.th_style') }}">Tanggal Konfirmasi</th>
+                                    <th class="{{ config('app.th_style') }}">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-secondary text-white">
@@ -55,6 +56,7 @@
                                         <td>{{ $item->wali->name }}</td>
                                         <td>{{ $item->metode_pembayaran }}</td>
                                         <td>{{ $item->status_konfirmasi }}</td>
+                                        <td>{{ $item->tanggal_konfirmasi->format('d/m/y') }}</td>
                                         <td>
                                         {!! Form::open([
                                                 'route'=> ['pembayaran.destroy', $item->id],

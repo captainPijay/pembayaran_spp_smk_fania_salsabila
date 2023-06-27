@@ -33,11 +33,12 @@
                             <thead>
                                 <tr>
                                     <th class="{{ config('app.th_style') }}" width="1%">No</th>
-                                    <th class="{{ config('app.th_style') }}">Wali Murid</th>
+                                    <th class="{{ config('app.th_style') }}" width="10%">Wali Murid</th>
                                     <th class="{{ config('app.th_style') }}">Nama Murid</th>
                                     <th class="{{ config('app.th_style') }}">NISN</th>
                                     <th class="{{ config('app.th_style') }}">Jurusan</th>
                                     <th class="{{ config('app.th_style') }}">Angkatan</th>
+                                    <th class="{{ config('app.th_style') }}">Kelas</th>
                                     <th class="{{ config('app.th_style') }}">Biaya SPP</th>
                                     <th class="{{ config('app.th_style') }}">Status</th>
                                     <th class="{{ config('app.th_style') }}">Aksi</th>
@@ -52,8 +53,9 @@
                                         <td>{{ $item->nisn }}</td>
                                         <td>{{ $item->jurusan }}</td>
                                         <td>{{ $item->angkatan }}</td>
+                                        <td>{{ $item->kelas }}</td>
                                         <td>{{ formatRupiah($item->biaya?->children->sum('jumlah')) }}</td>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center justify-content-center">
                                             <td  class="btn {{ $item->status == 'aktif' ? 'bg-success' : 'bg-danger' }} text-white font-weight-bold d-flex justify-content-center text-center mt-2 btn-sm mx-1">{{ $item->status }}</td>
                                         </div>
                                         <td>
@@ -79,7 +81,9 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {!! $models->links() !!}
+                        <div class="mt-3">
+                            {!! $models->links() !!}
+                        </div>
                     </div>
                 </div>
             </div>

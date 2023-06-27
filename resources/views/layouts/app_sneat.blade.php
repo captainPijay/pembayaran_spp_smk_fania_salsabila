@@ -201,7 +201,7 @@
                 </div>
               </a>
             </li>
-            <li class="menu-item {{ Route::is('laporanform.*')? 'active' : '' }}">
+            <li class="menu-item {{ Route::is('laporanform.*') || Route::is('laporantagihan.*')? 'active' : '' }}">
               <a href="{{ route('laporanform.create') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">
