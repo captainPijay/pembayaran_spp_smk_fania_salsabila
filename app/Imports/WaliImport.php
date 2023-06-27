@@ -6,7 +6,7 @@ use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class UserImport implements ToModel, WithHeadingRow
+class WaliImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
@@ -17,7 +17,7 @@ class UserImport implements ToModel, WithHeadingRow
     {
         return new User([
             'name' => $row['name'],
-            'akses' => 'operator',
+            'akses' => 'wali',
             'nohp' => $row['nohp'],
             'nohp_verified_at' => now(),
             'email' => $row['email'],

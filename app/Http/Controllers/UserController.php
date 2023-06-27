@@ -44,21 +44,21 @@ class UserController extends Controller
 
                 // Memvalidasi kolom NISN
                 $collection = Excel::toCollection($import, public_path('/DataUser/' . $namaFile));
-                $duplicateNISN = false;
+                $condition = false;
 
-                $collection->flatten(1)->each(function ($row) use (&$duplicateNISN) {
+                $collection->flatten(1)->each(function ($row) use (&$condition) {
                     $nohp = $row['nohp'];
                     $email = $row['email'];
 
                     // Cek apakah NISN sudah ada dalam database
                     if (User::where('nohp', $nohp)->exists() || User::where('email', $email)->exists()) {
-                        // Jika NISN sudah ada, set duplicateNISN menjadi true
-                        $duplicateNISN = true;
+                        // Jika NISN sudah ada, set condition menjadi true
+                        $condition = true;
                         return false; // Keluar dari loop
                     }
                 });
 
-                if ($duplicateNISN) {
+                if ($condition) {
                     // Jika ada data yang sama, kembalikan ke halaman sebelumnya dengan pesan error
                     flash()->addError('Kolom Email Atau Nomor HP Tidak Boleh Sama');
                     return back();

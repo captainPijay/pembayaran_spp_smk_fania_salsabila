@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\WaliImport;
 use App\Models\User;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Models\User as Model;
 use App\Models\Pembayaran;
+use Excel;
 
 class WaliController extends Controller
 {
@@ -32,6 +34,53 @@ class WaliController extends Controller
             'title' => 'Data Wali Murid',
             'routePrefix' => $this->routePrefix
         ]);
+    }
+    public function waliImportExcel(Request $request)
+    {
+        try {
+            $file = $request->file('file');
+            $namaFile = $file->getClientOriginalName();
+            $formatFile = $file->getClientOriginalExtension(); // Mendapatkan ekstensi file
+
+            // Cek format file
+            if ($formatFile == 'xlsx') {
+                // Proses import data
+                $file->move('DataUser', $namaFile);
+                $import = new WaliImport();
+
+                // Memvalidasi kolom NISN
+                $collection = Excel::toCollection($import, public_path('/DataUser/' . $namaFile));
+                $condition = false;
+
+                $collection->flatten(1)->each(function ($row) use (&$condition) {
+                    $nohp = $row['nohp'];
+                    $email = $row['email'];
+
+                    // Cek apakah NISN sudah ada dalam database
+                    if (User::where('nohp', $nohp)->exists() || User::where('email', $email)->exists()) {
+                        // Jika NISN sudah ada, set condition menjadi true
+                        $condition = true;
+                        return false; // Keluar dari loop
+                    }
+                });
+
+                if ($condition) {
+                    // Jika ada data yang sama, kembalikan ke halaman sebelumnya dengan pesan error
+                    flash()->addError('Kolom Email Atau Nomor HP Tidak Boleh Sama');
+                    return back();
+                }
+
+                Excel::import($import, public_path('/DataUser/' . $namaFile));
+                flash('Berhasil Import Data');
+            } else {
+                flash()->addError('Format file tidak valid. Harap unggah file Excel dengan format .xlsx');
+            }
+        } catch (\Exception $e) {
+            flash()->addError('Gagal Menyimpan Data, ' . $e->getMessage());
+            return back();
+        }
+
+        return back();
     }
 
     /**

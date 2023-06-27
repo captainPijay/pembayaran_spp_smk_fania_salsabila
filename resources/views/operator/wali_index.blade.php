@@ -18,6 +18,15 @@
                         </button>
                       </div>
                     {!! Form::close() !!}
+                    <form action="{{ route('wali.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group col-md-4">
+                          <div class="input-group mb-3">
+                            <input type="file" name="file" class="form-control" required>
+                            <button type="submit" class="btn btn-success">Excel</button>
+                          </div>
+                        </div>
+                      </form>
                        <div class="table-responsive">
                         <table class="{{ config('app.table_style') }}">
                             <thead>
