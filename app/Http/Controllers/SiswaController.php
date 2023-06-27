@@ -9,8 +9,11 @@ use App\Models\Tagihan;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
+use App\Imports\SiswaImport;
 use App\Models\Biaya;
 use App\Models\Pembayaran;
+use Excel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class SiswaController extends Controller
 {
@@ -37,6 +40,57 @@ class SiswaController extends Controller
 
         ]);
     }
+
+    public function siswaImportExcel(Request $request)
+    {
+        try {
+            $file = $request->file('file');
+            $namaFile = $file->getClientOriginalName();
+            $formatFile = $file->getClientOriginalExtension(); // Mendapatkan ekstensi file
+
+            // Cek format file
+            if ($formatFile == 'xlsx') {
+                // Proses import data
+                $file->move('DataUser', $namaFile);
+                $import = new SiswaImport();
+
+                // Memvalidasi kolom NISN
+                $collection = Excel::toCollection($import, public_path('/DataUser/' . $namaFile));
+                $duplicateNISN = false;
+
+                $collection->flatten(1)->each(function ($row) use (&$duplicateNISN) {
+                    $nisn = $row['nisn'];
+
+                    // Cek apakah NISN sudah ada dalam database
+                    if (Siswa::where('nisn', $nisn)->exists()) {
+                        // Jika NISN sudah ada, set duplicateNISN menjadi true
+                        $duplicateNISN = true;
+                        return false; // Keluar dari loop
+                    }
+                });
+
+                if ($duplicateNISN) {
+                    // Jika ada data yang sama, kembalikan ke halaman sebelumnya dengan pesan error
+                    flash()->addError('Kolom NISN harus unik. Ada data dengan NISN yang sama.');
+                    return back();
+                }
+
+                Excel::import($import, public_path('/DataUser/' . $namaFile));
+                flash('Berhasil Import Data');
+            } else {
+                flash()->addError('Format file tidak valid. Harap unggah file Excel dengan format .xlsx');
+            }
+        } catch (\Exception $e) {
+            flash()->addError('Gagal Menyimpan Data, ' . $e->getMessage());
+            return back();
+        }
+
+        return back();
+    }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

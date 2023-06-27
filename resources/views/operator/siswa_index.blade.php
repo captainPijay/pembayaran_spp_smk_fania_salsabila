@@ -22,6 +22,15 @@
                         </button>
                       </div>
                     {!! Form::close() !!}
+                    <form action="{{ route('siswa.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group col-md-4">
+                          <div class="input-group mb-3">
+                            <input type="file" name="file" class="form-control" required>
+                            <button type="submit" class="btn btn-success">Excel</button>
+                          </div>
+                        </div>
+                      </form>
                     <div class="row d-flex justify-content-end">
                         <div class="col-md-6 d-flex justify-content-end">
                             <a href="{{ route('status'.'.aktif') }}" class="btn btn-success btn-sm mb-3 mx-3">Aktifkan Semua Siswa</a>

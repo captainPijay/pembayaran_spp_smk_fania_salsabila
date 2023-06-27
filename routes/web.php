@@ -84,6 +84,7 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::get('status/aktif', [StatusController::class, 'aktif'])->name('status.aktif');
     Route::get('status/non-aktif', [StatusController::class, 'nonaktif'])->name('status.non-aktif');
     Route::post('/importuser', [UserController::class, 'userImportExcel'])->name('user.import');
+    Route::post('/importsiswa', [SiswaController::class, 'siswaImportExcel'])->name('siswa.import');
     Route::get('laporanform/create', [LaporanFormController::class, 'create'])->name('laporanform.create');
     Route::get('laporantagihan', [LaporanTagihanController::class, 'index'])->name('laporantagihan.index');
     Route::get('laporanpembayaran', [LaporanPembayaranController::class, 'index'])->name('laporanpembayaran.index');
