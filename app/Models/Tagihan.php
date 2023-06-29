@@ -82,16 +82,16 @@ class Tagihan extends Model
     /**
      * The "booted" method of the model.
      */
-    protected static function booted(): void
-    {
-        static::creating(function ($tagihan) {
-            $tagihan->user_id = auth()->user()->id;
-        });
+    // protected static function booted(): void
+    // {
+    //     static::creating(function ($tagihan) {
+    //         $tagihan->user_id = auth()->user()->id;
+    //     });
 
-        static::updating(function ($tagihan) {
-            $tagihan->user_id = auth()->user()->id;
-        });
-    }
+    //     static::updating(function ($tagihan) {
+    //         $tagihan->user_id = auth()->user()->id;
+    //     });
+    // }
     public function scopeWaliSiswa($tagihan)
     {
         return $tagihan->whereIn('siswa_id', Auth::user()->getAllSiswaId()); //model tagihan dimana siswa_id = wali yang login, lalu getAllSiswaId di model user $this->siswa->pluck('id')->toArray() artinya user yang login dan memiliki relasi ke siswa pilih masing masing id siswa nya yang memiliki wali_id = wali yang login. contoh kevin id = 1 di wali dan mancek memiliki wali_id =1 sebagai siswa singkatnya model tagihan dimana siswa_id = siswa yang memiliki wali_id sama dengan wali yang sedang login

@@ -1,4 +1,9 @@
 <?php
+function getClassName($classname)
+{
+    $class_parts = explode('\\', $classname);
+    return end($class_parts);
+}
 function getNamaJurusan()
 {
     return [

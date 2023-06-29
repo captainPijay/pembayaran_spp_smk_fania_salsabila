@@ -11,6 +11,7 @@ use App\Http\Controllers\WaliController;
 use App\Http\Controllers\BerandaOperatorController;
 use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\JobStatusController;
 use App\Http\Controllers\KartuSppController;
 use App\Http\Controllers\KwitansiPembayaranController;
 use App\Http\Controllers\LaporanFormController;
@@ -79,6 +80,7 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::resource('tagihan', TagihanController::class);
     Route::resource('pembayaran', PembayaranController::class);
     Route::resource('setting', SettingController::class);
+    Route::resource('jobstatus', JobStatusController::class);
     Route::get('delete-biaya-item/{id}', [BiayaController::class, 'deleteItem'])->name('delete-biaya.item');
     Route::get('status/update', [StatusController::class, 'update'])->name('status.update');
     Route::get('status/aktif', [StatusController::class, 'aktif'])->name('status.aktif');
@@ -90,6 +92,8 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::get('laporantagihan', [LaporanTagihanController::class, 'index'])->name('laporantagihan.index');
     Route::get('laporanpembayaran', [LaporanPembayaranController::class, 'index'])->name('laporanpembayaran.index');
 });
+
+// \Imtigger\LaravelJobStatus\ProgressController::routes();
 
 Route::get('login-wali', [LoginController::class, 'showLoginFormWali'])->name('login.wali');
 

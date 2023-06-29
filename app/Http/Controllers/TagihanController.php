@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\User;
-use App\Models\Biaya;
 use App\Models\Siswa;
 use App\Models\Tagihan;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use App\Models\TagihanDetail;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreTagihanRequest;
-use App\Http\Requests\UpdateTagihanRequest;
-use App\Notifications\TagihanNotification;
-use Illuminate\Support\Facades\Notification;
-use phpDocumentor\Reflection\PseudoTypes\True_;
+use App\Jobs\ProcessTagihan;
+use Illuminate\Support\Facades\Queue;
+// use Illuminate\Support\Facades\DB;
+// use App\Http\Requests\UpdateTagihanRequest;
+// use App\Notifications\TagihanNotification;
+// use Illuminate\Support\Facades\Notification;
+// use phpDocumentor\Reflection\PseudoTypes\True_;
+// use App\Models\User;
+// use App\Models\Biaya;
 
 class TagihanController extends Controller
 {
@@ -91,50 +93,16 @@ class TagihanController extends Controller
      */
     public function store(StoreTagihanRequest $request)
     {
-        $requestData = $request->validated();
+        $requestData = array_merge($request->validated(), ['user_id' => auth()->user()->id]);
+        $processTagihan = new ProcessTagihan($requestData);
+        $this->dispatch($processTagihan);
+        // ProcessTagihan itu ada di folder jobs, saya menggunakan cara ini katanya agar lebih optimal karena datanya banyak
 
-        DB::beginTransaction();
-
-        //ambil semua data siswa dengan status aktif
-        $siswa = Siswa::currentStatus('aktif')->get();
-        // if ($requestData['kelas'] != '') {
-        //     $siswa->where('kelas', $requestData['kelas']);
-        // }
-        // if ($requestData['angkatan'] != '') {
-        //     $siswa->where('angkatan', $requestData['angkatan']);
-        // }
-        foreach ($siswa as $itemSiswa) {
-            $requestData['siswa_id'] = $itemSiswa->id;
-            $requestData['status'] = 'baru';
-            $tanggalTagihan = Carbon::parse($requestData['tanggal_tagihan']);
-            $bulanTagihan = $tanggalTagihan->format('m');
-            $tahunTagihan = $tanggalTagihan->format('Y');
-            // $cekTagihan = Tagihan::where('siswa_id', $itemSiswa->id)->first();
-            // ->whereMonth('tanggal_tagihan', $bulanTagihan)
-            // ->whereYear('tanggal_tagihan', $tahunTagihan)
-            // ->first();
-            // if ($cekTagihan == null) {
-            $tagihan = Tagihan::create($requestData);
-            if ($itemSiswa->wali_id != null) {
-                Notification::send($tagihan->siswa->wali, new TagihanNotification($tagihan));
-            }
-            $biaya = $itemSiswa->biaya->children;
-            foreach ($biaya as $itemBiaya) {
-                $detail = TagihanDetail::create([
-                    'tagihan_id' => $tagihan->id,
-                    'nama_biaya' => $itemBiaya->nama,
-                    'jumlah_biaya' => $itemBiaya->jumlah,
-                ]);
-                // }
-            }
-        }
-        DB::commit(); //Metode DB::commit() digunakan untuk mengakhiri transaksi yang sukses. Ini mengonfirmasi bahwa semua perintah dalam transaksi telah berhasil dieksekusi dan perubahan-perubahan tersebut harus diterapkan ke basis data secara permanen.
-
-        return response()->json([
-            'message' => 'Data Berhasil Di Simpan',
-        ], 200);
-        // flash("Data tagihan berhasil disimpan")->success();
-        // return back();
+        // return response()->json([
+        //     'message' => 'Data Berhasil Di Simpan',
+        // ], 200);
+        // return redirect()->action('\Imtigger\LaravelJobStatus\ProgressController@progress', [$processTagihan->getJobStatusId()]);
+        return redirect()->route('jobstatus.index', ['job_status_id' => $processTagihan->getJobStatusId()]);
     }
 
     /**

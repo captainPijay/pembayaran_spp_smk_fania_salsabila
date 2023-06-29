@@ -21,7 +21,7 @@ class WhacenterService
     {
         $this->lines = $lines;
         $this->baseUrl = 'https://app.whacenter.com/api';
-        $this->deviceId = '000';
+        $this->deviceId;
     }
 
     public function getDeviceStatus()

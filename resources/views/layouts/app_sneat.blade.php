@@ -186,6 +186,12 @@
                 <div data-i18n="Basic">Data Biaya</div>
               </a>
             </li>
+            <li class="menu-item {{ Route::is('jobstatus.*')? 'active' : '' }}">
+              <a href="{{ route('jobstatus.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Buat Tagihan</div>
+              </a>
+            </li>
             <li class="menu-item {{ Route::is('tagihan.*')? 'active' : '' }}">
               <a href="{{ route('tagihan.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>

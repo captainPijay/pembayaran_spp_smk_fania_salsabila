@@ -3,34 +3,34 @@
     <script>
         $(document).ready(function () {
             $("#loading-spinner").hide();
-            $("#form-ajax").submit(function (e) {
-               $.ajax({
-                type: $(this).attr('method'),
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: "json",
-                beforeSend: function(){
-                    $("#loading-spinner").show();
-                    $("#loading-overlay").removeClass("d-none");
-                },
-                success: function (response) {
-                    $("#alert-message").removeClass("d-none");
-                    $("#alert-message").html(response.message);
-                    $("#loading-overlay").addClass("d-none");
-                    $("#loading-spinner").hide();
-                },
-                error: function(xhr, status, error){
-                    $("#alert-message").removeClass("d-none");
-                    $("#alert-message").removeClass("alert-success");
-                    $("#alert-message").addClass("alert-danger");
-                    $("#alert-message").html(xhr.responseJSON.message);
-                    $("#loading-overlay").addClass("d-none");
-                    $("#loading-spinner").hide();
-                }
-               });
-               e.preventDefault();
-               return;
-            });
+            // $("#form-ajax").submit(function (e) {
+            //    $.ajax({
+            //     type: $(this).attr('method'),
+            //     url: $(this).attr('action'),
+            //     data: $(this).serialize(),
+            //     dataType: "json",
+            //     beforeSend: function(){
+            //         $("#loading-spinner").show();
+            //         $("#loading-overlay").removeClass("d-none");
+            //     },
+            //     success: function (response) {
+            //         $("#alert-message").removeClass("d-none");
+            //         $("#alert-message").html(response.message);
+            //         $("#loading-overlay").addClass("d-none");
+            //         $("#loading-spinner").hide();
+            //     },
+            //     error: function(xhr, status, error){
+            //         $("#alert-message").removeClass("d-none");
+            //         $("#alert-message").removeClass("alert-success");
+            //         $("#alert-message").addClass("alert-danger");
+            //         $("#alert-message").html(xhr.responseJSON.message);
+            //         $("#loading-overlay").addClass("d-none");
+            //         $("#loading-spinner").hide();
+            //     }
+            //    });
+            //    e.preventDefault();
+            //    return;
+            // });
         });
     </script>
 @endsection

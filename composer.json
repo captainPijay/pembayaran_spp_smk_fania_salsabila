@@ -12,6 +12,8 @@
         "andes2912/indobank": "^0.9.0",
         "barryvdh/laravel-dompdf": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "imtigger/laravel-job-status": "^1.2",
+        "imtigger/laravel-job-status-progress-view": "^1.0",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
