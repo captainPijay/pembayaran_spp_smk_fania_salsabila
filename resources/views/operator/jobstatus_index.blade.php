@@ -2,27 +2,32 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            var bar = document.querySelector(".progress-bar");
-            var intervalId = window.setInterval(function() {
-            @if (request('job_status_id') != '')
-                $.getJSON("{{ route('jobstatus.show',request('job_status_id')) }}",
-                function (data, textStatus, jqXHR) {
-                    var progressPercent = data['progress_percentage'];
-                    var progressNow = data['progress_now'];
-                    var progressMax = data['progress_max'];
-                    var isEnded = data['is_ended'];
-                    var id = data['id'];
-                    bar.style.width= progressPercent + "%";
-                    bar.innerText = progressPercent + "%";
-                    $("#progress-now" + id).text(progressNow);
-                    $("#progress-max" + id).text(progressMax);
-                    if(isEnded){
-                        window.location.href = "{{ route('jobstatus.index') }}";
-                    }
-                });
-            @endif
-            }, 1000);
-        });
+    $.ajaxSetup({
+        timeout: 60000, // Timeout dalam milidetik (60 detik)
+    });
+
+    var bar = document.querySelector(".progress-bar");
+    var intervalId = window.setInterval(function () {
+        @if (request('job_status_id') != '')
+        $.getJSON("{{ route('jobstatus.show',request('job_status_id')) }}",
+            function (data, textStatus, jqXHR) {
+                var progressPercent = data['progress_percentage'];
+                var progressNow = data['progress_now'];
+                var progressMax = data['progress_max'];
+                var isEnded = data['is_ended'];
+                var id = data['id'];
+                bar.style.width = progressPercent + "%";
+                bar.innerText = progressPercent + "%";
+                $("#progress-now" + id).text(progressNow);
+                $("#progress-max" + id).text(progressMax);
+                if (isEnded) {
+                    window.location.href = "{{ route('jobstatus.index') }}";
+                }
+            });
+        @endif
+    }, 1000);
+});
+
     </script>
 @endsection
 @section('content')
@@ -94,9 +99,6 @@
                                         </td>
                                         <td>{{ $item->created_at->format('d-M-Y H:i:s') }}</td>
                                         <td>{{ json_encode($item->output) }}</td>
-                                        <td>
-
-                                        </td>
                                     </tr>
                                 @empty
                                     <tr>

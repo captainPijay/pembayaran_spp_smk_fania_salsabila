@@ -4,20 +4,16 @@ namespace App\Http\Controllers;
 
 use Imtigger\LaravelJobStatus\JobStatus;
 use Illuminate\Http\Request;
-use Illuminate\Queue\Failed\FailedJobProviderInterface;
-
 
 class JobStatusController extends Controller
 {
-    public function index(FailedJobProviderInterface $failedJobProvider)
+    public function index()
     {
-        $failedJobs = $failedJobProvider->all();
-        $jobstatus = JobStatus::latest()->paginate(50);
+        $jobstatus = JobStatus::latest()->paginate(settings()->get('app_pagination', '50'));
         return view('operator.jobstatus_index', [
             'jobstatus' => $jobstatus,
             'title' => 'Job Status',
-            'routePrefix' => 'jobstatus',
-            'failedJobs' => $failedJobs
+            'routePrefix' => 'jobstatus'
         ]);
     }
     public function show($id)

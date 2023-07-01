@@ -125,20 +125,28 @@ class WaliMuridPembayaranController extends Controller
         if ($request->simpan_data_rekening) {
             $dataPembayaran['wali_bank_id'] = $waliBank->id;
         }
-        DB::beginTransaction();
-        try {
-            $pembayaran = Pembayaran::create($dataPembayaran);
-            $userOperator = User::where('akses', 'operator')->get();
-            Notification::send($userOperator, new PembayaranNotification($pembayaran));
-            DB::commit();
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            flash()->addError('Gagal Menyimpan Pembayaran, ' . $th->getMessage());
+        $tagihan = Tagihan::findOrFail($request->tagihan_id);
+        //validasi pembayaran harus lunas
+        if ($request->jumlah_dibayar >= $tagihan->total_tagihan) {
+            DB::beginTransaction();
+            try {
+                $pembayaran = Pembayaran::create($dataPembayaran);
+                $userOperator = User::where('akses', 'operator')->get();
+                Notification::send($userOperator, new PembayaranNotification($pembayaran));
+                DB::commit();
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                flash()->addError('Gagal Menyimpan Pembayaran, ' . $th->getMessage());
+                return back();
+            }
+            flash('Pembayaran Berhasil Di Simpan Dan Akan Segera Di Konfirmasi Oleh Operator');
+            return redirect()->route('wali.pembayaran.show', $pembayaran->id);
+        } else {
+            flash('Jumlah Pembayaran Tidak Boleh Kurang Dari Total Tagihan');
             return back();
         }
-        flash('Pembayaran Berhasil Di Simpan Dan Akan Segera Di Konfirmasi Oleh Operator');
-        return redirect()->route('wali.pembayaran.show', $pembayaran->id);
     }
+
     public function destroy($id)
     {
         $pembayaran = Pembayaran::findOrFail($id);

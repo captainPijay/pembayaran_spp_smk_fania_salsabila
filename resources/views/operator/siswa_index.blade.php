@@ -42,7 +42,7 @@
                             <thead>
                                 <tr>
                                     <th class="{{ config('app.th_style') }}" width="1%">No</th>
-                                    <th class="{{ config('app.th_style') }}" width="10%">Wali Murid</th>
+                                    <th class="{{ config('app.th_style') }}">Wali Murid</th>
                                     <th class="{{ config('app.th_style') }}">Nama Murid</th>
                                     <th class="{{ config('app.th_style') }}">NISN</th>
                                     <th class="{{ config('app.th_style') }}">Jurusan</th>
@@ -50,14 +50,14 @@
                                     <th class="{{ config('app.th_style') }}">Kelas</th>
                                     <th class="{{ config('app.th_style') }}">Biaya SPP</th>
                                     <th class="{{ config('app.th_style') }}">Status</th>
-                                    <th class="{{ config('app.th_style') }}">Aksi</th>
+                                    <th class="{{ config('app.th_style') }}" width="100%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-secondary text-white">
                                 @forelse ($models as $item)
                                     <tr class="mt-2">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->wali->name }}</td>
+                                        <td>{{ $item->wali->name ?? 'Belum Ada' }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->nisn }}</td>
                                         <td>{{ $item->jurusan }}</td>

@@ -56,7 +56,13 @@
                                         <td>{{ $item->wali->name }}</td>
                                         <td>{{ $item->metode_pembayaran }}</td>
                                         <td>{{ $item->status_konfirmasi }}</td>
-                                        <td>{{ $item->tanggal_konfirmasi->format('d/m/y') }}</td>
+                                        <td>
+                                            @if ($item->tanggal_konfirmasi != null)
+                                            {{ $item->tanggal_konfirmasi->format('d/m/y') }}
+                                            @else
+                                            {{ "Menunggu Konfirmasi" }}
+                                            @endif
+                                        </td>
                                         <td>
                                         {!! Form::open([
                                                 'route'=> ['pembayaran.destroy', $item->id],

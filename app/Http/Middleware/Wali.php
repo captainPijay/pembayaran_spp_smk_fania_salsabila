@@ -16,10 +16,9 @@ class Wali
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->akses == 'wali' || $request->user()->akses =='admin') {
+        if ($request->user()->akses == 'wali') {
             return $next($request);
         }
         abort(403, 'Akses khusus wali murid');
-
     }
 }

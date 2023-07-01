@@ -11,6 +11,9 @@ class WhacenterService
     protected array $lines;
     protected string $baseUrl = '';
     protected string $deviceId = '';
+    protected $message = '';
+    protected $response = '';
+    protected $responseBody = '';
 
 
     /**
@@ -43,13 +46,53 @@ class WhacenterService
         return $this;
     }
 
-    public function send(): mixed
+    private function sendRequest($params): bool
     {
-        if ($this->to != '') {
-            $params = 'device_id=' . $this->deviceId . '&number=' . $this->to . '&message=' . urlencode(implode("\n", $this->lines));
-            $response = Http::get($this->baseUrl . '/send?' . $params);
-            return $response->body();
+        try {
+            $this->response = Http::withoutVerifying()->get($this->baseUrl . $params);
+            $this->message = 'OK';
+            $this->response->onError(function ($q) {
+                return false;
+            });
+            $this->responseBody = $this->response->body();
+            return true;
+        } catch (\Throwable $th) {
+            $this->message = $th->getMessage();
+            return false;
         }
-        return 'No Number To Send';
+    }
+
+    public function requestDeviceStatus()
+    {
+        return $this->sendRequest('/statusDevice?device_id=' . $this->deviceId);
+    }
+
+    public function getDeviceStatus(): bool
+    {
+        $this->requestDeviceStatus();
+        $responseBody = json_decode($this->responseBody);
+        $status = $responseBody->status;
+        if ($status == true) {
+            $data = $responseBody->data;
+            $this->message = $data->status;
+            if ($data->status == 'CONNECTED') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function send(): bool
+    {
+        if ($this->to != '' && $this->deviceId != '') {
+            $params = 'device_id=' . $this->deviceId . '&number=' . $this->to . '&message=' . urlencode(implode("\n", $this->lines));
+            return $this->sendRequest('/send?' . $params);
+        }
+        return false;
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
     }
 }

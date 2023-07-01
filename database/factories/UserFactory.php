@@ -19,7 +19,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'nohp' => fake()->phoneNumber(),
+            'nohp' => fake()->numberBetween(1000000000, 9999999999),
             'nohp_verified_at' => now(),
             'email' => fake()->unique()->safeEmail(),
             'akses' => 'wali',

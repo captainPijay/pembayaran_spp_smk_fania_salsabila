@@ -61,33 +61,29 @@ class ProcessTagihan implements ShouldQueue
             $this->setProgressNow($i);
             $i++;
             $requestData = $this->requestData;
-
             $requestData['siswa_id'] = $itemSiswa->id;
-
-
-            // $cekTagihan = Tagihan::where('siswa_id', $itemSiswa->id)->first();
+            $cekTagihan = $itemSiswa->tagihan->filter(function ($value) use ($bulanTagihan, $tahunTagihan) {
+                return $value->tanggal_tagihan->year == $tahunTagihan && $value->tanggal_tagihan->month == $bulanTagihan;
+            })->first();
             // ->whereMonth('tanggal_tagihan', $bulanTagihan)
             // ->whereYear('tanggal_tagihan', $tahunTagihan)
             // ->first();
-            // if ($cekTagihan == null) {
-
-            $tagihan = Tagihan::create($requestData);
-
-            if ($itemSiswa->wali_id != null) {
-                Notification::send($tagihan->siswa->wali, new TagihanNotification($tagihan));
+            if ($cekTagihan == null) {
+                $tagihan = Tagihan::create($requestData);
+                if ($tagihan->siswa->wali != null) {
+                    Notification::send($tagihan->siswa->wali, new TagihanNotification($tagihan));
+                }
+                $biaya = $itemSiswa->biaya->children;
+                foreach ($biaya as $itemBiaya) {
+                    TagihanDetail::create([
+                        'tagihan_id' => $tagihan->id,
+                        'nama_biaya' => $itemBiaya->nama,
+                        'jumlah_biaya' => $itemBiaya->jumlah,
+                    ]);
+                }
             }
-
-            $biaya = $itemSiswa->biaya->children;
-
-            foreach ($biaya as $itemBiaya) {
-                TagihanDetail::create([
-                    'tagihan_id' => $tagihan->id,
-                    'nama_biaya' => $itemBiaya->nama,
-                    'jumlah_biaya' => $itemBiaya->jumlah,
-                ]);
-            }
+            sleep(1);
         }
-        sleep(1);
         $this->setOutput(['message' => 'Tagihan Bulan ' . $bulanTagihan . ' ' . $tahunTagihan]);
     }
 }

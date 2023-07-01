@@ -43,9 +43,7 @@ class Siswa extends Model
      */
     public function wali()
     {
-        return $this->belongsTo(User::class, 'wali_id')->withDefault([
-            'name' => 'Belum Ada Wali Murid'
-        ]);
+        return $this->belongsTo(User::class, 'wali_id');
     }
     public function scopeSiswaPrevent($siswa)
     {
