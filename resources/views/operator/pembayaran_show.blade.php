@@ -156,24 +156,25 @@
                                 </tr>
                             </thead>
                         </table>
-                        <div class="d-flex justify-content-around">
+                        <div class="d-flex justify-content-around align-items-center" style="height: 100%;">
                             @if ($model->tanggal_konfirmasi == null)
                             {!! Form::open(['route' => $route, 'method' => 'PUT', 'onsubmit' => 'return confirm("Apakah Anda Yakin?")']) !!}
                             {!! Form::hidden('pembayaran_id', $model->id) !!}
                             {!! Form::submit('Konfirmasi Pembayaran', ['class' => 'btn btn-primary mt-3']) !!}
                             {!! Form::close() !!}
                             <form action="{{ route('pembayaran.delete', $model->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            {!! Form::hidden('pembayaran_id', $model->id) !!}
-                            <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Yakin Ingin Menolak Pembayaran Ini?')">Tolak Pembayaran</button>
+                                @csrf
+                                @method('DELETE')
+                                {!! Form::hidden('pembayaran_id', $model->id) !!}
+                                <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Yakin Ingin Menolak Pembayaran Ini?')">Tolak Pembayaran</button>
                             </form>
-
                             @else
-                            <div class="alert alert-primary text-center mt-3" role="alert">
-                                <h3>TAGIHAN INI SUDAH LUNAS</h3>
+                            <div class="alert alert-primary text-center mt-3" role="alert" style="width: 100%;">
+                                <h3 style="margin: 0;">TAGIHAN INI SUDAH LUNAS</h3>
                             </div>
                             @endif
+                        </div>
+
                         </div>
                     </div>
                 </div>
