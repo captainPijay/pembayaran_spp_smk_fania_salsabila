@@ -33,9 +33,15 @@ class Tagihan extends Model
     ];
     protected $guarded = [];
     protected $dates = ['tanggal_tagihan', 'tanggal_jatuh_tempo'];
-    protected $with = ['user', 'siswa', 'tagihanDetails'];
+    protected $with = ['siswa', 'tagihanDetails'];
     protected $append = ['total_tagihan'];
 
+    protected function totalPembayaran(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->pembayaran()->sum('jumlah_dibayar') //digunakan di tagihan index dan tagihan controller di bagian create tetapi harus menggunakan method get dulu agar menjadi collection
+        );
+    }
     protected function totalTagihan(): Attribute
     {
         return Attribute::make(

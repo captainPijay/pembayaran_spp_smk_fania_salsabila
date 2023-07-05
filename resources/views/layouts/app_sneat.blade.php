@@ -71,6 +71,7 @@
     <link rel="stylesheet" href="{{ asset('font/css/all.min.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('sneat') }}/assets/js/ajax.js"></script>
+    @yield('style')
     <style>
         .layout-navbar .navbar-dropdown .dropdown-menu{
             min-width: 22rem;
@@ -271,7 +272,11 @@
                       <li class="dropdown-menu-header border-bottom">
                         <div class="dropdown-header d-flex align-items-center py-3">
                           <h5 class="text-body mb-0 me-auto">Notification</h5>
-                          <a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Mark all as read" data-bs-original-title="Mark all as read"><i class="bx fs-4 bx-envelope-open"></i></a>
+                          <form action="{{ route('readAll') }}" method="POST" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Mark all as read" data-bs-original-title="Mark all as read">
+                            @csrf
+                            <button type="submit" class="btn btn-sm"><i class="bx fs-4 bx-envelope-open"></i>
+                            </button>
+                        </form>
                         </div>
                       </li>
                       <li class="dropdown-notifications-list scrollable-container ps">

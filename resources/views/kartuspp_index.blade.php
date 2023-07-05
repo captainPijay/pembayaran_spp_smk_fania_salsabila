@@ -189,7 +189,7 @@
                                 <th style="text-align:start;">Bulan</th>
                                 <th style="text-align:center;">Jumlah Tagihan</th>
                                 <th style="text-align:center;">Tanggal Bayar</th>
-                                <th>Paraf</th>
+                                {{-- <th width="11%">Paraf</th> --}}
                                 <th>Keterangan</th>
                             </tr>
                             @foreach ($kartuSpp as $item)
@@ -198,8 +198,12 @@
                                     <td style="text-align:start">{{ $item['bulan']. ' '.$item['tahun'] }}</td>
                                     <td style="text-align:end">{{ formatRupiah($item['total_tagihan'])}}</td>
                                     <td style="text-align:end">{{ $item['tanggal_bayar'] }}</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
+                                    {{-- <td style="text-align: center">
+                                    @if ($item['paraf'] != '')
+                                    <img src="{{ asset('storage/images/paraf.png') }}" alt="Paraf" width="70%">
+                                    @endif
+                                    </td> --}}
+                                    <td style="text-align:center">{{ $item['keterangan'] }}</td>
                                 </tr>
                             @endforeach
                             <tr>

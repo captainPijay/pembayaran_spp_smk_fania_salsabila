@@ -191,6 +191,7 @@ namespace App\Models{
  * @property int|null $angkatan
  * @property int|null $kelas
  * @property \Illuminate\Support\Carbon $tanggal_tagihan
+ * @property string|null $tanggal_lunas
  * @property \Illuminate\Support\Carbon $tanggal_jatuh_tempo
  * @property string|null $keterangan
  * @property float $denda
@@ -219,6 +220,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereSiswaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereTanggalJatuhTempo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereTanggalLunas($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereTanggalTagihan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereUserId($value)

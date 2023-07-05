@@ -24,12 +24,7 @@ class WhacenterService
     {
         $this->lines = $lines;
         $this->baseUrl = 'https://app.whacenter.com/api';
-        $this->deviceId;
-    }
-
-    public function getDeviceStatus()
-    {
-        return Http::get($this->baseUrl . '/statusDevice?device_id=' . $this->deviceId);
+        $this->deviceId = '';
     }
 
     public function line($line = ''): self

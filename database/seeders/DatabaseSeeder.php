@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(284)->create();
+        \App\Models\Siswa::factory(4)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         // User::create([
         //     'name' => 'Muhammad Zahran',
         //     'akses' => 'operator',
-        //     'nohp' => '085956344454',
+        //     'nohp' => '082180864290',
         //     'nohp_verified_at' => now(),
         //     'email' => 'muhammadzahran11@gmail.com',
         //     'email_verified_at' => now(),

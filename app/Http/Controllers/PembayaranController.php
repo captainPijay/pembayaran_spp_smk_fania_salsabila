@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Wali;
 use App\Models\Tagihan;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use App\Http\Requests\StorePembayaranRequest;
 use App\Http\Requests\UpdatePembayaranRequest;
 use App\Models\TagihanDetail;
 use App\Notifications\PembayaranKonfirmasiNotification;
+use App\Notifications\TolakPembayaranNotification;
 use Storage;
 
 class PembayaranController extends Controller
@@ -67,16 +69,19 @@ class PembayaranController extends Controller
         $requestData['tanggal_konfirmasi'] = now();
         $requestData['metode_pembayaran'] = 'manual';
         $tagihan = Tagihan::findOrFail($requestData['tagihan_id']);
+        $totalDibayar = $tagihan->pembayaran->sum('jumlah_dibayar') + $requestData['jumlah_dibayar'];
+        $tagihan = Tagihan::findOrFail($requestData['tagihan_id']);
         $requestData['wali_id'] = $tagihan->siswa->wali_id ?? 0;
-        if ($requestData['jumlah_dibayar'] >= $tagihan->tagihanDetails->sum('jumlah_biaya')) {
+        if ($totalDibayar >= $tagihan->total_tagihan) {
             $tagihan->status = 'lunas';
+            $tagihan->tanggal_lunas = now();
         } else {
             $tagihan->status = 'angsur';
         }
         $tagihan->save();
         $pembayaran = Pembayaran::create($requestData);
-        if ($requestData['wali_id'] != null) {
-            $wali = $pembayaran->wali;
+        $wali = $pembayaran->wali;
+        if ($wali != null) {
             Notification::send($wali, new PembayaranKonfirmasiNotification($pembayaran));
         }
         flash('Pembayaran Berhasil Di Simpan');
@@ -100,6 +105,7 @@ class PembayaranController extends Controller
         return view('operator.pembayaran_show', [
             'model' => $pembayaran,
             'route' => ['pembayaran.update', $pembayaran->id],
+            'routedel' => ['pembayaran-delete', $pembayaran->id],
             'title' => 'Detail Pembayaran'
         ]);
     }
@@ -131,6 +137,7 @@ class PembayaranController extends Controller
         $pembayaran->user_id = auth()->user()->id;
         $pembayaran->save();
         $pembayaran->tagihan->status = 'lunas';
+        $pembayaran->tagihan->tanggal_lunas = $pembayaran->tanggal_bayar;
         $pembayaran->tagihan->save();
         Notification::send($wali, new PembayaranKonfirmasiNotification($pembayaran));
         flash("Data Pembayaran Berhasil Di Konfirmasi");
@@ -148,16 +155,21 @@ class PembayaranController extends Controller
         if ($pembayaran->bukti_bayar) {
             Storage::delete($pembayaran->bukti_bayar);
         }
-        $detail = $pembayaran->tagihan;
+        $tagihan = $pembayaran->tagihan;
+        $sisaPembayaran = $tagihan->total_pembayaran - $pembayaran->jumlah_dibayar;
+        if ($sisaPembayaran == 0) {
+            $tagihan->status = 'baru';
+            $tagihan->tanggal_lunas = null;
+            $tagihan->save();
+        } else if ($sisaPembayaran < $tagihan->total_tagihan) {
+            $tagihan->status = 'angsur';
+            $tagihan->tanggal_lunas = null;
+            $tagihan->save();
+        }
         // foreach ($pay as $item) {
         //     $item->delete();
         // }
-        TagihanDetail::where('tagihan_id', $detail->id)->delete();
-        if ($pembayaran->count() > 1) {
-            $pembayaran->where('tagihan_id', $detail->id)->delete();
-        }
-        $tagihan = $detail->firstWhere('id', $pembayaran->tagihan_id);
-        $tagihan->delete();
+        // TagihanDetail::where('tagihan_id', $detail->id)->delete();
         $pembayaran->delete();
         flash()->addError('Data Pembayaran Berhasil Di Hapus', 'Berhasil');
         return back();

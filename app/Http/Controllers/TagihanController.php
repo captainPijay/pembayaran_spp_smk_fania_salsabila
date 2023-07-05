@@ -123,8 +123,8 @@ class TagihanController extends Controller
                 ->whereMonth('tanggal_tagihan', $bulan)
                 ->first();
             $tanggalBayar = '';
-            if ($tagihan != null && $tagihan->status != 'baru') {
-                $tanggalBayar = $tagihan->pembayaran->first()->tanggal_bayar->format('d/m/y');
+            if ($tagihan != null && $tagihan->status == 'lunas') {
+                $tanggalBayar = $tagihan->pembayaran->last()->tanggal_bayar->format('d/m/y');
             }
             $arrayData[] = [
                 'bulan' => ubahNamaBulan($bulan),

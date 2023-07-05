@@ -29,8 +29,10 @@ class KartuSppController extends Controller
                 ->whereMonth('tanggal_tagihan', $bulan)
                 ->first();
             $tanggalBayar = '';
-            if ($tagihan != null && $tagihan->status != 'baru') {
+            $keterangan = '';
+            if ($tagihan != null && $tagihan->status == 'lunas') {
                 $tanggalBayar = $tagihan->pembayaran->first()->tanggal_bayar->format('d/m/y');
+                $keterangan = 'lunas';
             }
             $arrayData[] = [
                 'bulan' => ubahNamaBulan($bulan),
@@ -38,7 +40,8 @@ class KartuSppController extends Controller
                 'total_tagihan' => $tagihan->total_tagihan ?? 0,
                 'status_tagihan' => ($tagihan == null) ? false : true,
                 'status_pembayaran' => ($tagihan == null) ? 'Belum Bayar' : $tagihan->status,
-                'tanggal_bayar' => $tanggalBayar
+                'tanggal_bayar' => $tanggalBayar,
+                'keterangan' => $keterangan
             ];
         }
         if (request('output') == 'pdf') {

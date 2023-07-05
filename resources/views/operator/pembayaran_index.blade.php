@@ -53,7 +53,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->tagihan->siswa->nisn }}</td>
                                         <td>{{ $item->tagihan->siswa->nama }}</td>
-                                        <td>{{ $item->wali->name }}</td>
+                                        <td>{{ $item->wali->name ?? 'Belum Ada'}}</td>
                                         <td>{{ $item->metode_pembayaran }}</td>
                                         <td>{{ $item->status_konfirmasi }}</td>
                                         <td>
@@ -71,11 +71,11 @@
                                                 ]) !!}
 
                                             <a href="{{ route('pembayaran.show',$item->id) }}" class="btn btn-primary btn-sm mx-3"><i class="fa fa-eye"></i> Detail</a>
-                                            <form action="{{ route('tagihan.destroy', $item->id) }}" method="POST">
+                                            {{-- <form action="{{ route('tagihan.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                            </form>
+                                            </form> --}}
                                         {!! Form::close() !!}
                                         </td>
                                     </tr>

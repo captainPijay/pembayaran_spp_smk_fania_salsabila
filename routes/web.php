@@ -23,6 +23,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TagihanController;
+use App\Http\Controllers\TolakPembayaranController;
 use App\Http\Controllers\WaliMuridInvoiceController;
 use App\Http\Controllers\WaliMuridPembayaranController;
 use App\Http\Controllers\WaliMuridProfilController;
@@ -67,6 +68,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('panduan-pembayaran/{id}', [PanduanPembayaranController::class, 'index'])->name('panduan.pembayaran');
+Route::post('/mark-all-as-read', [TolakPembayaranController::class, 'readAll'])->name('readAll');
 Auth::routes();
 Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function () {
     //ini route khusus untuk operator
@@ -79,6 +81,7 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::resource('biaya', BiayaController::class);
     Route::resource('tagihan', TagihanController::class);
     Route::resource('pembayaran', PembayaranController::class);
+    Route::delete('pembayaran-delete/{id}', [TolakPembayaranController::class, 'tolakPembayaran'])->name('pembayaran.delete');
     Route::resource('setting', SettingController::class);
     Route::resource('jobstatus', JobStatusController::class);
     Route::get('delete-biaya-item/{id}', [BiayaController::class, 'deleteItem'])->name('delete-biaya.item');

@@ -127,7 +127,7 @@ class WaliMuridPembayaranController extends Controller
         }
         $tagihan = Tagihan::findOrFail($request->tagihan_id);
         //validasi pembayaran harus lunas
-        if ($request->jumlah_dibayar >= $tagihan->total_tagihan) {
+        if ($jumlahDibayar >= $tagihan->total_tagihan) {
             DB::beginTransaction();
             try {
                 $pembayaran = Pembayaran::create($dataPembayaran);

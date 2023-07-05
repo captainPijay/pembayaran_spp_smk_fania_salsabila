@@ -53,7 +53,7 @@
                                 </tr>
                                 <tr>
                                     <td>Nama Wali</td>
-                                    <td>: {{ $model->wali->name }}</td>
+                                    <td>: {{ $model->wali->name ?? 'Belum Ada'}}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="bg-secondary text-white fw-bold">INFORMASI TAGIHAN</td>
@@ -131,12 +131,16 @@
                                 </tr>
                                 <tr>
                                     <td>Bukti Pembayaran</td>
+                                    @if($model->metode_pembayaran == 'manual')
+                                    <td>: METODE PEMBAYARAN MANUAL TANPA BUKTI BAYAR</td>
+                                    @else
                                     <td>:
                                         <a href="javascript:void[0]"
                                         onclick="popupCenter({url: '{{ Storage::url($model->bukti_bayar) }}', title: 'Bukti Pembayaran', w: 900, h: 700});  ">
                                         Lihat Bukti Bayar
-                                        </a>
-                                    </td>
+                                    </a>
+                                </td>
+                                @endif
                                 </tr>
                                 <tr>
                                     <td>Status Konfirmasi</td>
@@ -152,18 +156,25 @@
                                 </tr>
                             </thead>
                         </table>
-                        @if ($model->tanggal_konfirmasi == null)
-                        {!! Form::open(['route'=>$route,
-                        'method'=>'PUT',
-                        'onsubmit'=>'return confirm("Apakah Anda Yakin?")']) !!}
-                        {!! Form::hidden('pembayaran_id', $model->id, []) !!}
-                        {!! Form::submit('Konfirmasi Pembayaran', ['class'=>'btn btn-primary mt-3']) !!}
-                        {!! Form::close() !!}
-                        @else
-                        <div class="alert alert-primary" role="alert">
-                            <h3>TAGIHAN INI SUDAH LUNAS</h3>
+                        <div class="d-flex justify-content-around">
+                            @if ($model->tanggal_konfirmasi == null)
+                            {!! Form::open(['route' => $route, 'method' => 'PUT', 'onsubmit' => 'return confirm("Apakah Anda Yakin?")']) !!}
+                            {!! Form::hidden('pembayaran_id', $model->id) !!}
+                            {!! Form::submit('Konfirmasi Pembayaran', ['class' => 'btn btn-primary mt-3']) !!}
+                            {!! Form::close() !!}
+                            <form action="{{ route('pembayaran.delete', $model->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            {!! Form::hidden('pembayaran_id', $model->id) !!}
+                            <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Yakin Ingin Menolak Pembayaran Ini?')">Tolak Pembayaran</button>
+                            </form>
+
+                            @else
+                            <div class="alert alert-primary text-center mt-3" role="alert">
+                                <h3>TAGIHAN INI SUDAH LUNAS</h3>
+                            </div>
+                            @endif
                         </div>
-                        @endif
                     </div>
                 </div>
             </div>

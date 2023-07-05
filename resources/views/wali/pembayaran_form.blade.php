@@ -128,7 +128,7 @@
                         </div>
                         <div class="form-group mt-3">
                             <label for="jumlah_dibayar">Jumlah Yang Dibayarkan</label>
-                            {!! Form::text('jumlah_dibayar', $tagihan->tagihanDetails->sum('jumlah_biaya'), ['class'=>'form-control rupiah']) !!}
+                            {!! Form::text('jumlah_dibayar', $tagihan->tagihanDetails->sum('jumlah_biaya'), ['class'=>'form-control rupiah', 'readonly' => 'readonly']) !!}
                             <span class="text-danger">{{ $errors->first('jumlah_dibayar') }}</span>
                         </div>
                         <div class="form-group mt-3">

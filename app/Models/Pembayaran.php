@@ -12,8 +12,9 @@ class Pembayaran extends Model
     use HasFactory;
     protected $guarded = [];
     protected $dates = ['tanggal_bayar', 'tanggal_konfirmasi'];
-    protected $with = ['user', 'tagihan'];
-    protected $append = ['status_konfirmas'];
+    protected $with = ['user', 'tagihan', 'wali'];
+    protected $append = ['status_konfirmasi'];
+
 
     protected function statusKonfirmasi(): Attribute
     {
@@ -38,7 +39,7 @@ class Pembayaran extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'wali_id', 'id');
     }
 
     /**
@@ -61,9 +62,7 @@ class Pembayaran extends Model
      */
     public function wali(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'wali_id')->withDefault([
-            'name' => 'Tidak Ada Wali Murid'
-        ]);
+        return $this->belongsTo(User::class, 'wali_id');
     }
     /**
      * Get the bankSekolah that owns the Pembayaran
