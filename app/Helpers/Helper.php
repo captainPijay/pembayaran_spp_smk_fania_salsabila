@@ -31,6 +31,13 @@ function formatRupiah($nominal, $prefix = null)
     $prefix = $prefix ? $prefix : 'Rp. ';
     return $prefix . number_format($nominal, 0, ',', '.');
 }
+/**
+Perbaikan fungsi ubahNamaBulan di File Helper.php
+Penyebab:
+Kode ini memunculkan error karena di sistem, bulan januari itu dalam angka adalah 01, sehingga ketika return array key tidak ditemukan
+Solusi:
+return $namaBulan[intval($angka)]; agar 01 berubah menjadi 1
+ **/
 function ubahNamaBulan($angka)
 {
     $namaBulan = [
@@ -48,9 +55,10 @@ function ubahNamaBulan($angka)
         '11' => 'November',
         '12' => 'Desember',
     ];
-    return $namaBulan[$angka];
+    // return $namaBulan[$angka];
+    //diubah menjadi
+    return $namaBulan[intval($angka)];
 }
-
 function terbilang($x)
 {
     $angka = ["", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas"];
