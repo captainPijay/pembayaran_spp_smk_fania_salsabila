@@ -16,7 +16,7 @@ class Pembayaran extends Model
     protected $append = ['status_konfirmasi'];
 
 
-    protected function statusKonfirmasi(): Attribute
+    protected function statusKonfirmasi(): Attribute #define a mutator
     {
         return Attribute::make(
             get: fn ($value) => ($this->tanggal_konfirmasi == null) ? 'Belum Dikonfirmasi' : 'Sudah Dikonfirmasi'

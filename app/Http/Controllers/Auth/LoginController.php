@@ -51,10 +51,10 @@ class LoginController extends Controller
     {
         return view('auth.login_sneat');
     }
-    public function showLoginFormWali()
-    {
-        return view('auth.login_sneat_wali');
-    }
+    // public function showLoginFormWali()
+    // {
+    //     return view('auth.login_sneat_wali');
+    // }
     public function authenticated(Request $request, $user)
     {
         if ($user->akses == 'operator' || $user->akses == 'admin') {

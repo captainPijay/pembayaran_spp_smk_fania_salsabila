@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BankSekolahController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -98,7 +99,8 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
 
 // \Imtigger\LaravelJobStatus\ProgressController::routes();
 
-Route::get('login-wali', [LoginController::class, 'showLoginFormWali'])->name('login.wali');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm']);
+Route::get('login-wali', [LoginController::class, 'showLoginForm'])->name('login.wali');
 
 Route::prefix('walimurid')->middleware(['auth', 'auth.wali'])->name('wali.')->group(function () {
     //ini route khusus untuk wali-murid

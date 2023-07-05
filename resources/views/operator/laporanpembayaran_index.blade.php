@@ -37,7 +37,9 @@
                                     <td>{{ $item->metode_pembayaran }}</td>
                                     <td>{{ $item->tagihan->status }}</td>
                                     <td>{{ $item->status_konfirmasi }}</td>
-                                    <td>{{ $item->tanggal_konfirmasi }}</td>
+                                    <td>
+                                        {{ optional($item->tanggal_konfirmasi)->translatedFormat('d/m/Y') }}
+                                    </td>
                                     <td>{{ formatRupiah($item->jumlah_dibayar)}}</td>
                                 </tr>
                                 @empty

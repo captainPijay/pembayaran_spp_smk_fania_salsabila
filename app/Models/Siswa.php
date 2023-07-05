@@ -48,6 +48,7 @@ class Siswa extends Model
     public function scopeSiswaPrevent($siswa)
     {
         return $siswa->where('wali_id', Auth::user()->id)->findOrFail(Request::segment(3));
+        // ambil satu siswa dimana wali_id = user id yang login lalu temukan satu data siswa dengan findorfail, request::segment(3) merupakan method yang memungkinkan kita mengambil url di / ke 3 (localhost:8000 tidak di hitung)
     }
     /**
      * Get all of the biaya for the Siswa
