@@ -173,8 +173,7 @@
                                 <h3 style="margin: 0;">TAGIHAN INI SUDAH LUNAS</h3>
                             </div>
                             @endif
-                        </div>
-
+                            </div>
                         </div>
                     </div>
                 </div>
