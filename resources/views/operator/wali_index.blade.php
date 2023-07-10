@@ -27,6 +27,16 @@
                           </div>
                         </div>
                       </form>
+                      <div class="col d-flex justify-content-end">
+                        <div class="col-md-6 d-flex justify-content-end">
+                            <form action="{{ route('walisiswa.deleteAll') }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-dark btn-sm mb-2" type="submit" onclick="return confirm('Ingin Menghapus Semua Data Wali-Murid?')">HAPUS SEMUA DATA WALI</button>
+                            </form>
+
+                        </div>
+                    </div>
                        <div class="table-responsive">
                         <table class="{{ config('app.table_style') }}">
                             <thead>

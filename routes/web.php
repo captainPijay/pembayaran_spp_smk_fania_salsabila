@@ -11,6 +11,7 @@ use App\Http\Controllers\BerandaWaliController;
 use App\Http\Controllers\WaliController;
 use App\Http\Controllers\BerandaOperatorController;
 use App\Http\Controllers\BiayaController;
+use App\Http\Controllers\DeleteAllController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobStatusController;
 use App\Http\Controllers\KartuSppController;
@@ -94,8 +95,11 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::post('/importwali', [WaliController::class, 'waliImportExcel'])->name('wali.import');
     Route::get('laporanform/create', [LaporanFormController::class, 'create'])->name('laporanform.create');
     Route::get('laporantagihan', [LaporanTagihanController::class, 'index'])->name('laporantagihan.index');
-    Route::get('laporanpembayaran', [LaporanPembayaranController::class, 'index'])->name('laporanpembayaran.index');
+    Route::get('laporanpembayaran', [DeleteAllController::class, 'index'])->name('laporanpembayaran.index');
 });
+Route::delete('/walisiswa/deleteAll', [DeleteAllController::class, 'deleteAllWali'])->name('walisiswa.deleteAll');
+Route::delete('/siswa/deleteAll', [DeleteAllController::class, 'deleteAllSiswa'])->name('siswa.deleteAll');
+Route::delete('/tagihan/deleteAll', [DeleteAllController::class, 'deleteAllTagihan'])->name('tagihan.deleteAll');
 
 // \Imtigger\LaravelJobStatus\ProgressController::routes();
 

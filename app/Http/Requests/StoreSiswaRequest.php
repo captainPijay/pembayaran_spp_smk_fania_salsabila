@@ -28,7 +28,7 @@ class StoreSiswaRequest extends FormRequest
             'nama' => 'required',
             'biaya_id' => 'required|exists:biayas,id',
             'jenis_kelamin' => 'required',
-            'nisn' => 'required|unique:siswas',
+            'nisn' => 'required|min:8|max:13|unique:siswas',
             'jurusan' => 'required',
             'kelas' => 'required',
             'angkatan' => 'required',

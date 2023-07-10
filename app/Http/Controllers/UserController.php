@@ -106,14 +106,14 @@ class UserController extends Controller
         $requestData = $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users',
-            'nohp' => 'required|unique:users',
+            'nohp' => 'required|min:10|max:14|unique:users',
             'akses' => 'required|in:operator,admin,wali',
             'password' => 'required'
         ]);
         $requestData['password'] = bcrypt($requestData['password']);
         $requestData['nohp_verified_at'] = now();
         Model::create($requestData);
-        flash('Data Berhasil Di Simpan')->success();
+        flash('Data Berhasil Di Simpan');
         return redirect()->route($this->routePrefix . '.index');
     }
 
@@ -158,7 +158,7 @@ class UserController extends Controller
         $requestData = $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $id,
-            'nohp' => 'required|unique:users,nohp,' . $id,
+            'nohp' => 'required|min:10|max:14|unique:users,nohp,' . $id,
             'akses' => 'required|in:operator,wali,admin',
             'password' => 'nullable'
         ]);

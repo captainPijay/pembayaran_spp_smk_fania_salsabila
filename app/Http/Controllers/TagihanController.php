@@ -93,10 +93,10 @@ class TagihanController extends Controller
      */
     public function store(StoreTagihanRequest $request)
     {
+        //Baris ini menggabungkan data yang diterima dari $request setelah melalui proses validasi dengan data 'user_id' yang diambil dari auth()->user()->id. Dengan demikian, $requestData berisi data yang siap digunakan untuk proses selanjutnya. array merge untuk menggabungkan data array yang telah di validasi
         $requestData = array_merge($request->validated(), ['user_id' => auth()->user()->id]);
         $processTagihan = new ProcessTagihan($requestData);
         $this->dispatch($processTagihan);
-        // ProcessTagihan itu ada di folder jobs, saya menggunakan cara ini katanya agar lebih optimal karena datanya banyak
 
         // return response()->json([
         //     'message' => 'Data Berhasil Di Simpan',

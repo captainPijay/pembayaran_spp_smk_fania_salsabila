@@ -111,7 +111,7 @@ class WaliController extends Controller
         $requestData = $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users',
-            'nohp' => 'required|unique:users',
+            'nohp' => 'required|min:10|max:14|unique:users',
             'password' => 'required'
         ]);
         $requestData['password'] = bcrypt($requestData['password']);
@@ -168,7 +168,7 @@ class WaliController extends Controller
         $requestData = $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $id,
-            'nohp' => 'required|unique:users,nohp,' . $id,
+            'nohp' => 'required|min:10|max:14|unique:users,nohp,' . $id,
             'password' => 'nullable',
         ]);
         if ($requestData['password'] == null) {

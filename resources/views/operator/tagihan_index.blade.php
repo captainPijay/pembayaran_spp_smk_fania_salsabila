@@ -36,6 +36,15 @@
                               </div>
                         </div>
                         {!! Form::close() !!}
+                        <div class="row d-flex justify-content-end">
+                            <div class="col-md-6 d-flex justify-content-end">
+                                <form action="{{ route('tagihan.deleteAll') }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-dark btn-sm mb-2" type="submit" onclick="return confirm('Ingin Menghapus Semua Data Tagihan? Data Pembayaran Juga Akan Dihapus Semua')">HAPUS SEMUA DATA TAGIHAN</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                        <div class="table-responsive">
                         <table class="{{ config('app.table_style') }}">

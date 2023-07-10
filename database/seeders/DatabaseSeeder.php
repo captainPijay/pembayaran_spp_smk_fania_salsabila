@@ -21,21 +21,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Siswa::factory(4)->create();
+        \App\Models\Siswa::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        // User::create([
-        //     'name' => 'Muhammad Zahran',
-        //     'akses' => 'operator',
-        //     'nohp' => '082180864290',
-        //     'nohp_verified_at' => now(),
-        //     'email' => 'muhammadzahran11@gmail.com',
-        //     'email_verified_at' => now(),
-        //     'password' => bcrypt('1')
-        // ]);
+        User::create([
+            'name' => 'Muhammad Zahran',
+            'akses' => 'operator',
+            'nohp' => '082180864290',
+            'nohp_verified_at' => now(),
+            'email' => 'muhammadzahran02@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('1')
+        ]);
         // User::create([
         //     'name' => 'Operator 2',
         //     'akses' => 'operator',

@@ -69,7 +69,7 @@ class WaliMuridPembayaranController extends Controller
                 //simpan data rekening pengirim
                 $requestDataBank = $request->validate([
                     'nama_rekening' => 'required',
-                    'nomor_rekening' => 'required'
+                    'nomor_rekening' => 'required|min:8|max:16'
                 ]);
                 // $waliBank = new WaliBank();
                 // $waliBank->nama_rekening = $requestDataBank['nama_rekening_pengirim'];

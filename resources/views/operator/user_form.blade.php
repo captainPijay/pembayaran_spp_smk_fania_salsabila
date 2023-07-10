@@ -31,7 +31,6 @@
                         <label for="akses">Hak Akses</label>
                         {!! Form::select('akses', [
                             'operator'=>'Operator Sekolah',
-                            'admin'=>'Administrator',
                             'wali'=>'Wali Murid'
                         ],
                         null,

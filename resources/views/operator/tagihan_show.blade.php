@@ -131,7 +131,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="jumlah_bayar">Jumlah Yang Di Bayarkan</label>
-                        {!! Form::text('jumlah_dibayar', $tagihan->total_tagihan, ['class'=>'form-control rupiah']) !!}
+                        {!! Form::text('jumlah_dibayar', null, ['class'=>'form-control rupiah']) !!}
                         <span class="text-danger">{{ $errors->first('jumlah_bayar') }}</span>
                     </div>
                     {!! Form::submit('SIMPAN', ['class'=>'btn btn-primary mt-3']) !!}

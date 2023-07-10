@@ -84,6 +84,6 @@ class ProcessTagihan implements ShouldQueue
             }
             sleep(1);
         }
-        $this->setOutput(['message' => 'Tagihan Bulan ' . $bulanTagihan . ' ' . $tahunTagihan]);
+        $this->setOutput(['message' => 'Tagihan Bulan ' . ubahNamaBulan($bulanTagihan) . ' ' . $tahunTagihan]);
     }
 }

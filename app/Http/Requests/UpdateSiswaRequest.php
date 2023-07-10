@@ -30,7 +30,7 @@ class UpdateSiswaRequest extends FormRequest
             'nama' => 'required',
             'biaya_id' => 'required|exists:biayas,id',
             'jenis_kelamin' => 'required',
-            'nisn' => 'required|unique:siswas,nisn,' . $this->siswa,
+            'nisn' => 'required|min:8|max:13|unique:siswas,nisn,' . $this->siswa,
             'jurusan' => 'required',
             'kelas' => 'required',
             'angkatan' => 'required',

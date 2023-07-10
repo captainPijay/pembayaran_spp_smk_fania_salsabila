@@ -231,16 +231,16 @@ class SiswaController extends Controller
     public function destroy($id)
     {
         $siswa = Siswa::findOrFail($id);
+        if ($siswa->tagihan->count() >= 1) {
+            flash()->addError('Data Tidak Bisa Dihapus Karena Masih Memiliki Relasi Data Tagihan');
+            return back();
+        }
         if ($siswa->foto) {
             Storage::delete($siswa->foto);
         }
         if ($siswa->status()) {
             $a = $siswa->status();
             $a->delete();
-        }
-        if ($siswa->tagihan->count() >= 1) {
-            flash()->addError('Data Tidak Bisa Dihapus Karena Masih Memiliki Relasi Data Tagihan');
-            return back();
         }
         // if ($siswa->wali->pembayaran) {
         //     $pembayaran = Pembayaran::where('wali_id', $siswa->wali->id);

@@ -33,8 +33,13 @@
                       </form>
                     <div class="row d-flex justify-content-end">
                         <div class="col-md-6 d-flex justify-content-end">
-                            <a href="{{ route('status'.'.aktif') }}" class="btn btn-success btn-sm mb-3 mx-3">Aktifkan Semua Siswa</a>
-                            <a href="{{ route('status'.'.non-aktif') }}" class="btn btn-danger btn-sm mb-3">Non-Aktifkan Semua Siswa</a>
+                            <a href="{{ route('status'.'.aktif') }}" class="btn btn-success btn-sm mb-3 ">Aktifkan Semua Siswa</a>
+                            <a href="{{ route('status'.'.non-aktif') }}" class="btn btn-danger btn-sm mb-3 mx-3">Non-Aktifkan Semua Siswa</a>
+                            <form action="{{ route('siswa.deleteAll') }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-dark btn-sm mb-3" type="submit" onclick="return confirm('Ingin Menghapus Semua Data Siswa?')">HAPUS SEMUA DATA SISWA</button>
+                            </form>
                         </div>
                     </div>
                        <div class="table-responsive">

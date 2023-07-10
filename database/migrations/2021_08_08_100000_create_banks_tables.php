@@ -20,9 +20,9 @@ class CreateBanksTables extends Migration
      */
     public function up()
     {
-        Schema::create('banks', function(Blueprint $table){
+        Schema::create('banks', function (Blueprint $table) {
             $table->id();
-            $table->string('sandi_bank',20);
+            $table->string('sandi_bank');
             $table->string('nama_bank');
         });
     }
