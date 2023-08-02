@@ -63,7 +63,6 @@
                                 <div class="col-md-2 col-sm-12">
                                     <div class="form-group">
                                         <label for="kelas">Kelas</label>
-                                        {{-- {!! Form::selectRange('kelas', 10, 12, null, ['class'=>'form-control']) !!} --}}
                                         {!! Form::select('kelas', getNamaKelas(), null, ['class'=>'form-control','placeholder'=>'Pilih Kelas']) !!}
                                         <span class="text-danger">{{ $errors->first('kelas') }}</span>
                                     </div>

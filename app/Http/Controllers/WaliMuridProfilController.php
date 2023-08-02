@@ -32,7 +32,7 @@ class WaliMuridProfilController extends Controller
         $requestData = $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $id,
-            'nohp' => 'required|unique:users,nohp,' . $id,
+            'nohp' => 'required|min:10|max:14|unique:users,nohp,' . $id,
             'password' => 'nullable'
         ]);
         $model = User::findOrFail($id);

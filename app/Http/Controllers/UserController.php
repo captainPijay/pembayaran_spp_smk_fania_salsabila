@@ -46,6 +46,7 @@ class UserController extends Controller
                 $collection = Excel::toCollection($import, public_path('/DataUser/' . $namaFile));
                 $condition = false;
 
+                //flatten tu kan kolom excel berbeda makanya jadi array 2 dimensi nah dengan flatten di jadikan 1 dimensi agar bisa di loop seperti foreach
                 $collection->flatten(1)->each(function ($row) use (&$condition) {
                     $nohp = $row['nohp'];
                     $email = $row['email'];

@@ -131,9 +131,9 @@
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-          <div class="app-brand demo">
+          <div class="app-brand demo bg-dark mt-0">
             <a href="index.html" class="app-brand-link">
-                <img src="{{ asset('storage/images/fania.png') }}" alt="Nama Instansi" class=" img-fluid navbar-logo d-flex justify-content-center" width="50">
+                <img src="{{ asset('storage/images/fania-bg.png') }}" alt="Nama Instansi" class=" img-fluid navbar-logo d-flex justify-content-center" width="50">
                   <defs>
                     <path
                       d="M13.7918663,0.358365126 L3.39788168,7.44174259 C0.566865006,9.69408886 -0.379795268,12.4788597 0.557900856,15.7960551 C0.68998853,16.2305145 1.09562888,17.7872135 3.12357076,19.2293357 C3.8146334,19.7207684 5.32369333,20.3834223 7.65075054,21.2172976 L7.59773219,21.2525164 L2.63468769,24.5493413 C0.445452254,26.3002124 0.0884951797,28.5083815 1.56381646,31.1738486 C2.83770406,32.8170431 5.20850219,33.2640127 7.09180128,32.5391577 C8.347334,32.0559211 11.4559176,30.0011079 16.4175519,26.3747182 C18.0338572,24.4997857 18.6973423,22.4544883 18.4080071,20.2388261 C17.963753,17.5346866 16.1776345,15.5799961 13.0496516,14.3747546 L10.9194936,13.4715819 L18.6192054,7.984237 L13.7918663,0.358365126 Z"
@@ -181,7 +181,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text menu-text fw-bolder ms-2">SMK Fania Salsabila</span>
+              <span class="app-brand-text menu-text fw-bolder ms-2 text-white">SMK Fania Salsabila</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -191,10 +191,10 @@
 
           <div class="menu-inner-shadow"></div>
 
-          <ul class="menu-inner py-1">
+          <ul class="menu-inner py-1 bg-dark">
             <!-- Dashboard -->
             <li class="menu-item {{ Route::is('wali.beranda')? 'active' : '' }}">
-              <a href="{{ route('wali.beranda') }}" class="menu-link">
+              <a href="{{ route('wali.beranda') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -202,20 +202,20 @@
 
             <!-- Cards -->
             <li class="menu-item {{ Route::is('wali.siswa.*')? 'active' : '' }}">
-              <a href="{{ route('wali.siswa.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('wali.siswa.index') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa-solid fa-children"></i>
                 <div data-i18n="Basic">Data Siswa</div>
               </a>
             </li>
             <li class="menu-item {{ Route::is('wali.tagihan.*') || Route::is('wali.pembayaran.*')? 'active' : '' }}">
-              <a href="{{ route('wali.tagihan.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('wali.tagihan.index') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa-solid fa-money-bills"></i>
                 <div data-i18n="Basic">Data Tagihan</div>
               </a>
             </li>
             <li class="menu-item {{ Route::is('wali.profil.*')?'active' : '' }}">
-              <a href="{{ route('wali.profil.create') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('wali.profil.create') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa-regular fa-pen-to-square"></i>
                 <div data-i18n="Basic">Ubah Profil</div>
               </a>
             </li>
@@ -227,8 +227,8 @@
               </a>
             </li> --}}
             <li class="menu-item">
-              <a href="{{ route('logout') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('logout') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa-solid fa-power-off"></i>
                 <div data-i18n="Basic">Logout</div>
               </a>
             </li>

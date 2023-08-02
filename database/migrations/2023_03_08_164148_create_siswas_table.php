@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->integer('wali_id')->nullable()->index();
             $table->string('wali_status')->nullable();
-            $table->string('nama');
-            $table->string('nisn')->unique();
-            $table->string('jurusan');
+            $table->string('nama', 255);
+            $table->string('nisn', 20)->unique();
+            $table->string('jurusan', 255);
             $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
-            $table->string('kelas');
+            $table->string('kelas', 2);
             $table->integer('angkatan');
             $table->foreignId('user_id');
             $table->timestamps();

@@ -95,7 +95,7 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::post('/importwali', [WaliController::class, 'waliImportExcel'])->name('wali.import');
     Route::get('laporanform/create', [LaporanFormController::class, 'create'])->name('laporanform.create');
     Route::get('laporantagihan', [LaporanTagihanController::class, 'index'])->name('laporantagihan.index');
-    Route::get('laporanpembayaran', [DeleteAllController::class, 'index'])->name('laporanpembayaran.index');
+    Route::get('laporanpembayaran', [LaporanPembayaranController::class, 'index'])->name('laporanpembayaran.index');
 });
 Route::delete('/walisiswa/deleteAll', [DeleteAllController::class, 'deleteAllWali'])->name('walisiswa.deleteAll');
 Route::delete('/siswa/deleteAll', [DeleteAllController::class, 'deleteAllSiswa'])->name('siswa.deleteAll');
@@ -117,9 +117,9 @@ Route::prefix('walimurid')->middleware(['auth', 'auth.wali'])->name('wali.')->gr
 Route::get('kartuspp', [KartuSppController::class, 'index'])->name('kartuspp.index')->middleware('auth');
 Route::get('kwitansi-pembayaran/{id}', [KwitansiPembayaranController::class, 'show'])->name('kwitansipembayaran.show')->middleware('auth');
 Route::resource('invoice', InvoiceController::class)->middleware('auth');
-Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
-    //ini route khusus untuk admin
-});
+// Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
+//     //ini route khusus untuk admin
+// });
 Route::get('logout', function () {
     Auth::logout();
     return redirect('login');

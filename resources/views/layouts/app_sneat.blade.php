@@ -129,10 +129,10 @@
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-          <div class="app-brand demo">
+          <div class="app-brand demo bg-dark mt-0">
             <a href="{{ route('setting.create') }}" class="app-brand-link">
-        <img src="{{ asset('storage/images/fania.png') }}" alt="Nama Instansi" class="mx-1 img-fluid navbar-logo d-flex justify-content-center" width="50">
-              <span class="app-brand-text menu-text fw-bolder">{{ settings()->get('app_name', 'My APP') }}</span>
+        <img src="{{ asset('storage/images/fania-bg.png') }}" alt="Nama Instansi" class="mx-1 img-fluid navbar-logo d-flex justify-content-center" width="50">
+              <span class="app-brand-text menu-text fw-bolder text-white">{{ settings()->get('app_name', 'My APP') }}</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -142,67 +142,68 @@
 
           <div class="menu-inner-shadow"></div>
 
-          <ul class="menu-inner py-1">
+          <ul class="menu-inner py-1 bg-dark">
             <!-- Dashboard -->
             <li class="menu-item {{ Route::is('operator.beranda')? 'active' : '' }}">
-              <a href="{{ route('operator.beranda') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+              <a href="{{ route('operator.beranda') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons bx bx-home-circle text-white"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
 
             <!-- Cards -->
             <li class="menu-item {{ Route::is('setting.*')? 'active' : '' }}">
-              <a href="{{ route('setting.create') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('setting.create') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons bx bx-cog"></i>
                 <div data-i18n="Basic">Pengaturan Aplikasi</div>
               </a>
             </li>
             <li class="menu-item {{ Route::is('user.*')? 'active' : '' }}">
-              <a href="{{ route('user.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('user.index') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa-solid fa-user-secret"></i>
                 <div data-i18n="Basic">Data user</div>
               </a>
             </li>
             <li class="menu-item {{ Route::is('banksekolah.*')? 'active' : '' }}">
-              <a href="{{ route('banksekolah.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('banksekolah.index') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa fa-building-columns"></i>
                 <div data-i18n="Basic">Data Rekening Sekolah</div>
               </a>
             </li>
             <li class="menu-item {{ Route::is('wali.*')? 'active' : '' }}">
-              <a href="{{ route('wali.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('wali.index') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa fa-users"></i>
                 <div data-i18n="Basic">Data Wali Murid</div>
               </a>
             </li>
             <li class="menu-item {{ Route::is('siswa.*')? 'active' : '' }}">
-              <a href="{{ route('siswa.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('siswa.index') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons bx bxs-graduation"></i>
                 <div data-i18n="Basic">Data Siswa</div>
               </a>
             </li>
             <li class="menu-item {{ Route::is('biaya.*')? 'active' : '' }}">
-              <a href="{{ route('biaya.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('biaya.index') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons bx bx-money"></i>
                 <div data-i18n="Basic">Data Biaya</div>
               </a>
             </li>
             <li class="menu-item {{ Route::is('jobstatus.*')? 'active' : '' }}">
-              <a href="{{ route('jobstatus.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('jobstatus.index') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa-solid fa-plus"></i>
                 <div data-i18n="Basic">Buat Tagihan</div>
               </a>
             </li>
+
             <li class="menu-item {{ Route::is('tagihan.*')? 'active' : '' }}">
-              <a href="{{ route('tagihan.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('tagihan.index') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa-solid fa-money-bills"></i>
                 <div data-i18n="Basic">Data Tagihan</div>
               </a>
             </li>
             <li class="menu-item {{ Route::is('pembayaran.*')? 'active' : '' }}">
-              <a href="{{ route('pembayaran.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('pembayaran.index') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa-solid fa-money-check-dollar"></i>
                 <div data-i18n="Basic">
                     Data Pembayaran
                     <span class="badge badge-center rounded-pill bg-danger">{{ auth()->user()->unreadNotifications->count()}}</span>
@@ -210,16 +211,16 @@
               </a>
             </li>
             <li class="menu-item {{ Route::is('laporanform.*') || Route::is('laporantagihan.*')? 'active' : '' }}">
-              <a href="{{ route('laporanform.create') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('laporanform.create') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa-solid fa-circle-info"></i>
                 <div data-i18n="Basic">
                     Data Laporan
                 </div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="{{ route('logout') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+              <a href="{{ route('logout') }}" class="menu-link text-white">
+                <i class="menu-icon tf-icons fa-solid fa-power-off"></i>
                 <div data-i18n="Basic">Logout</div>
               </a>
             </li>

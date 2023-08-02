@@ -152,7 +152,7 @@
             </div>
             <div class="col-md-4">
                 <div class="stats-item">
-                    <i class="fa fa-dollar stats-item-icon bumping-icon"></i>
+                    <i class="fa-solid fa-sack-dollar stats-item-icon bumping-icon"></i>
                     <h4 class="stats-item-title">Total Uang Kas</h4>
                     <p class="stats-item-value">{{ ($kas == 0) ? '0' : $kas }}</p>
                 </div>

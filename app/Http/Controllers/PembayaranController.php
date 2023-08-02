@@ -84,7 +84,7 @@ class PembayaranController extends Controller
         if ($wali != null) {
             Notification::send($wali, new PembayaranKonfirmasiNotification($pembayaran));
         }
-        flash('Pembayaran Berhasil Di Simpan');
+        flash('jaja');
         return back();
     }
 

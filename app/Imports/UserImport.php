@@ -22,7 +22,7 @@ class UserImport implements ToModel, WithHeadingRow
             'nohp_verified_at' => now(),
             'email' => $row['email'],
             'email_verified_at' => now(),
-            'password' => bcrypt(1)
+            'password' => bcrypt(12345678)
         ]);
     }
 }

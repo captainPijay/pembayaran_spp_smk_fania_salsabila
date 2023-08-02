@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.52.9.
+ * Generated for Laravel 9.52.10.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1252,7 +1252,7 @@
          * Call the given Closure / class@method and inject its dependencies.
          *
          * @param callable|string $callback
-         * @param \Illuminate\Container\array<string,  mixed>  $parameters
+         * @param array<string, mixed> $parameters
          * @param string|null $defaultMethod
          * @return mixed 
          * @throws \InvalidArgumentException
@@ -11761,6 +11761,7 @@
                     /**
          * Gets the decoded form or json request body.
          *
+         * @throws JsonException When the body cannot be decoded to an array
          * @static 
          */ 
         public static function getPayload()
@@ -18706,7 +18707,7 @@
                     /**
          * Add metadata info
          *
-         * @param \Barryvdh\DomPDF\array<string,  string> $info
+         * @param array<string, string> $info
          * @return static 
          * @static 
          */ 
@@ -18718,8 +18719,8 @@
                     /**
          * Load a View and convert to HTML
          *
-         * @param \Barryvdh\DomPDF\array<string,  mixed> $data
-         * @param \Barryvdh\DomPDF\array<string,  mixed> $mergeData
+         * @param array<string, mixed> $data
+         * @param array<string, mixed> $mergeData
          * @param string|null $encoding Not used yet
          * @static 
          */ 
@@ -18731,7 +18732,7 @@
                     /**
          * Set/Change an option (or array of options) in Dompdf
          *
-         * @param \Barryvdh\DomPDF\array<string,  mixed>|string $attribute
+         * @param array<string, mixed>|string $attribute
          * @param null|mixed $value
          * @return \Barryvdh\DomPDF\PDF 
          * @static 
@@ -18745,7 +18746,7 @@
          * Replace all the Options from DomPDF
          *
          * @deprecated Use setOption to override individual options.
-         * @param \Barryvdh\DomPDF\array<string,  mixed> $options
+         * @param array<string, mixed> $options
          * @static 
          */ 
         public static function setOptions($options)
@@ -18761,7 +18762,7 @@
          * 'compress' = > 1 or 0 - apply content stream compression, this is
          *    on (1) by default
          *
-         * @param \Barryvdh\DomPDF\array<string,  int> $options
+         * @param array<string, int> $options
          * @return string The rendered PDF as string
          * @static 
          */ 
@@ -18878,7 +18879,7 @@
                     /**
          * Add metadata info
          *
-         * @param \Barryvdh\DomPDF\array<string,  string> $info
+         * @param array<string, string> $info
          * @return static 
          * @static 
          */ 
@@ -18890,8 +18891,8 @@
                     /**
          * Load a View and convert to HTML
          *
-         * @param \Barryvdh\DomPDF\array<string,  mixed> $data
-         * @param \Barryvdh\DomPDF\array<string,  mixed> $mergeData
+         * @param array<string, mixed> $data
+         * @param array<string, mixed> $mergeData
          * @param string|null $encoding Not used yet
          * @static 
          */ 
@@ -18903,7 +18904,7 @@
                     /**
          * Set/Change an option (or array of options) in Dompdf
          *
-         * @param \Barryvdh\DomPDF\array<string,  mixed>|string $attribute
+         * @param array<string, mixed>|string $attribute
          * @param null|mixed $value
          * @return \Barryvdh\DomPDF\PDF 
          * @static 
@@ -18917,7 +18918,7 @@
          * Replace all the Options from DomPDF
          *
          * @deprecated Use setOption to override individual options.
-         * @param \Barryvdh\DomPDF\array<string,  mixed> $options
+         * @param array<string, mixed> $options
          * @static 
          */ 
         public static function setOptions($options)
@@ -18933,7 +18934,7 @@
          * 'compress' = > 1 or 0 - apply content stream compression, this is
          *    on (1) by default
          *
-         * @param \Barryvdh\DomPDF\array<string,  int> $options
+         * @param array<string, int> $options
          * @return string The rendered PDF as string
          * @static 
          */ 
@@ -20188,9 +20189,9 @@
                     /**
          * 
          *
-         * @param \Flasher\Prime\array<string,  mixed> $criteria
+         * @param array<string, mixed> $criteria
          * @param string $presenter
-         * @param \Flasher\Prime\array<string,  mixed> $context
+         * @param array<string, mixed> $context
          * @return mixed 
          * @phpstan-return ($presenter is 'html' ? string : mixed)
          * @static 
@@ -20424,6 +20425,27 @@
                     /**
          * 
          *
+         * @param array<class-string<ArgumentReducer>|ArgumentReducer>|\Spatie\Backtrace\Arguments\ArgumentReducers|null $argumentReducers
+         * @static 
+         */ 
+        public static function argumentReducers($argumentReducers)
+        {
+                        /** @var \Spatie\FlareClient\Flare $instance */
+                        return $instance->argumentReducers($argumentReducers);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withStackFrameArguments($withStackFrameArguments = true)
+        {
+                        /** @var \Spatie\FlareClient\Flare $instance */
+                        return $instance->withStackFrameArguments($withStackFrameArguments);
+        }
+                    /**
+         * 
+         *
          * @static 
          */ 
         public static function version()
@@ -20520,7 +20542,7 @@
          *
          * @param string $name
          * @param string $messageLevel
-         * @param \Spatie\FlareClient\array<int,  mixed> $metaData
+         * @param array<int, mixed> $metaData
          * @return \Spatie\FlareClient\Flare 
          * @static 
          */ 
@@ -20613,7 +20635,7 @@
                     /**
          * 
          *
-         * @param \Spatie\FlareClient\array<int,  string> $fieldNames
+         * @param array<int, string> $fieldNames
          * @return \Spatie\FlareClient\Flare 
          * @static 
          */ 
@@ -20689,7 +20711,7 @@
          * 
          *
          * @param string $groupName
-         * @param \Spatie\FlareClient\array<string,  mixed> $properties
+         * @param array<string, mixed> $properties
          * @return \Spatie\FlareClient\Flare 
          * @static 
          */ 
@@ -24339,8 +24361,8 @@ namespace  {
                 /**
              * Increment the given column's values by the given amounts.
              *
-             * @param \Illuminate\Database\Query\array<string,  float|int|numeric-string>  $columns
-             * @param \Illuminate\Database\Query\array<string,  mixed>  $extra
+             * @param array<string, float|int|numeric-string> $columns
+             * @param array<string, mixed> $extra
              * @return int 
              * @throws \InvalidArgumentException
              * @static 
@@ -24354,8 +24376,8 @@ namespace  {
                 /**
              * Decrement the given column's values by the given amounts.
              *
-             * @param \Illuminate\Database\Query\array<string,  float|int|numeric-string>  $columns
-             * @param \Illuminate\Database\Query\array<string,  mixed>  $extra
+             * @param array<string, float|int|numeric-string> $columns
+             * @param array<string, mixed> $extra
              * @return int 
              * @throws \InvalidArgumentException
              * @static 
