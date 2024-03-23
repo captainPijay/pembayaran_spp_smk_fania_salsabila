@@ -12,9 +12,9 @@ class CreateJobStatusesTable extends Migration
     {
         Schema::create('job_statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('job_id')->index()->nullable();
-            $table->string('type')->index();
-            $table->string('queue')->index()->nullable();
+            $table->string('job_id', 50)->index()->nullable();
+            $table->string('type', 50)->index();
+            $table->string('queue', 50)->index()->nullable();
             $table->integer('attempts')->default(0);
             $table->integer('progress_now')->default(0);
             $table->integer('progress_max')->default(0);

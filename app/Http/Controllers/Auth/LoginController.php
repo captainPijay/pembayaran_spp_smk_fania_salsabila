@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -19,7 +19,7 @@ class LoginController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
+     */
 
     use AuthenticatesUsers;
 
@@ -57,7 +57,7 @@ class LoginController extends Controller
     // }
     public function authenticated(Request $request, $user)
     {
-        if ($user->akses == 'operator' || $user->akses == 'admin') {
+        if ($user->akses == 'operator' || $user->akses == 'Kepala Sekolah') {
             return redirect()->route('operator.beranda');
         } elseif ($user->akses == 'wali') {
             return redirect()->route('wali.beranda');

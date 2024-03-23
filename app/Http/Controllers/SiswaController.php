@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Storage;
-use App\Models\User;
-use App\Models\Siswa;
-use App\Models\Tagihan;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
 use App\Imports\SiswaImport;
 use App\Models\Biaya;
-use App\Models\Pembayaran;
+use App\Models\Siswa;
+use App\Models\Tagihan;
+use App\Models\User;
 use Excel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Illuminate\Http\Request;
+use Storage;
 
 class SiswaController extends Controller
 {
@@ -33,10 +31,10 @@ class SiswaController extends Controller
         if ($request->filled('search')) {
             $models = $models->search($request->search); //nicolaslopezj/searchable
         }
-        return view('operator.' . $this->viewIndex,  [
+        return view('operator.' . $this->viewIndex, [
             'models' => $models->paginate(settings()->get('app_pagination', '50')),
             'routePrefix' => $this->routePrefix,
-            'title' => 'DATA SISWA'
+            'title' => 'DATA SISWA',
 
         ]);
     }
@@ -88,10 +86,6 @@ class SiswaController extends Controller
         return back();
     }
 
-
-
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -106,7 +100,7 @@ class SiswaController extends Controller
             'route' => $this->routePrefix . '.store',
             'button' => 'SIMPAN',
             'title' => 'Data Siswa',
-            'wali' => User::where('akses', 'wali')->pluck('name', 'id')
+            'wali' => User::where('akses', 'wali')->pluck('name', 'id'),
         ];
         return view('operator.' . $this->viewCreate, $data);
     }
@@ -169,7 +163,7 @@ class SiswaController extends Controller
         $siswa = Siswa::findOrFail($id);
         return view('operator.' . $this->viewShow, [
             'model' => $siswa,
-            'title' => 'Detail Siswa'
+            'title' => 'Detail Siswa',
         ]);
     }
 
@@ -188,7 +182,7 @@ class SiswaController extends Controller
             'route' => [$this->routePrefix . '.update', $siswa],
             'button' => 'UPDATE',
             'title' => 'FORM UPDATE DATA SISWA',
-            'wali' => User::where('akses', 'wali')->pluck('name', 'id')
+            'wali' => User::where('akses', 'wali')->pluck('name', 'id'),
         ];
         return view('operator.' . $this->viewCreate, $data);
     }

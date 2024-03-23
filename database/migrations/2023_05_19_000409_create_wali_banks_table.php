@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('wali_banks', function (Blueprint $table) {
             $table->id();
-            $table->string('wali_id')->comment('wali_id adalah primary key di user id');
-            $table->string('kode');
-            $table->string('nama_bank');
-            $table->string('nama_rekening');
-            $table->string('nomor_rekening');
+            $table->string('wali_id', 50)->comment('wali_id adalah primary key di user id');
+            $table->string('kode', 50);
+            $table->string('nama_bank', 30);
+            $table->string('nama_rekening', 30);
+            $table->string('nomor_rekening', 30);
             $table->timestamps();
         });
     }

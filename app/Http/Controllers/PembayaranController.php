@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\Wali;
-use App\Models\Tagihan;
-use App\Models\Pembayaran;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\StorePembayaranRequest;
 use App\Http\Requests\UpdatePembayaranRequest;
-use App\Models\TagihanDetail;
+use App\Models\Pembayaran;
+use App\Models\Tagihan;
 use App\Notifications\PembayaranKonfirmasiNotification;
-use App\Notifications\TolakPembayaranNotification;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Storage;
 
 class PembayaranController extends Controller
@@ -25,7 +23,7 @@ class PembayaranController extends Controller
     {
         $models = Pembayaran::latest()->orderBy('tanggal_konfirmasi', 'desc');
         if ($request->filled('bulan')) {
-            $models = $models->whereMonth('tanggal_bayar', $request->bulan)->paginate;
+            $models = $models->whereMonth('tanggal_bayar', $request->bulan);
         }
         if ($request->filled('tahun')) {
             $models = $models->whereYear('tanggal_bayar', $request->tahun);
@@ -84,7 +82,7 @@ class PembayaranController extends Controller
         if ($wali != null) {
             Notification::send($wali, new PembayaranKonfirmasiNotification($pembayaran));
         }
-        flash('jaja');
+        flash('Pembayaran Berhasil Dilakukan');
         return back();
     }
 
@@ -106,7 +104,7 @@ class PembayaranController extends Controller
             'model' => $pembayaran,
             'route' => ['pembayaran.update', $pembayaran->id],
             'routedel' => ['pembayaran-delete', $pembayaran->id],
-            'title' => 'Detail Pembayaran'
+            'title' => 'Detail Pembayaran',
         ]);
     }
 

@@ -58,11 +58,11 @@
                     <div class="form-group">
                         <label for="siswa_id">Pilih Data Siswa</label>
                         {!! Form::select('siswa_id', $siswa, null, ['class'=>'form-control select2']) !!}
-                        <span class="text-danger">{{ $errors->first("siswa_id"); }}</span>
+                        <span class="text-danger">{{ $errors->first("siswa_id") }}</span>
                     </div>
                     {!! Form::submit('SIMPAN', ['class'=>'btn btn-primary my-3']) !!}
                     {!! Form::close() !!}
-                    <h4 class="mt-3 mb-3">DATA ANAK</h4>
+                    <h4 class="mt-3 mb-3">DATA ANAK</h4>  
                     <table class="table table-bordered">
                         <thead class="bg-dark">
                             <tr>

@@ -163,6 +163,10 @@ class UserController extends Controller
             'akses' => 'required|in:operator,wali,admin',
             'password' => 'nullable'
         ]);
+        if ($id == 1 && $request->akses != "operator") {
+            flash()->addError("Data Tidak Dapat Dirubah Karena Alasan Hak Akses");
+            return back();
+        }
         if ($requestData['password'] == null) {
             unset($requestData['password']);
         } else {

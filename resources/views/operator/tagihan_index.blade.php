@@ -56,6 +56,8 @@
                                     <th class="{{ config('app.th_style') }}">Tanggal Tagihan</th>
                                     <th class="{{ config('app.th_style') }}">Status</th>
                                     <th class="{{ config('app.th_style') }}">Total Tagihan</th>
+                                    <th class="{{ config('app.th_style') }}">Jumlah Bayar</th>
+                                    <th class="{{ config('app.th_style') }}">Sisa Tagihan</th>
                                     <th class="{{ config('app.th_style') }}">Aksi</th>
                                 </tr>
                             </thead>
@@ -69,6 +71,8 @@
                                     <td>{{ $item->tanggal_tagihan->translatedFormat('d-F-Y') }}</td>
                                     <td>{{ $item->status }}</td>
                                     <td>{{ formatRupiah($item->tagihanDetails->sum('jumlah_biaya'))}}</td>
+                                    <td>{{ formatRupiah($item->pembayaran->sum('jumlah_dibayar'))}}</td>
+                                    <td>{{ formatRupiah($item->tagihanDetails->sum('jumlah_biaya') - $item->pembayaran->sum('jumlah_dibayar'))}}</td>
                                     <td>
                                     {!! Form::open([
                                             'route'=> [$routePrefix.'.destroy', $item->id],

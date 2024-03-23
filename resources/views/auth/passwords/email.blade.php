@@ -77,7 +77,7 @@
               </div>
           @endif
           <div class="d-flex justify-content-center mb-2">
-            <img src="{{ asset('storage/images/fania.png') }}" alt="fania" width="140px">
+            <img src="{{ asset('storage/images/megatama.png') }}" alt="fania" width="140px">
           </div>
           <h1>Lupa Password</h1>
           <div class="alert alert-info pb-0" role="alert">

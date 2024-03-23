@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Siswa;
-use App\Models\Tagihan;
-use App\Models\Pembayaran;
-use Illuminate\Http\Request;
-use App\Models\TagihanDetail;
 use App\Http\Requests\StoreTagihanRequest;
 use App\Jobs\ProcessTagihan;
-use Illuminate\Support\Facades\Queue;
+use App\Models\Pembayaran;
+use App\Models\Siswa;
+use App\Models\Tagihan;
+use App\Models\TagihanDetail;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+
 // use Illuminate\Support\Facades\DB;
 // use App\Http\Requests\UpdateTagihanRequest;
 // use App\Notifications\TagihanNotification;
@@ -56,10 +56,10 @@ class TagihanController extends Controller
         // } else {
         //     $models = Tagihan::latest()->paginate(settings()->get('app_pagination', '50'));
         // }
-        return view('operator.' . $this->viewIndex,  [
+        return view('operator.' . $this->viewIndex, [
             'models' => $models->paginate(settings()->get('app_pagination', '50')),
             'routePrefix' => $this->routePrefix,
-            'title' => 'DATA TAGIHAN'
+            'title' => 'DATA TAGIHAN',
 
         ]);
     }
@@ -132,7 +132,7 @@ class TagihanController extends Controller
                 'total_tagihan' => $tagihan->total_tagihan ?? 0,
                 'status_tagihan' => ($tagihan == null) ? false : true,
                 'status_pembayaran' => ($tagihan == null) ? 'Belum Bayar' : $tagihan->status,
-                'tanggal_bayar' => $tanggalBayar
+                'tanggal_bayar' => $tanggalBayar,
             ];
         }
         $data['kartuSpp'] = collect($arrayData);

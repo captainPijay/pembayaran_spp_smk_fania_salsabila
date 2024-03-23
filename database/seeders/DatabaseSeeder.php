@@ -4,12 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Siswa;
-use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\WaliBank;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,15 +25,24 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         User::create([
-            'name' => 'Muhammad Zahran',
+            'name' => 'Muhammad Yuda Syaputra',
             'akses' => 'operator',
-            'nohp' => '082180864290',
+            'nohp' => '0895421041474',
             'nohp_verified_at' => now(),
-            'email' => 'muhammadzahran02@gmail.com',
+            'email' => 'muhammadyudasaputra9@gmail.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('1')
+            'password' => bcrypt('1'),
         ]);
         // User::create([
+        //     'name' => 'zidan',
+        //     'akses' => 'Kepala Sekolah',
+        //     'nohp' => '089541041474',
+        //     'nohp_verified_at' => now(),
+        //     'email' => 'zidan@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => bcrypt('1'),
+        // ]);
+        /* User::create([ */
         //     'name' => 'Operator 2',
         //     'akses' => 'operator',
         //     'nohp' => '081994743200',

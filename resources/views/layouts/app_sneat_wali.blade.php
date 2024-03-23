@@ -131,9 +131,9 @@
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-          <div class="app-brand demo bg-dark mt-0">
+          <div class="app-brand demo mt-0" style="background-color: #649B4E">
             <a href="index.html" class="app-brand-link">
-                <img src="{{ asset('storage/images/fania-bg.png') }}" alt="Nama Instansi" class=" img-fluid navbar-logo d-flex justify-content-center" width="50">
+                <img src="{{ asset('storage/images/megatama-b.png') }}" alt="Nama Instansi" class=" img-fluid navbar-logo d-flex justify-content-center" width="50">
                   <defs>
                     <path
                       d="M13.7918663,0.358365126 L3.39788168,7.44174259 C0.566865006,9.69408886 -0.379795268,12.4788597 0.557900856,15.7960551 C0.68998853,16.2305145 1.09562888,17.7872135 3.12357076,19.2293357 C3.8146334,19.7207684 5.32369333,20.3834223 7.65075054,21.2172976 L7.59773219,21.2525164 L2.63468769,24.5493413 C0.445452254,26.3002124 0.0884951797,28.5083815 1.56381646,31.1738486 C2.83770406,32.8170431 5.20850219,33.2640127 7.09180128,32.5391577 C8.347334,32.0559211 11.4559176,30.0011079 16.4175519,26.3747182 C18.0338572,24.4997857 18.6973423,22.4544883 18.4080071,20.2388261 C17.963753,17.5346866 16.1776345,15.5799961 13.0496516,14.3747546 L10.9194936,13.4715819 L18.6192054,7.984237 L13.7918663,0.358365126 Z"
@@ -181,7 +181,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text menu-text fw-bolder ms-2 text-white">SMK Fania Salsabila</span>
+              <span class="app-brand-text menu-text fw-bolder ms-2 text-white">SMA MEGATAMA </span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -191,7 +191,7 @@
 
           <div class="menu-inner-shadow"></div>
 
-          <ul class="menu-inner py-1 bg-dark">
+          <ul class="menu-inner py-1" style="background-color: #649B4E">
             <!-- Dashboard -->
             <li class="menu-item {{ Route::is('wali.beranda')? 'active' : '' }}">
               <a href="{{ route('wali.beranda') }}" class="menu-link text-white">

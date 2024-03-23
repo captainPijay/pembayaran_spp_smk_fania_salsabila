@@ -33,6 +33,9 @@
                      name="email"
                      autofocus>
                      <label for="" class="login__label">Email</label>
+                     @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                     @enderror
                   </div>
                </div>
 
@@ -42,6 +45,9 @@
                   <div class="login__box-input">
                      <input type="password" required class="login__input" id="login-pass" placeholder=" " name="password">
                      <label for="password" class="login__label">Password</label>
+                     @error('password')
+                     <span class="text-danger">{{ $message }}</span>
+                     @enderror
                      <i class="ri-eye-off-line login__eye" id="login-eye"></i>
                   </div>
                </div>
@@ -57,10 +63,10 @@
             <button type="submit" class="login__button">Login</button>
 
             <p class="login__register" style="font-weight: bold; font-size:18px">
-               Jika Ayah/Bunda Belum Memiliki Akun, Segera Hubungi Whatsapp Dibawah Ini
+               Jika Bapak/Ibu Belum Memiliki Akun, Segera Hubungi Whatsapp Dibawah Ini
                <br>
                <br>
-               <a href="https://wa.me/+6282180864290" target="blank" style="font-weight: bold; color:green">
+               <a href="https://wa.me/+62895421041474" target="blank" style="font-weight: bold; color:green">
                 Whatsapp <i class="fab fa-whatsapp" style="font-weight: bold; color:green"></i></a>
             </p>
          </form>

@@ -120,7 +120,7 @@
                     </table>
                     <h5 class="mt-2">Status Pembayaran : {{ strtoupper($tagihan->status)}}</h5>
                 </div>
-                <h5 class="card-header">FORM PEMBAYRAN</h5>
+                <h5 class="card-header">FORM PEMBAYARAN</h5>
                 <div class="card-body">
                     {!! Form::model($model, ['route'=>'pembayaran.store','method'=>'POST']) !!}
                     {!! Form::hidden('tagihan_id', $tagihan->id, []) !!}

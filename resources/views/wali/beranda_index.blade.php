@@ -116,19 +116,19 @@
 <div class="dashboard-container">
     <h1>Selamat Datang {{ auth()->user()->name }}</h1>
     <div class="row">
-        <div class="col-md-6 col-lg-4">
+        {{-- <div class="col-md-6 col-lg-4">
             <div class="card">
                 <div class="card-body">
                     <img src="{{ asset('storage/images/tut-wuri.png') }}" alt="Fania Salsabila Logo" width="90px">
                     <p class="card-text"><i>Tut Wuri Handayani</i></p>
                 </div>
-            </div>
+            </div> --}}
         </div>
-        <div class="col-md-6 col-lg-4">
+        {{-- <div class="col-md-6 col-lg-4">
             <div class="card">
                 <div class="card-body">
-                    <img src="{{ asset('storage/images/fania.png') }}" alt="Fania Salsabila Logo" width="100px">
-                    <p class="card-text">SMK FANIA SALSABILA</p>
+                    <img src="{{ asset('storage/images/megatama.png') }}" alt="Fania Salsabila Logo" width="100px">
+                    <p class="card-text">SMA MEGATAMA KOTA JAMBI</p>
                 </div>
             </div>
         </div>
@@ -140,7 +140,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
             <div class="col">
                 <div class="stats-item">
                     <i class="fa fa-envelope stats-item-icon bumping-icon"></i>

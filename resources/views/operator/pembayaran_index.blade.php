@@ -11,9 +11,6 @@
                         <div class="col-md-10">
                             {!! Form::open(['route' => 'pembayaran.index', 'method'=>'GET']) !!}
                             <div class="row justify-content-end gx-3">
-                                <div class="col-md-3 col-sm-12 my-3">
-                                  {!! Form::text('q', request('q'), ['class'=>'form-control','placeholder'=>'Pencarian Data Siswa']) !!}
-                                </div>
                                 <div class="col-md-2 col-sm-12 my-3">
                                   {!! Form::select('status', [
                                     'sudah-konfirmasi'=>'Sudah Di Konfirmasi',

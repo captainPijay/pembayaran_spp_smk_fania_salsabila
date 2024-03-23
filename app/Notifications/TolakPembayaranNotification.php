@@ -83,7 +83,7 @@ class TolakPembayaranNotification extends Notification
             ->line("Hallo Bapak/Ibu")
             ->line("Mohon Maaf")
             ->line("Pembayaran Tagihan SPP Atas Nama " . $this->pembayaran->tagihan->siswa->nama)
-            ->line("Telah Di TOLAK, Karena Bukti Pembayaran Tidak Sesuai")
+            ->line("Telah Di TOLAK, Karena Bukti Pembayaran Tidak Sesuai Dengan Ketentuan Yang Berlaku")
             ->line("Mohon Untuk Melakukan Pembayaran Ulang Dengan Bukti Bayar Yang Benar Atau Dapat Datang Langsung Ke Sekolah")
             ->line("Sekian Terima Kasih");
     }

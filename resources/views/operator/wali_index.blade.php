@@ -1,4 +1,4 @@
-@extends('layouts.app_sneat')
+  @extends('layouts.app_sneat')
 
 @section('content')
     <div class="row justify-content-center">
@@ -7,6 +7,7 @@
                 <h5 class="card-header">{{ $title }}</h5>
 
                 <div class="card-body">
+                    @can('operator')
                     <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
                     {!! Form::open(['route' => $routePrefix.'.index', 'method'=>'GET']) !!}
                     <div class="input-group mb-3">
@@ -37,6 +38,7 @@
 
                         </div>
                     </div>
+                    @endcan
                        <div class="table-responsive">
                         <table class="{{ config('app.table_style') }}">
                             <thead>

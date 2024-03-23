@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('biayas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 255);
+            $table->string('nama', 30);
             $table->integer('jumlah');
             $table->foreignId('user_id');
             $table->timestamps();

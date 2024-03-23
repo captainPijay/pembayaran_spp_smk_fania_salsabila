@@ -20,12 +20,18 @@ class WaliSiswaController extends Controller
             'wali_id' => 'required|exists:users,id',
             'siswa_id' => 'required'
         ]);
-
+        $wali = User::findOrFail($request->wali_id);
         $siswa = Siswa::findOrFail($request->siswa_id);
+        foreach ($wali->siswa as $item) {
+            if ($item == $siswa) {
+                flash()->addError("Data Sudah Ada");
+                return back();
+            }
+        }
         $siswa->wali_id = $request->wali_id;
         $siswa->wali_status = 'ok';
         $siswa->save();
-        flash('Data Sudah Ditambahkan')->success();
+        flash('Data Sudah Ditambahkan');
         return back();
     }
     /**

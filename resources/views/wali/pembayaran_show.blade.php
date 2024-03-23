@@ -154,7 +154,7 @@
                             </thead>
                         </table>
                         @if ($model->tanggal_konfirmasi != null)
-                        <div class="alert alert-primary" role="alert">
+                        <div class="alert alert-primary d-flex justify-content-center" role="alert">
                             <h3>TAGIHAN INI SUDAH LUNAS</h3>
                         </div>
                         <a href="{{ route('kwitansipembayaran.show', $model->id) }}" target="blank"><i class="fa fa-file-pdf"></i> Download Kwitansi</a>

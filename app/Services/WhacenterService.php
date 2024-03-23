@@ -15,7 +15,6 @@ class WhacenterService
     protected $response = '';
     protected $responseBody = '';
 
-
     /**
      * constructor.
      * @param array $lines
@@ -24,7 +23,7 @@ class WhacenterService
     {
         $this->lines = $lines;
         $this->baseUrl = 'https://app.whacenter.com/api';
-        $this->deviceId = '';
+        $this->deviceId = '2bfc84295173f6241e0e15a42be04035';
     }
 
     public function line($line = ''): self

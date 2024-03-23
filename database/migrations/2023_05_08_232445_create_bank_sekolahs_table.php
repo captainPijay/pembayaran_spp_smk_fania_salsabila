@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('bank_sekolahs', function (Blueprint $table) {
             $table->id();
-            $table->string('kode');
-            $table->string('nama_bank');
-            $table->string('nama_rekening');
-            $table->string('nomor_rekening');
+            $table->string('kode', 50);
+            $table->string('nama_bank', 30);
+            $table->string('nama_rekening', 50);
+            $table->string('nomor_rekening', 30);
             $table->timestamps();
         });
     }

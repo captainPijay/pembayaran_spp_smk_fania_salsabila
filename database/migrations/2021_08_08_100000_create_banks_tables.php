@@ -7,9 +7,9 @@
  *
  */
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateBanksTables extends Migration
 {
@@ -22,8 +22,8 @@ class CreateBanksTables extends Migration
     {
         Schema::create('banks', function (Blueprint $table) {
             $table->id();
-            $table->string('sandi_bank');
-            $table->string('nama_bank');
+            $table->string('sandi_bank', 20);
+            $table->string('nama_bank', 20);
         });
     }
 

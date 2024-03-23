@@ -7,6 +7,7 @@
                 <h5 class="card-header">{{ $title }}</h5>
 
                 <div class="card-body">
+                    @can('operator')
                     <div class="row">
                         <div class="col-md-6">
                             <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
@@ -42,6 +43,7 @@
                             </form>
                         </div>
                     </div>
+                    @endcan
                        <div class="table-responsive">
                         <table class="{{ config('app.table_style') }}">
                             <thead>

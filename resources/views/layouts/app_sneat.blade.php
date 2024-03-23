@@ -129,9 +129,9 @@
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-          <div class="app-brand demo bg-dark mt-0">
+          <div class="app-brand demo mt-0" style="background-color: #649B4E">
             <a href="{{ route('setting.create') }}" class="app-brand-link">
-        <img src="{{ asset('storage/images/fania-bg.png') }}" alt="Nama Instansi" class="mx-1 img-fluid navbar-logo d-flex justify-content-center" width="50">
+        <img src="{{ asset('storage/images/megatama-b.png') }}" alt="Nama Instansi" class="mx-1 img-fluid navbar-logo d-flex justify-content-center" width="50">
               <span class="app-brand-text menu-text fw-bolder text-white">{{ settings()->get('app_name', 'My APP') }}</span>
             </a>
 
@@ -142,7 +142,7 @@
 
           <div class="menu-inner-shadow"></div>
 
-          <ul class="menu-inner py-1 bg-dark">
+          <ul class="menu-inner py-1" style="background-color: #649B4E">
             <!-- Dashboard -->
             <li class="menu-item {{ Route::is('operator.beranda')? 'active' : '' }}">
               <a href="{{ route('operator.beranda') }}" class="menu-link text-white">
@@ -152,6 +152,7 @@
             </li>
 
             <!-- Cards -->
+            @can('operator')
             <li class="menu-item {{ Route::is('setting.*')? 'active' : '' }}">
               <a href="{{ route('setting.create') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons bx bx-cog"></i>
@@ -170,6 +171,7 @@
                 <div data-i18n="Basic">Data Rekening Sekolah</div>
               </a>
             </li>
+            @endcan
             <li class="menu-item {{ Route::is('wali.*')? 'active' : '' }}">
               <a href="{{ route('wali.index') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons fa fa-users"></i>
@@ -182,6 +184,7 @@
                 <div data-i18n="Basic">Data Siswa</div>
               </a>
             </li>
+            @can('operator')
             <li class="menu-item {{ Route::is('biaya.*')? 'active' : '' }}">
               <a href="{{ route('biaya.index') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons bx bx-money"></i>
@@ -210,11 +213,12 @@
                 </div>
               </a>
             </li>
+            @endcan
             <li class="menu-item {{ Route::is('laporanform.*') || Route::is('laporantagihan.*')? 'active' : '' }}">
               <a href="{{ route('laporanform.create') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons fa-solid fa-circle-info"></i>
                 <div data-i18n="Basic">
-                    Data Laporan
+                  Data Laporan
                 </div>
               </a>
             </li>
