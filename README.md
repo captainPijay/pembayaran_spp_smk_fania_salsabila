@@ -49,8 +49,14 @@
         ```bash
         php artisan db:seed
         ```
+6. **Konfigurasi Symbolic Link**
 
-6. **Jalankan Server Lokal**
+    - Jalankan perintah berikut untuk konfigurasi symbolic link:
+        ```bash
+        php artisan storage:link
+        ```
+
+7. **Jalankan Server Lokal**
     - Terakhir, jalankan perintah berikut untuk menjalankan proyek secara lokal:
         ```bash
         php artisan serve
@@ -64,11 +70,12 @@
         php artisan queue:listen --timeout=0
         ```
     - Proyek akan berjalan di `http://localhost:8000 || http://127.0.0.1:8000/` secara default.
-7. **Login**
+8. **Login**
     - Login menggunakan akun operator dengan email dan password berikut:
-        - username: *cek di DatabaseSeeder*
+        - email: *cek di DatabaseSeeder*
         - password: *cek di DatabasesSeeder*
 ## Catatan
 
 -   Pastikan Anda memiliki PHP, Composer, dan Laravel CLI yang terinstal di sistem Anda sebelum menjalankan langkah-langkah di atas.
 -   Pastikan juga Anda memiliki database yang sudah terbuat dan konfigurasi yang sesuai di file `.env`.
+-   Pastikan juga Anda telah mengaktifkan extension=zip di php.ini.
