@@ -79,3 +79,4 @@
 -   Pastikan Anda memiliki PHP, Composer, dan Laravel CLI yang terinstal di sistem Anda sebelum menjalankan langkah-langkah di atas.
 -   Pastikan juga Anda memiliki database yang sudah terbuat dan konfigurasi yang sesuai di file `.env`.
 -   Pastikan juga Anda telah mengaktifkan extension=zip di php.ini.
+-   Pastikan juga Anda telah mengaktifkan extension=gd di php.ini.
