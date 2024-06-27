@@ -71,4 +71,7 @@
       </aside>
     </main>
   </body>
+  <script>
+    console.log('tes');
+  </script>
 </html>
