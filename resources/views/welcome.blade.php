@@ -72,6 +72,6 @@
     </main>
   </body>
   <script>
-
+    console.log('pull');
   </script>
 </html>
