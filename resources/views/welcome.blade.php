@@ -71,7 +71,4 @@
       </aside>
     </main>
   </body>
-  <script>
-
-  </script>
 </html>
