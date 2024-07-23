@@ -48,7 +48,7 @@
                                     </table>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <h5>SMK FANIA SALSABILA</h5>
+                            <h5>SMK BATANGHARI</h5>
                             <table class="">
                                 <tr>
                                     <td>No. Tagihan</td>

@@ -7,8 +7,9 @@ function getClassName($classname)
 function getNamaJurusan()
 {
     return [
-        'IPA' => 'IPA',
-        'IPS' => 'IPS',
+        'Teknik Sepeda Motor' => 'Teknik Sepeda Motor',
+        'Teknik Kendaraan Ringan' => 'Teknik Kendaraan Ringan',
+        'Teknik Listrik' => 'Teknik Listrik'
     ];
 }
 function getNamaKelas()

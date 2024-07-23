@@ -21,7 +21,7 @@ return new class extends Migration
             $table->dateTime('nohp_verified_at')->nullable();
             $table->string('email', 30)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password', 30);
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

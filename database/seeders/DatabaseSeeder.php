@@ -24,24 +24,24 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        // User::create([
+        //     'name' => 'Rizki Amruna Akbar',
+        //     'akses' => 'operator',
+        //     'nohp' => '082184515727',
+        //     'nohp_verified_at' => now(),
+        //     'email' => 'akbar@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => bcrypt('1')
+        // ]);
         User::create([
-            'name' => 'Muhammad Yuda Syaputra',
-            'akses' => 'operator',
-            'nohp' => '0895421041474',
+            'name' => 'zidan',
+            'akses' => 'Kepala Sekolah',
+            'nohp' => '089541041474',
             'nohp_verified_at' => now(),
-            'email' => 'muhammadyudasaputra9@gmail.com',
+            'email' => 'zidan@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('1'),
         ]);
-        // User::create([
-        //     'name' => 'zidan',
-        //     'akses' => 'Kepala Sekolah',
-        //     'nohp' => '089541041474',
-        //     'nohp_verified_at' => now(),
-        //     'email' => 'zidan@gmail.com',
-        //     'email_verified_at' => now(),
-        //     'password' => bcrypt('1'),
-        // ]);
         /* User::create([ */
         //     'name' => 'Operator 2',
         //     'akses' => 'operator',

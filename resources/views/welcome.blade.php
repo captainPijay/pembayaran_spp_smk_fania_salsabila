@@ -19,7 +19,7 @@
   <body>
     <header class="navbar-container">
       <div class="logo">
-        <img src="storage/images/logo-Kemdikbud-1.png" alt="Dicoding Indonesia" />
+        <img style="height:100px; width:100px;" src="storage/images/megatama-no-bg.png" alt="Dicoding Indonesia" />
       </div>
       <nav class="nav-list">
         <ul>
@@ -40,12 +40,7 @@
     <main>
       <div class="content">
         <div class="content-description">
-          <h1 class="title">SMA Megatama</h1>
-          <p>
-            SMA Megatama adalah sebuah institusi pendidikan SMA swasta yang beralamat di Jl. Damai No. 47 Rt. 32, Kota Jambi.
-            SMA swasta ini memulai kegiatan pendidikan belajar mengajarnya pada tahun 2016. Pada saat ini SMA Megatama memakai panduan kurikulum belajar pemerintah yaitu SMA 2013 MIPA. SMA Megatama ditangani oleh seorang operator yang bernama Rizal Afrans.
-          </p>
-
+          <h1 class="title">SMK BATANGHARI</h1>
           <a href="https://sekolahloka.com/data/smas-megatama/" target="blank"><button>Lebih lanjut</button></a>
         </div>
 

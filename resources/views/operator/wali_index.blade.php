@@ -48,7 +48,9 @@
                                     <th class="{{ config('app.th_style') }}">No HP</th>
                                     <th class="{{ config('app.th_style') }}">Email</th>
                                     <th class="{{ config('app.th_style') }}">Akses</th>
+                                    @can('operator')
                                     <th class="{{ config('app.th_style') }}">Aksi</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody class="bg-secondary text-white">
@@ -59,6 +61,7 @@
                                         <td>{{ $item->nohp }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->akses }}</td>
+                                        @can('operator')
                                         <td>
                                         {!! Form::open([
                                                 'route'=> [$routePrefix.'.destroy', $item->id],
@@ -74,6 +77,7 @@
                                             </button>
                                         {!! Form::close() !!}
                                         </td>
+                                        @endcan
                                     </tr>
                                 @empty
                                     <tr>

@@ -129,9 +129,9 @@
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-          <div class="app-brand demo mt-0" style="background-color: #649B4E">
+          <div class="app-brand demo mt-0" style="background-color: #4A45B8">
             <a href="{{ route('setting.create') }}" class="app-brand-link">
-        <img src="{{ asset('storage/images/megatama-b.png') }}" alt="Nama Instansi" class="mx-1 img-fluid navbar-logo d-flex justify-content-center" width="50">
+        <img src="{{ asset('storage/images/megatama-no-bg.png') }}" alt="Nama Instansi" class="mx-1 img-fluid navbar-logo d-flex justify-content-center" width="50">
               <span class="app-brand-text menu-text fw-bolder text-white">{{ settings()->get('app_name', 'My APP') }}</span>
             </a>
 
@@ -142,7 +142,7 @@
 
           <div class="menu-inner-shadow"></div>
 
-          <ul class="menu-inner py-1" style="background-color: #649B4E">
+          <ul class="menu-inner py-1" style="background-color: #4A45B8">
             <!-- Dashboard -->
             <li class="menu-item {{ Route::is('operator.beranda')? 'active' : '' }}">
               <a href="{{ route('operator.beranda') }}" class="menu-link text-white">

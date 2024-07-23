@@ -57,7 +57,9 @@
                                     <th class="{{ config('app.th_style') }}">Kelas</th>
                                     <th class="{{ config('app.th_style') }}">Biaya SPP</th>
                                     <th class="{{ config('app.th_style') }}">Status</th>
+                                    @can('operator')
                                     <th class="{{ config('app.th_style') }}" width="100%">Aksi</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody class="bg-secondary text-white">
@@ -74,6 +76,7 @@
                                         <div class="d-flex align-items-center justify-content-center">
                                             <td  class="btn {{ $item->status == 'aktif' ? 'bg-success' : 'bg-danger' }} text-white font-weight-bold d-flex justify-content-center text-center mt-2 btn-sm mx-1">{{ $item->status }}</td>
                                         </div>
+                                        @can('operator')
                                         <td>
                                         {!! Form::open([
                                                 'route'=> [$routePrefix.'.destroy', $item->id],
@@ -89,6 +92,7 @@
                                             </button>
                                         {!! Form::close() !!}
                                         </td>
+                                        @endcan
                                     </tr>
                                 @empty
                                     <tr>

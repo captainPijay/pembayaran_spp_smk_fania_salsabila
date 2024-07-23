@@ -145,16 +145,16 @@
 		<div class="invoice-box">
             {{-- <div class="d-flex"> --}}
                 {{-- <img src="{{ asset('storage/images/fania.png') }}" width="120px"> --}}
-                {{-- <h4>SMK FANIA SALSABILA</h4>
+                {{-- <h4>MAS AL-IKHLAS</h4>
                 <h5>Kota Jambi</h5>
             </div> --}}
 			<table cellpadding="0" cellspacing="0">
                 <tr>
                     <td width="80">
                         @if (request('output') == 'pdf')
-                            <img src="{{ public_path() . '/storage/images/megatama-b.png' }}" alt="" width="110">
+                            <img src="{{ public_path() . '/storage/images/megatama-no-bg.png' }}" alt="" width="110">
                         @else
-                        <img src="{{ asset('storage/images/megatama.png') }}" alt="" width="110">
+                        <img src="{{ asset('storage/images/megatama-no-bg.png') }}" alt="" width="110">
                         @endif
                     </td>
                     <td style="text-align:left; vertical-align: middle">

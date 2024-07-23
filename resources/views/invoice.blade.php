@@ -138,9 +138,9 @@
                 <tr>
                     <td width="80">
                         @if (request('output') == 'pdf')
-                            <img src="{{ public_path() . '/storage/images/megatama-b.png' }}" alt="" width="110">
+                            <img src="{{ public_path() . '/storage/images/megatama-no-bg.png' }}" alt="" width="110">
                         @else
-                        <img src="{{ asset('storage/images/megatama-b.png') }}" alt="" width="110">
+                        <img src="{{ asset('storage/images/megatama-no-bg.png') }}" alt="" width="110">
                         @endif
                     </td>
                     <td style="text-align:left; vertical-align: middle">

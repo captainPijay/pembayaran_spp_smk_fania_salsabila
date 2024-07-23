@@ -16,7 +16,7 @@
    </head>
    <body>
       <div class="login">
-         <img src="https://source.unsplash.com/1100x470?school" alt="login image" class="login__img" width="10px">
+         <img src="{{asset('storage/images/siswa.jpg')}}" alt="login image" class="login__img" width="10px">
 
          <form action="{{ route('login') }}" class="login__form" method="POST">
             @csrf
