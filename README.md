@@ -65,7 +65,7 @@
         ```bash
         npm run dev
         ```
-   - Terakhir itu buka terminal baru dan jalankan:
+   - Terakhir buka .env lalu untuk QUEUE_CONNECTION=sync diganti menjadi QUEUE_CONNECTION=database. Setelah buka terminal baru dan jalankan:
         ```bash
         php artisan queue:listen --timeout=0
         ```
