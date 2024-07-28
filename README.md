@@ -1,4 +1,4 @@
-# Aplikasi Pembayaran SPP Dengan Laravel 10
+# Aplikasi Pembayaran SPP Dengan Laravel 10 2024
 
 ## Langkah-langkah Instalasi
 
