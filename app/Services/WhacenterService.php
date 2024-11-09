@@ -23,7 +23,7 @@ class WhacenterService
     {
         $this->lines = $lines;
         $this->baseUrl = 'https://app.whacenter.com/api';
-        $this->deviceId = '2bfc84295173f6241e0e15a42be04035';
+        $this->deviceId = 'c7ab21e03e7dbf1706283654f942027c	';
     }
 
     public function line($line = ''): self

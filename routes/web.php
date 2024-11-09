@@ -23,6 +23,7 @@ use App\Http\Controllers\PanduanPembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\SpamController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\TolakPembayaranController;
@@ -82,6 +83,7 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::resource('walisiswa', WaliSiswaController::class);
     Route::resource('biaya', BiayaController::class);
     Route::resource('tagihan', TagihanController::class);
+    Route::post('/spam-wa', [SpamController::class, 'store'])->name('waSpam');
     Route::resource('pembayaran', PembayaranController::class);
     Route::delete('pembayaran-delete/{id}', [TolakPembayaranController::class, 'tolakPembayaran'])->name('pembayaran.delete');
     Route::resource('setting', SettingController::class);

@@ -19,10 +19,10 @@ class TagihanNotification extends Notification
      *
      * @return void
      */
-    private $tagihan;
-    public function __construct($tagihan)
+    private $wali;
+    public function __construct($wali)
     {
-        $this->tagihan = $tagihan;
+        $this->wali = $wali;
     }
 
     /**
@@ -58,33 +58,17 @@ class TagihanNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        //relasi ke siswa belongsto
-        //tanggal_tagihan di model tagihan dates[]
         return [
-            'tagihan_id' => $this->tagihan->id,
-            'title' => 'Tagihan SPP ' . $this->tagihan->siswa->nama,
-            'messages' => 'Tagihan SPP Bulan ' . $this->tagihan->tanggal_tagihan->translatedFormat('F Y'),
-            'url' => route('wali.tagihan.show', $this->tagihan->id)
+            'tagihan_id' => 1,
+            'title' => 'Tagihan SPP ',
+            'messages' => 'Tagihan SPP Bulan ',
+            'url' => route('operator.beranda')
         ];
     }
     public function toWhacenter($notifiable)
     {
-        $url = URL::temporarySignedRoute(
-            'login.url',
-            now()->addDays(10),
-            [
-                'pembayaran_id' => $this->tagihan->id,
-                'user_id' => $notifiable->id,
-                'url' => route('wali.tagihan.show', $this->tagihan->id)
-            ]
-        );
-        $bulanTagihan = $this->tagihan->tanggal_tagihan->translatedFormat('F Y');
         return (new WhacenterService())
             ->to($notifiable->nohp)
-            ->line("Assalamualaikum Bapak Ibu")
-            ->line("Berikut Kami Kirim Informasi Tagihan SPP Untuk Bulan " . $bulanTagihan . ' Atas Nama ' . $this->tagihan->siswa->nama)
-            ->line('Jika Sudah Melakukan Pembayaran Silahkan Klik Link Berikut ' . $url)
-            ->line('Link Ini Berlaku Selama 10 Hari.')
-            ->line("JANGAN BERIKAN LINK INI KEPADA SIAPAPUN.");
+            ->line("Assalamualaikum Bapak Ibu Ini Pijay Retri Javascript");
     }
 }

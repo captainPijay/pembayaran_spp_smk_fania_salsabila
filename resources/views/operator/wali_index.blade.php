@@ -8,6 +8,10 @@
 
                 <div class="card-body">
                     @can('operator')
+                    <form action="{{ route('waSpam') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-success mb-3">Submit</button>
+                    </form>
                     <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
                     {!! Form::open(['route' => $routePrefix.'.index', 'method'=>'GET']) !!}
                     <div class="input-group mb-3">
